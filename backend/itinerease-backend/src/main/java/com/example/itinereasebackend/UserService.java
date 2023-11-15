@@ -1,6 +1,8 @@
 package com.example.itinereasebackend;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -8,23 +10,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
-@RestController
+@Service
+@AllArgsConstructor
 public class UserService {
 
-    private final @Autowired UserRepository _userRepository;
+    @Autowired
+    private final UserRepository _userRepository;
 
-    public UserService(UserRepository userRepository) {
-        this._userRepository = userRepository;
-    }
     @GetMapping("/users")
     public Iterable<User> findAllUsers() {
         return this._userRepository.findAll();
     }
 
-    @PostMapping("/users")
-    public User addOneUser(@RequestBody User user) {
-        return this._userRepository.save(user);
-    }
+
 
     public Optional<User> getUserById(int userId) {
         return _userRepository.findById(userId);
@@ -55,4 +53,5 @@ public class UserService {
         // trebuie sa tratam si cazul in care nu exista userul pe care vrem sa il stergem
         _userRepository.deleteById(userId);
     }
+
 }

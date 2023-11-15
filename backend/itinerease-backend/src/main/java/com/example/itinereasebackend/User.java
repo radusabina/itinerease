@@ -2,35 +2,26 @@ package com.example.itinereasebackend;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
+
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "User")
+@Data
+@Table(name = "User", schema = "public")
 public class User{
     @Id
     @Column(name = "id")
     private int id;
-    @NotBlank
-    @Column(name = "lastName")
+    @Column(name = "last_name")
     private String lastName;
-    @NotBlank
-    @Column(name = "firstName")
+    @Column(name = "first_name")
     private String firstName;
-    @NotBlank
-    @Column(name = "phoneNumber")
+    @Column(name = "phone_number")
     private String phoneNumber;
-    @NotBlank
     @Column(name = "email")
     private String email;
-    @NotBlank
     @Column(name = "password")
     private String password;
-
 }
