@@ -1,0 +1,24 @@
+.navbar {
+    background-color: #4c77a6;
+    height: 3.125rem;
+
+    .logo-text {
+        padding-left: 0.625rem; 
+        padding-bottom: 6.25rem;
+        font-size: 0.938rem;
+        color: #FFF;
+        opacity: 0.7;
+        font-family: Indie Flower;
+    }
+
+    .menu {
+        .contact {
+            font-family: Indie Flower;
+            text-decoration: underline;
+        }
+        .my_account {
+            font-family: Indie Flower;
+            text-decoration: underline;
+        }
+    }
+}
