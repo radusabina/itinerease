@@ -1,7 +1,6 @@
-package com.example.itinereasebackend;
+package com.example.itinereasebackend.api.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 
@@ -9,17 +8,17 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name = "User", schema = "public")
+@Table(name = "user", schema = "public")
 public class User{
     @Id
     @Column(name = "id")
     private int id;
     @Column(name = "last_name")
-    private String lastName;
+    private String last_name;
     @Column(name = "first_name")
-    private String firstName;
+    private String first_name;
     @Column(name = "phone_number")
-    private String phoneNumber;
+    private String phone_number;
     @Column(name = "email")
     private String email;
     @Column(name = "password")
