@@ -40,12 +40,12 @@
     margin-bottom: 3rem;
   }
 
-
-
+  
+  .itinerary{
+      margin-bottom: 1.5rem;
+  }
 
 </style>
-
-
 
 <main class="main">
   <div class="content">
@@ -64,11 +64,56 @@
         <div class="modal-body">
           
           <label class="form-label">Itinerary name</label>
-          <input type="text" class="form-control" id="inputItineraryName" aria-describedby="Itinerary name">
-          <!--aici trebuie implementat datapicker-->
-          <label class="form-label">Start date:</label>
-          <br>
-          <label class="form-label">End date:</label>
+          <input type="text" class="form-control itinerary" id="inputItineraryName" aria-describedby="Itinerary name">
+          
+          
+          <!--aici trebuie implementat datapicker cu range-->
+          <!---------------asta e primul datapicker------------------>
+          <div class="row mb-3">
+          <label class="col-sm-3 col-form-label">Start date:</label>
+        
+            <div class="col-sm-6">
+              <form class="row row-cols-sm-auto">
+              <div class="input-group">
+                <input
+                  class="form-control"
+                  placeholder="yyyy-mm-dd"
+                  name="dateStart"
+                  [(ngModel)]="dataStartModel"
+                  ngbDatepicker
+                  #dateStart="ngbDatepicker"
+                />
+                <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dateStart.toggle()" type="button"></button>
+              </div>
+              </form>
+            </div>
+          </div>
+
+
+
+          <!---------------asta e al doilea datapicker------------------>
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label">End date:</label>
+          
+              <div class="col-sm-6">
+                <form class="row row-cols-sm-auto">
+                <div class="input-group">
+                  <input
+                    class="form-control"
+                    placeholder="yyyy-mm-dd"
+                    name="dateEnd"
+                    [(ngModel)]="dateEndModel"
+                    ngbDatepicker
+                    #dateEnd="ngbDatepicker"
+                  />
+                  <button class="btn btn-outline-secondary bi bi-calendar3" (click)="dateEnd.toggle()" type="button"></button>
+                </div>
+                </form>
+              </div>
+           </div>
+          
+
+
           <div class="row mb-3">
             <label  class="col-sm-2 col-form-label">Buget</label>
           
@@ -79,6 +124,7 @@
           
           <div class="row mb-3">
             <label  class="col-sm-4 col-form-label">Number of persons</label>
+            
             <div class="col-sm-4">
             <select class="form-select form-select-sm-1" aria-label="Default select ">
               <option selected>Select</option>
@@ -87,6 +133,7 @@
               <option value="3">3</option>
             </select>
             </div>
+
           </div>
 
 
@@ -116,19 +163,18 @@
         
         <div class="modal-body">
           
-          <!--Aici am lasat 2 modele, 1 cu scris mare si 1 cu scris mic , alegeti cum vreti-->
 
           <form>
             <div class="mb-3">
 
               <label class="form-label fs-5">Where to?</label>
-              <select class="form-select form-select-lg mb-3" aria-label="Large select ">
+              <select class="form-select form-select-sm mb-3" aria-label="Large select ">
                 <option selected>Please select a country</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
               </select>
-              <select class="form-select form-select-lg mb-3" aria-label="Large select ">
+              <select class="form-select form-select-sm mb-3" aria-label="Large select ">
                 <option selected>Select the city</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
@@ -187,7 +233,7 @@
         
         <div class="modal-footer">
           
-          <button class="btn btn-primary" data-bs-target="#ModalToggle" data-bs-toggle="modal">Back</button>
+          <button class="btn btn-primary" data-bs-target="#ModalToggle2" data-bs-toggle="modal">Back</button>
           <button type="button" class="btn btn-primary"  data-bs-toggle="modal">Save</button>
         </div>
         
@@ -215,3 +261,5 @@
 
 
 <router-outlet></router-outlet>
+
+
