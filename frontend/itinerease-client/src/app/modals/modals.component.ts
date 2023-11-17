@@ -1,25 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-
 import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
-import { ContainerComponent } from "./container/container.component";
+
 
 @Component({
-    selector: 'app-root',
-    standalone: true,
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    imports: [CommonModule, RouterOutlet, NgbDatepickerModule, NgbAlertModule, FormsModule, JsonPipe, ContainerComponent]
+  selector: 'app-modals',
+  standalone: true,    
+  imports: [CommonModule, RouterOutlet,NgbDatepickerModule, NgbAlertModule, FormsModule, JsonPipe],
+  templateUrl: './modals.component.html',
+  styleUrl: './modals.component.scss'
 })
-export class AppComponent {
+export class ModalsComponent {
   title = 'itinerease-client';
   dataStartModel!: NgbDateStruct;
   dateEndModel!: NgbDateStruct;
 }
-
-
-
-
