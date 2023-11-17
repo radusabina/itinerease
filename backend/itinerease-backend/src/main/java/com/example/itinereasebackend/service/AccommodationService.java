@@ -23,8 +23,8 @@ public class AccommodationService {
         return accommodationRepository.findAll();
     }
 
-    public Optional<Accommodation> getById(int userId) {
-        return accommodationRepository.findById(userId);
+    public Optional<Accommodation> getById(int accId) {
+        return accommodationRepository.findById(accId);
     }
 
     public void update(int accmId, Accommodation updatedAccm) {
@@ -41,9 +41,9 @@ public class AccommodationService {
         }
     }
 
-    public void delete(int userId) {
+    public void delete(int accId) {
         // TODO trebuie sa tratam si cazul in care nu exista userul pe care vrem sa il stergem
-        accommodationRepository.deleteById(userId);
+        accommodationRepository.deleteById(accId);
     }
 
 }
