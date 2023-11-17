@@ -9,12 +9,14 @@
 .welcome-text{
     font-size: 2.813rem; 
     font-weight: bold; 
-    margin-top: 11.25rem;
-    margin-left: 12.5rem;
     color: #FFFFFD;
     text-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
-    font-family: Indie Flower;
+    font-family: sans-serif;
     font-style: normal;
+}
+
+.first-row{
+    padding-top: 12.5rem;
 }
 
 .carousel-control-prev-icon, .carousel-control-next-icon {
@@ -28,6 +30,10 @@
 .itinerary_1{
     background-color:#b7c9d4;
     cursor: pointer;
+}
+
+.row-itinerary1{
+    padding-top: 8.125rem;
 }
 
 .itinerary_2{
