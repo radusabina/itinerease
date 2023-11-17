@@ -1,0 +1,45 @@
+.background{
+    object-fit: cover;
+    background-repeat: no-repeat; 
+    margin: 0; 
+    padding: 0;
+    background-image: url('https://i.postimg.cc/d3V2MgMb/Captur-de-ecran-din-2023-11-13-la-19-12-44.png');
+    }
+
+.welcome-text{
+    font-size: 2.813rem; 
+    font-weight: bold; 
+    color: #FFFFFD;
+    text-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+    font-family: sans-serif;
+    font-style: normal;
+}
+
+.first-row{
+    padding-top: 12.5rem;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    filter: invert(1);
+}
+
+.carousel-indicators{
+    filter: invert(1);
+}
+
+.itinerary_1{
+    background-color:#b7c9d4;
+    cursor: pointer;
+}
+
+.row-itinerary1{
+    padding-top: 8.125rem;
+}
+
+.itinerary_2{
+    background-color: #b7c9d4;
+}
+.no-padding {
+    padding: 0;
+}
+
