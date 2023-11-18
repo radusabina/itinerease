@@ -5,16 +5,15 @@ import { NgbAlertModule, NgbDatepickerModule, NgbDateStruct } from '@ng-bootstra
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 
-
 @Component({
-  selector: 'app-modals',
-  standalone: true,    
-  imports: [CommonModule, RouterOutlet,NgbDatepickerModule, NgbAlertModule, FormsModule, JsonPipe],
-  templateUrl: './modals.component.html',
-  styleUrl: './modals.component.scss'
+    selector: 'app-modals',
+    standalone: true,
+    imports: [CommonModule, RouterOutlet, NgbDatepickerModule, NgbAlertModule, FormsModule, JsonPipe],
+    templateUrl: './modals.component.html',
+    styleUrl: './modals.component.scss',
 })
 export class ModalsComponent {
-  title = 'itinerease-client';
-  dataStartModel!: NgbDateStruct;
-  dateEndModel!: NgbDateStruct;
+    title = 'itinerease-client';
+    dataStartModel!: NgbDateStruct;
+    dateEndModel!: NgbDateStruct;
 }
