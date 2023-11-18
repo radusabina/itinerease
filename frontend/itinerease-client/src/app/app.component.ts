@@ -9,18 +9,14 @@ import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [CommonModule, RouterOutlet, ContainerComponent, NgbDatepickerModule, NgbAlertModule, FormsModule, JsonPipe, NavbarComponent ],
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'app-root',
+    standalone: true,
+    imports: [CommonModule, RouterOutlet, ContainerComponent, NgbDatepickerModule, NgbAlertModule, FormsModule, JsonPipe, NavbarComponent],
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title = 'itinerease-client';
-  dataStartModel!: NgbDateStruct;
-  dateEndModel!: NgbDateStruct;
+    title = 'itinerease-client';
+    dataStartModel!: NgbDateStruct;
+    dateEndModel!: NgbDateStruct;
 }
-
-
-
-
