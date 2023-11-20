@@ -31,11 +31,11 @@ public class ItineraryService {
         Optional<Itinerary> existingItinerary = itineraryRepository.findById(itineraryId);
         if (existingItinerary.isPresent()) {
             Itinerary itineraryToUpdate = existingItinerary.get();
-            itineraryToUpdate.setId_destination(updatedItinerary.getId_destination());
-            itineraryToUpdate.setId_transport(updatedItinerary.getId_transport());
-            itineraryToUpdate.setId_user(updatedItinerary.getId_user());
-            itineraryToUpdate.setId_accommodation(updatedItinerary.getId_accommodation());
-            itineraryToUpdate.setId_departure(updatedItinerary.getId_departure());
+            itineraryToUpdate.setDestination_location(updatedItinerary.getDestination_location());
+            itineraryToUpdate.setTransport(updatedItinerary.getTransport());
+            itineraryToUpdate.setUser(updatedItinerary.getUser());
+            itineraryToUpdate.setAccommodation(updatedItinerary.getAccommodation());
+            itineraryToUpdate.setDeparture_location(updatedItinerary.getDeparture_location());
             itineraryToUpdate.setName(updatedItinerary.getName());
             itineraryToUpdate.setDeparture_date(updatedItinerary.getDeparture_date());
             itineraryToUpdate.setArrival_date(updatedItinerary.getArrival_date());

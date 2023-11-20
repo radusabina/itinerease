@@ -1,7 +1,11 @@
 package com.example.itinereasebackend.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
+
+import java.util.List;
 
 
 @Entity
@@ -14,13 +18,18 @@ public class Attraction{
     @Column(name = "id")
     private int id;
 
-    @Column(name = "id_location")
-    private int id_location;
+    @ManyToOne
+    @JoinColumn(name = "id_location")
+    private Location location;
 
     @Column(name = "name")
     private String name;
 
+    @Positive
     @Column(name = "price")
     private float price;
 
+    @JsonIgnore
+    @ManyToMany(mappedBy = "attractions")
+    private List<Itinerary> itineraries;
 }
