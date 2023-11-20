@@ -1,6 +1,7 @@
 package com.example.itinereasebackend.api.model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 
@@ -13,10 +14,14 @@ public class Accommodation{
     @Id
     @Column(name = "id")
     private int id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "address")
     private String address;
+
+    @Positive
     @Column(name = "price")
-    private String price;
+    private float price;
 }

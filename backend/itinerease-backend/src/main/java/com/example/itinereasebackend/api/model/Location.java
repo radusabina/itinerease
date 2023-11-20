@@ -1,7 +1,10 @@
 package com.example.itinereasebackend.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 
 @Entity
@@ -20,5 +23,7 @@ public class Location{
     @Column(name = "city")
     private String city;
 
-
+    @JsonIgnore
+    @OneToMany(mappedBy = "location")
+    private List<Attraction> attractions;
 }
