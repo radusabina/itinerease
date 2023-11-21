@@ -11,6 +11,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
+import { AccountPageComponent } from './account-page/account-page.component';
 
 @Component({
     selector: 'app-root',
@@ -24,6 +25,7 @@ import { JsonPipe } from '@angular/common';
         FormsModule,
         JsonPipe,
         NavbarComponent,
+        AccountPageComponent,
     ],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
