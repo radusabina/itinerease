@@ -31,7 +31,7 @@ public class AttractionService {
         Optional<Attraction> existingAttraction = _attractionRepository.findById(attractionId);
         if (existingAttraction.isPresent()) {
             Attraction attractionToUpdate = existingAttraction.get();
-            attractionToUpdate.setId_location(updatedAttraction.getId_location());
+            attractionToUpdate.setLocation(updatedAttraction.getLocation());
             attractionToUpdate.setName(updatedAttraction.getName());
             attractionToUpdate.setPrice(updatedAttraction.getPrice());
             _attractionRepository.save(attractionToUpdate);
