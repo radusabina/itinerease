@@ -16,8 +16,6 @@ import { AccountPageComponent } from './account-page/account-page.component';
 @Component({
     selector: 'app-root',
     standalone: true,
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
     imports: [
         CommonModule,
         RouterOutlet,
@@ -29,6 +27,8 @@ import { AccountPageComponent } from './account-page/account-page.component';
         NavbarComponent,
         AccountPageComponent,
     ],
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
     title = 'itinerease-client';
