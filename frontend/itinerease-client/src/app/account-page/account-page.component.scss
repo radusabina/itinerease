@@ -1,0 +1,47 @@
+.vertical-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 100%;
+    height: 100%; /* Ajustează înălțimea liniei pentru a acoperi întreaga înălțime a coloanei */
+    border-left: 3px solid rgba(174, 163, 163, 0.81); /* Grosimea și culoarea liniei */
+}
+
+h2 {
+    font-family: Be Vietnam Pro;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 1.688rem;
+    font-weight: 400;
+
+    margin-top: 1%;
+    margin-left: 20%;
+}
+
+.Home-page {
+    color: #fff;
+}
+.Delete-page {
+    color: red;
+}
+
+.btn-home-back {
+    display: flex;
+    align-items: center;
+    border-radius: 0.4375rem;
+    border-color: transparent transparent;
+    background: rgba(113, 148, 170, 0.85);
+    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    width: 17.4375rem;
+    height: 3.6875rem;
+}
+
+svg {
+    stroke-width: 1px;
+    stroke: #fff;
+    width: 2.56556rem;
+    height: 1rem;
+}
+
+.vertical-line {
+    background: rgba(174, 163, 163, 0.81);
+}
