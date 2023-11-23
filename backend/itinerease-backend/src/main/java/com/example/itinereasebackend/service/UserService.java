@@ -16,8 +16,8 @@ public class UserService {
     private final UserRepository _userRepository;
 
     public void create(User user) {
-        // TODO validari in cazul in care este necesar
         _userRepository.save(user);
+
     }
     public List<User> getAll(){
         return _userRepository.findAll();

@@ -1,8 +1,10 @@
 package com.example.itinereasebackend.api.controller;
 
 import com.example.itinereasebackend.api.model.Attraction;
+import com.example.itinereasebackend.api.model.Location;
 import com.example.itinereasebackend.service.AttractionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,8 +16,9 @@ public class AttractionController {
     AttractionService attractionService;
 
     @PostMapping("/attraction")
-    public void create(@RequestBody Attraction attraction) {
+    public ResponseEntity<?> create(@RequestBody Attraction attraction) {
         attractionService.create(attraction);
+        return ResponseEntity.ok("Attraction added successfully.");
     }
 
     @GetMapping("/attraction")

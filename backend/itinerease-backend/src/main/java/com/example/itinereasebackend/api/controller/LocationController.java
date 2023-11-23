@@ -3,6 +3,7 @@ package com.example.itinereasebackend.api.controller;
 import com.example.itinereasebackend.api.model.Location;
 import com.example.itinereasebackend.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -14,8 +15,9 @@ public class LocationController {
     LocationService locationService;
 
     @PostMapping("/location")
-    public void create(@RequestBody Location location) {
+    public ResponseEntity<?> create(@RequestBody Location location) {
         locationService.create(location);
+        return ResponseEntity.ok("Location added successfully.");
     }
 
     @GetMapping("/location")
@@ -28,7 +30,7 @@ public class LocationController {
         locationService.update(location.getId(), location);
     }
 
-    @DeleteMapping("/location/{id}")
+    @DeleteMapping("location/{id}")
     public void delete(@PathVariable int id) {
         locationService.delete(id);
     }
