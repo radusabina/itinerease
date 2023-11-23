@@ -12,6 +12,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 import { AccountPageComponent } from './account-page/account-page.component';
+import { ItineraryDetailsPageComponent } from './itinerary-details-page/itinerary-details-page.component';
 
 @Component({
     selector: 'app-root',
@@ -26,6 +27,7 @@ import { AccountPageComponent } from './account-page/account-page.component';
         JsonPipe,
         NavbarComponent,
         AccountPageComponent,
+        ItineraryDetailsPageComponent
     ],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],

@@ -1,0 +1,89 @@
+<div class="main-container d-flex">
+    <div class="d-flex flex-column first-column">
+        <label>Itinerary name:</label>
+        <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="itineraryName"
+            placeholder="Itinerary name" />
+
+        <label>Budget:</label>
+        <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="budget"
+            placeholder="Budget" />
+
+        <label>Persons:</label>
+        <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="numberOfPersons"
+            placeholder="Persons" />
+
+        <div class="d-flex flex-row">
+            <div class="d-flex flex-column">
+                <label>Departure date: </label>
+                <div class="input-group">
+                    <input
+                        class="form-control"
+                        placeholder="yyyy-mm-dd"
+                        name="dp"
+                        [(ngModel)]="startDate"
+                        ngbDatepicker
+                        #dDeparture="ngbDatepicker" />
+                    <button
+                        class="btn btn-outline-secondary bi bi-calendar3"
+                        (click)="dDeparture.toggle()"
+                        type="button"></button>
+                </div>
+
+                <label>Where from?</label>
+                <select class="form-select" aria-label="Country">
+                    <option selected>{{ whereFromCountry }}</option>
+                    <option value="Germania">Germania</option>
+                    <option value="Spania">Spania</option>
+                    <option value="Italia">Italia</option>
+                </select>
+                <select class="form-select" aria-label="City">
+                    <option selected>{{ whereFromCity }}</option>
+                    <option value="Berlin">Berlin</option>
+                    <option value="Barcelona">Barcelona</option>
+                    <option value="Roma">Roma</option>
+                </select>
+            </div>
+
+            <div class="d-flex flex-column">
+                <label>Return date:</label>
+                <div class="input-group">
+                    <input
+                        class="form-control"
+                        placeholder="yyyy-mm-dd"
+                        name="dp"
+                        [(ngModel)]="endDate"
+                        ngbDatepicker
+                        #dReturn="ngbDatepicker" />
+                    <button
+                        class="btn btn-outline-secondary bi bi-calendar3"
+                        (click)="dReturn.toggle()"
+                        type="button"></button>
+                </div>
+
+                <label>Where to?</label>
+                <select class="form-select" aria-label="Country">
+                    <option selected>{{ whereToCountry }}</option>
+                    <option value="Germania">Germania</option>
+                    <option value="Spania">Spania</option>
+                    <option value="Italia">Italia</option>
+                </select>
+                <select class="form-select" aria-label="City">
+                    <option selected>{{ whereToCity }}</option>
+                    <option value="Berlin">Berlin</option>
+                    <option value="Barcelona">Barcelona</option>
+                    <option value="Roma">Roma</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="d-flex flex-column second-column"></div>
+</div>
