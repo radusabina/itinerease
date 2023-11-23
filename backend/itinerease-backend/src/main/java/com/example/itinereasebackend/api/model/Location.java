@@ -14,6 +14,7 @@ import java.util.List;
 @Table(name = "location", schema = "public")
 public class Location{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -24,6 +25,15 @@ public class Location{
     private String city;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "location")
+    @OneToMany(mappedBy = "location", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Attraction> attractions;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "destination_location", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Itinerary> destination_itineraries;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "departure_location", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Itinerary> departure_itineraries;
+
 }
