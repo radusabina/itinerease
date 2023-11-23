@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { ContainerComponent } from './container/container.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { LoginComponent } from './login/login.component';
 
 import {
     NgbAlertModule,
@@ -24,6 +25,7 @@ import { JsonPipe } from '@angular/common';
         FormsModule,
         JsonPipe,
         NavbarComponent,
+        LoginComponent,
     ],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
