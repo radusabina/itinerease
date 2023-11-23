@@ -1,5 +1,6 @@
 package com.example.itinereasebackend.api.model;
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
@@ -25,4 +26,8 @@ public class Accommodation{
     @Positive
     @Column(name = "price")
     private float price;
+
+    @JsonIgnore
+    @OneToOne(mappedBy = "accommodation", cascade = CascadeType.ALL)
+    private Itinerary itinerary;
 }
