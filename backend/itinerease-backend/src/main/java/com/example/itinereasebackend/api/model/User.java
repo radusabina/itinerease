@@ -1,7 +1,10 @@
 package com.example.itinereasebackend.api.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 
 @Entity
@@ -11,6 +14,7 @@ import lombok.*;
 @Table(name = "user", schema = "public")
 public class User{
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -28,4 +32,8 @@ public class User{
 
     @Column(name = "password")
     private String password;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnore
+    private List<Itinerary> itineraries;
 }

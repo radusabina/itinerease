@@ -11,6 +11,7 @@ import lombok.*;
 @Table(name = "transport", schema = "public")
 public class Transport {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 

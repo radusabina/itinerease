@@ -15,6 +15,7 @@ import java.util.List;
 @Table(name = "itinerary", schema = "public")
 public class Itinerary {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -64,4 +65,5 @@ public class Itinerary {
             inverseJoinColumns = @JoinColumn(name = "id_attraction")
     )
     private List<Attraction> attractions;
+
 }
