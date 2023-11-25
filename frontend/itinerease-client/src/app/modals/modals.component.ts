@@ -27,4 +27,6 @@ export class ModalsComponent {
     title = 'itinerease-client';
     dataStartModel!: NgbDateStruct;
     dateEndModel!: NgbDateStruct;
+
+    accommodationDetailsName: string = '';
 }

@@ -11,6 +11,7 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
+import { AccountPageComponent } from './account-page/account-page.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RouterLink } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
@@ -28,6 +29,7 @@ import { SignupComponent } from './signup/signup.component';
         FormsModule,
         JsonPipe,
         NavbarComponent,
+        AccountPageComponent,
         LoginComponent,
         HomepageComponent,
         SignupComponent,

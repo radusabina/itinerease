@@ -15,6 +15,7 @@ import java.util.List;
 @Table(name = "itinerary", schema = "public")
 public class Itinerary {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -22,7 +23,7 @@ public class Itinerary {
     @JoinColumn(name = "id_destination")
     private Location destination_location;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_transport")
     private Transport transport;
 
@@ -30,7 +31,7 @@ public class Itinerary {
     @JoinColumn(name = "id_user")
     private User user;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_accommodation")
     private Accommodation accommodation;
 
