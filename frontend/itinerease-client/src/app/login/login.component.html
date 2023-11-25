@@ -1,35 +1,127 @@
-<section class="custom-background">
+<div class="custom-background">
     <div class="container-fluid">
-        <div class="col-12 col-sm-7 col-md-6 m-auto">
+        <div class="col-md-6 m-auto">
             <div class="card border-2 shadow">
                 <div class="card-body">
                     <img
                         src="https://i.postimg.cc/7YxHsq1j/logo.jpg"
-                        class="rounded mx-auto d-block"
+                        class="mx-auto d-block rounded-circle"
                         width="200"
                         height="200" />
-                    <form action="">
-                        <input
-                            type="text"
-                            id="email"
-                            class="form-control my-4 py-2 w-75 mx-auto"
-                            placeholder="Email" />
-                        <input
-                            type="text"
-                            id="password"
-                            class="form-control my-4 py-2 w-75 mx-auto"
-                            placeholder="Password" />
-                        <div class="text-center mt-3">
+                    <form
+                        class="text-center"
+                        #loginForm="ngForm"
+                        (ngSubmit)="navigateToHomepage()">
+                        <div
+                            class="form-group d-flex justify-content-center"
+                            name="emailForm"
+                            [ngClass]="{
+                                'has-error':
+                                    emailField.invalid &&
+                                    (emailField.dirty || emailField.touched)
+                            }">
+                            <div class="col-11">
+                                <input
+                                    type="email"
+                                    class="form-control my-4 py-2 mx-auto"
+                                    placeholder="Email"
+                                    [(ngModel)]="email"
+                                    name="email"
+                                    required
+                                    email
+                                    #emailField="ngModel" />
+
+                                <div
+                                    *ngIf="emailField.touched"
+                                    class="text-danger small"
+                                    style="margin-top: -20px; text-align: left">
+                                    <div
+                                        *ngIf="emailField.hasError('required')">
+                                        Email is required.
+                                    </div>
+                                    <div
+                                        *ngIf="
+                                            emailField.hasError('email') &&
+                                            !emailField.hasError('required')
+                                        ">
+                                        Please enter a valid email address.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="form-group d-flex justify-content-center"
+                            name="passwordForm"
+                            [ngClass]="{
+                                'has-error':
+                                    passwordField.invalid &&
+                                    (passwordField.dirty ||
+                                        passwordField.touched)
+                            }">
+                            <div class="col-11">
+                                <div
+                                    class="input-group d-flex justify-content-center">
+                                    <input
+                                        type="{{
+                                            hidePassword ? 'password' : 'text'
+                                        }}"
+                                        class="form-control my-2 py-2"
+                                        placeholder="Password"
+                                        [(ngModel)]="password"
+                                        name="password"
+                                        required
+                                        minlength="6"
+                                        #passwordField="ngModel" />
+                                    <button
+                                        class="btn btn-outline-secondary my-2 py-2"
+                                        type="button"
+                                        (click)="togglePasswordVisibility()">
+                                        <i
+                                            class="bi bi-eye{{
+                                                hidePassword ? '-slash' : ''
+                                            }}"></i>
+                                    </button>
+                                </div>
+                                <div
+                                    *ngIf="
+                                        passwordField.touched &&
+                                        passwordField.hasError('required')
+                                    "
+                                    class="text-danger small"
+                                    style="margin-top: -5px; text-align: left">
+                                    Password is required.
+                                </div>
+                                <div
+                                    *ngIf="
+                                        passwordField.touched &&
+                                        passwordField.hasError('minlength')
+                                    "
+                                    class="text-danger small"
+                                    style="margin-top: -5px; text-align: left">
+                                    Password must be at least 6 characters long.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group mt-3">
                             <button
+                                type="button"
                                 class="btn btn-outline-light"
-                                data-bs-toggle="button">
+                                data-bs-toggle="button"
+                                (click)="navigateToHomepage()">
                                 Login
                             </button>
-                            <a href="#" class="nav-link">New to the app ?</a>
+                            <br />
+                            <a
+                                href="/signup"
+                                class="link-dark link-opacity-50-hover"
+                                >New to the app?</a
+                            >
                         </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-</section>
+</div>
