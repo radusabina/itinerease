@@ -2,6 +2,7 @@ package com.example.itinereasebackend.service;
 
 import com.example.itinereasebackend.api.model.User;
 import com.example.itinereasebackend.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +48,4 @@ public class UserService {
         // TODO trebuie sa tratam si cazul in care nu exista userul pe care vrem sa il stergem
         _userRepository.deleteById(userId);
     }
-
 }
-

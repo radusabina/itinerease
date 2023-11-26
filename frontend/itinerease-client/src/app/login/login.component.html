@@ -8,10 +8,7 @@
                         class="mx-auto d-block rounded-circle"
                         width="200"
                         height="200" />
-                    <form
-                        class="text-center"
-                        #loginForm="ngForm"
-                        (ngSubmit)="navigateToHomepage()">
+                    <form class="text-center" #loginForm="ngForm">
                         <div
                             class="form-group d-flex justify-content-center"
                             name="emailForm"
@@ -109,9 +106,17 @@
                                 type="button"
                                 class="btn btn-outline-light"
                                 data-bs-toggle="button"
-                                (click)="navigateToHomepage()">
+                                (click)="login()">
                                 Login
                             </button>
+                            <div
+                                *ngIf="emailField.touched"
+                                class="text-danger small"
+                                style="text-align: center">
+                                <div *ngIf="errorMessage" class="error-message">
+                                    {{ errorMessage }}
+                                </div>
+                            </div>
                             <br />
                             <a
                                 href="/signup"
