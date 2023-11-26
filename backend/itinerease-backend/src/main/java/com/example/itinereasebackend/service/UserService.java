@@ -16,8 +16,13 @@ public class UserService {
     private final UserRepository _userRepository;
 
     public void create(User user) {
-        _userRepository.save(user);
+        Optional<User> existingUser = _userRepository.findByEmail(user.getEmail());
 
+        if (existingUser.isPresent()) {
+            throw new RuntimeException("User with this email already exists.");
+        } else {
+            _userRepository.save(user);
+        }
     }
     public List<User> getAll(){
         return _userRepository.findAll();
@@ -27,8 +32,8 @@ public class UserService {
         return _userRepository.findById(userId);
     }
 
-    public void update(int userId, User updatedUser) {
-        Optional<User> existingUser = _userRepository.findById(userId);
+    public void update(String userEmail, User updatedUser) {
+        Optional<User> existingUser = _userRepository.findByEmail(userEmail);
         if (existingUser.isPresent()) {
             User userToUpdate = existingUser.get();
             userToUpdate.setFirst_name(updatedUser.getFirst_name());
@@ -38,14 +43,17 @@ public class UserService {
             userToUpdate.setPassword(updatedUser.getPassword());
             _userRepository.save(userToUpdate);
         } else {
-            // TODO Trebuie sa tratam cazul in care nu exista
-            throw new RuntimeException("User not found with id: " + userId);
+            throw new RuntimeException("User not found with this email");
         }
     }
 
-    public void delete(int userId) {
-        // TODO trebuie sa tratam si cazul in care nu exista userul pe care vrem sa il stergem
-        _userRepository.deleteById(userId);
+    public void delete(String userEmail) {
+        Optional<User> existingUser = _userRepository.findByEmail(userEmail);
+        if (existingUser.isPresent()) {
+            _userRepository.deleteByEmail(userEmail);
+        } else {
+            throw new RuntimeException("User not found with this email");
+        }
     }
 
 }
