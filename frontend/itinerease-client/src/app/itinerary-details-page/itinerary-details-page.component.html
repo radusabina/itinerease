@@ -1,89 +1,296 @@
-<div class="main-container d-flex">
-    <div class="d-flex flex-column first-column">
-        <label>Itinerary name:</label>
-        <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="itineraryName"
-            placeholder="Itinerary name" />
+<div class="d-flex justify-content-between align-items-center vh-100">
+    <div class="itinerary-details d-flex justify-content-center w-100">
+        <div class="row">
+            <div class="col-md-6 first-column">
+                <div class="details mb-5">
+                    <h2><i class="bi bi-info-square-fill"></i> Details</h2>
 
-        <label>Budget:</label>
-        <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="budget"
-            placeholder="Budget" />
+                    <div class="itinerary-name mb-2">
+                        <label>Itinerary name:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="itineraryName"
+                            placeholder="Itinerary name" />
+                    </div>
 
-        <label>Persons:</label>
-        <input
-            type="text"
-            class="form-control"
-            [(ngModel)]="numberOfPersons"
-            placeholder="Persons" />
+                    <div class="itinerary-budget mb-2">
+                        <label>Budget:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="budget"
+                            placeholder="Budget" />
+                    </div>
 
-        <div class="d-flex flex-row">
-            <div class="d-flex flex-column">
-                <label>Departure date: </label>
-                <div class="input-group">
-                    <input
-                        class="form-control"
-                        placeholder="yyyy-mm-dd"
-                        name="dp"
-                        [(ngModel)]="startDate"
-                        ngbDatepicker
-                        #dDeparture="ngbDatepicker" />
-                    <button
-                        class="btn btn-outline-secondary bi bi-calendar3"
-                        (click)="dDeparture.toggle()"
-                        type="button"></button>
+                    <div class="itinerary-persons">
+                        <label>Persons:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="numberOfPersons"
+                            placeholder="Persons" />
+                    </div>
                 </div>
 
-                <label>Where from?</label>
-                <select class="form-select" aria-label="Country">
-                    <option selected>{{ whereFromCountry }}</option>
-                    <option value="Germania">Germania</option>
-                    <option value="Spania">Spania</option>
-                    <option value="Italia">Italia</option>
-                </select>
-                <select class="form-select" aria-label="City">
-                    <option selected>{{ whereFromCity }}</option>
-                    <option value="Berlin">Berlin</option>
-                    <option value="Barcelona">Barcelona</option>
-                    <option value="Roma">Roma</option>
-                </select>
+                <div class="location-details mb-5">
+                    <h2><i class="bi bi-pin-map-fill"></i> Location</h2>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="departure-date mb-2">
+                                <label>Departure date: </label>
+                                <div class="input-group">
+                                    <input
+                                        class="form-control"
+                                        placeholder="yyyy-mm-dd"
+                                        name="dp"
+                                        [(ngModel)]="startDate"
+                                        ngbDatepicker
+                                        #dDeparture="ngbDatepicker" />
+                                    <button
+                                        class="btn btn-outline-secondary bi bi-calendar3"
+                                        (click)="dDeparture.toggle()"
+                                        type="button"></button>
+                                </div>
+                            </div>
+
+                            <div class="where-from-countries mb-2">
+                                <label>Where from?</label>
+                                <select
+                                    class="form-select"
+                                    aria-label="Country">
+                                    <option selected>
+                                        {{ whereFromCountry }}
+                                    </option>
+                                    <option value="Germania">Germania</option>
+                                    <option value="Spania">Spania</option>
+                                    <option value="Italia">Italia</option>
+                                </select>
+                            </div>
+
+                            <div class="where-from-cities">
+                                <select class="form-select" aria-label="City">
+                                    <option selected>
+                                        {{ whereFromCity }}
+                                    </option>
+                                    <option value="Berlin">Berlin</option>
+                                    <option value="Barcelona">Barcelona</option>
+                                    <option value="Roma">Roma</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="return-date mb-2">
+                                <label>Return date:</label>
+                                <div class="input-group">
+                                    <input
+                                        class="form-control"
+                                        placeholder="yyyy-mm-dd"
+                                        name="dp"
+                                        [(ngModel)]="endDate"
+                                        ngbDatepicker
+                                        #dReturn="ngbDatepicker" />
+                                    <button
+                                        class="btn btn-outline-secondary bi bi-calendar3"
+                                        (click)="dReturn.toggle()"
+                                        type="button"></button>
+                                </div>
+                            </div>
+                            <div class="where-to-countries mb-2">
+                                <label>Where to?</label>
+                                <select
+                                    class="form-select"
+                                    aria-label="Country">
+                                    <option selected>
+                                        {{ whereToCountry }}
+                                    </option>
+                                    <option value="Germania">Germania</option>
+                                    <option value="Spania">Spania</option>
+                                    <option value="Italia">Italia</option>
+                                </select>
+                            </div>
+
+                            <div class="where-to-cities">
+                                <select class="form-select" aria-label="City">
+                                    <option selected>{{ whereToCity }}</option>
+                                    <option value="Berlin">Berlin</option>
+                                    <option value="Barcelona">Barcelona</option>
+                                    <option value="Roma">Roma</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="transport-details">
+                    <h2><i class="bi bi-car-front-fill"></i> Transport</h2>
+
+                    <div class="transport-type mb-2">
+                        <label>Transport type:</label>
+                        <select class="form-select" aria-label="Country">
+                            <option selected>{{ transportType }}</option>
+                            <option value="Car">Car</option>
+                            <option value="Bus">Bus</option>
+                            <option value="Boat">Boat</option>
+                            <option value="Train">Train</option>
+                            <option value="Airplane">Airplane</option>
+                        </select>
+                    </div>
+
+                    <div class="transport-price">
+                        <label>Transport price:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="transportPrice"
+                            placeholder="Transport price" />
+                    </div>
+                </div>
             </div>
 
-            <div class="d-flex flex-column">
-                <label>Return date:</label>
-                <div class="input-group">
-                    <input
-                        class="form-control"
-                        placeholder="yyyy-mm-dd"
-                        name="dp"
-                        [(ngModel)]="endDate"
-                        ngbDatepicker
-                        #dReturn="ngbDatepicker" />
-                    <button
-                        class="btn btn-outline-secondary bi bi-calendar3"
-                        (click)="dReturn.toggle()"
-                        type="button"></button>
+            <div class="col-md-6 second-column">
+                <div class="accommodation-details mb-5">
+                    <h2><i class="bi bi-house-fill"></i> Accommodation</h2>
+
+                    <div class="accommodation-name mb-2">
+                        <label>Accommodation name:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="accommodationName"
+                            placeholder="Accommodation name" />
+                    </div>
+
+                    <div class="accommodation-address mb-2">
+                        <label>Accommodation address:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="accommodationAddress"
+                            placeholder="Accommodation address" />
+                    </div>
+
+                    <div class="accmmodation-price">
+                        <label>Accommodation price:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="accommodationPrice"
+                            placeholder="Accommodation price" />
+                    </div>
                 </div>
 
-                <label>Where to?</label>
-                <select class="form-select" aria-label="Country">
-                    <option selected>{{ whereToCountry }}</option>
-                    <option value="Germania">Germania</option>
-                    <option value="Spania">Spania</option>
-                    <option value="Italia">Italia</option>
-                </select>
-                <select class="form-select" aria-label="City">
-                    <option selected>{{ whereToCity }}</option>
-                    <option value="Berlin">Berlin</option>
-                    <option value="Barcelona">Barcelona</option>
-                    <option value="Roma">Roma</option>
-                </select>
+                <div class="attrraction-details mb-5">
+                    <h2><i class="bi bi-camera-fill"></i> Attraction</h2>
+
+                    <div class="attraction-name mb-2">
+                        <label>Attraction name:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="attractionName"
+                            placeholder="Attraction name" />
+                    </div>
+
+                    <div class="attraction-price mb-2">
+                        <label>Attraction price:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="attractionPrice"
+                            placeholder="Attraction price" />
+                    </div>
+
+                    <div class="attraction-add-button text-end">
+                        <button class="btn btn-blue w-100">
+                            Add attraction
+                        </button>
+                    </div>
+                </div>
+
+                <div class="attraction-list">
+                    <div class="attraction-item mb-2 border rounded px-2">
+                        <div
+                            class="d-flex justify-content-between align-items-center">
+                            <div class="attraction">
+                                <strong>Attraction name</strong> - Price: 6969
+                            </div>
+                            <div>
+                                <button class="btn btn-sm btn-blue me-2">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </button>
+                                <button class="btn btn-sm btn-red">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="attraction-item mb-2 border rounded px-2">
+                        <div
+                            class="d-flex justify-content-between align-items-center">
+                            <div class="attraction">
+                                <strong>Attraction name</strong> - Price: 6969
+                            </div>
+                            <div>
+                                <button class="btn btn-sm btn-blue me-2">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </button>
+                                <button class="btn btn-sm btn-red">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="attraction-item mb-2 border rounded px-2">
+                        <div
+                            class="d-flex justify-content-between align-items-center">
+                            <div class="attraction">
+                                <strong>Attraction name</strong> - Price: 6969
+                            </div>
+                            <div>
+                                <button class="btn btn-sm btn-blue me-2">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </button>
+                                <button class="btn btn-sm btn-red">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="attraction-item mb-2 border rounded px-2">
+                        <div
+                            class="d-flex justify-content-between align-items-center">
+                            <div class="attraction">
+                                <strong>Attraction name</strong> - Price: 6969
+                            </div>
+                            <div>
+                                <button class="btn btn-sm btn-blue me-2">
+                                    <i class="bi bi-pencil-fill"></i>
+                                </button>
+                                <button class="btn btn-sm btn-red">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button
+                        class="btn btn-blue w-50"
+                        onclick="onSaveItinerary()">
+                        Save itinerary
+                    </button>
+                </div>
             </div>
         </div>
     </div>
-    <div class="d-flex flex-column second-column"></div>
+
+    <div class="d-flex justify-content-end vh-100">
+        <img
+            src="https://i.ibb.co/WyRzXk9/poza-itinerary-edit.jpg"
+            alt="itinerary"
+            class="vh-100" />
+    </div>
 </div>
