@@ -16,10 +16,10 @@ public class UserService {
     private final UserRepository _userRepository;
 
     public void create(User user) {
-        Optional<User> existingUser = _userRepository.findById(user.getId());
+        Optional<User> existingUser = _userRepository.findByEmail(user.getEmail());
 
         if (existingUser.isPresent()) {
-            throw new RuntimeException("User with ID " + user.getId() + " already exists.");
+            throw new RuntimeException("User with this email already exists.");
         } else {
             _userRepository.save(user);
         }
@@ -32,8 +32,8 @@ public class UserService {
         return _userRepository.findById(userId);
     }
 
-    public void update(int userId, User updatedUser) {
-        Optional<User> existingUser = _userRepository.findById(userId);
+    public void update(String userEmail, User updatedUser) {
+        Optional<User> existingUser = _userRepository.findByEmail(userEmail);
         if (existingUser.isPresent()) {
             User userToUpdate = existingUser.get();
             userToUpdate.setFirst_name(updatedUser.getFirst_name());
@@ -43,16 +43,16 @@ public class UserService {
             userToUpdate.setPassword(updatedUser.getPassword());
             _userRepository.save(userToUpdate);
         } else {
-            throw new RuntimeException("User not found with id: " + userId);
+            throw new RuntimeException("User not found with this email");
         }
     }
 
-    public void delete(int userId) {
-        Optional<User> existingUser = _userRepository.findById(userId);
+    public void delete(String userEmail) {
+        Optional<User> existingUser = _userRepository.findByEmail(userEmail);
         if (existingUser.isPresent()) {
-            _userRepository.deleteById(userId);
+            _userRepository.deleteByEmail(userEmail);
         } else {
-            throw new RuntimeException("User not found with id: " + userId);
+            throw new RuntimeException("User not found with this email");
         }
     }
 
