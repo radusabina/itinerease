@@ -33,7 +33,7 @@ public class User{
 
     @Length(min = 10, max = 10, message = "Try again! Phone number is too long")
     @NotEmpty(message = "Try again! Phone number cannot be empty")
-    @Pattern(regexp = "^[0-9]+$", message = "Try again! Only digits are allowed")
+    @Pattern(regexp = "^07[0-9]{8}$", message = "Try again! Enter a valid Romanian phone number.")
     @Column(name = "phone_number")
     private String phone_number;
 
