@@ -22,7 +22,7 @@ public class Transport {
     @Column(name = "type")
     @NotBlank(message = "Type cannot be blank")
     @Length(max = 255, message = "Type is too long")
-    @Pattern(regexp = "bus|train|car", message = "Type must be: bus, train or car")
+    @Pattern(regexp = "bus|train|car|airplane|boat", message = "Type must be: bus, train, car, airplane or boat")
 
     private String type;
 
