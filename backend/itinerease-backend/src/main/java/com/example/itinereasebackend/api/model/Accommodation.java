@@ -1,17 +1,18 @@
 package com.example.itinereasebackend.api.model;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.*;
-import org.hibernate.validator.constraints.*;
-
+import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
 @Table(name = "accommodation", schema = "public")
 public class Accommodation{
     @Id
@@ -34,6 +35,6 @@ public class Accommodation{
     private float price;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "accommodation", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "accommodation", cascade = CascadeType.MERGE)
     private Itinerary itinerary;
 }
