@@ -1,7 +1,9 @@
 package com.example.itinereasebackend.service;
 
 import com.example.itinereasebackend.api.model.Itinerary;
+import com.example.itinereasebackend.api.model.Location;
 import com.example.itinereasebackend.repository.ItineraryRepository;
+import com.example.itinereasebackend.repository.LocationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,8 +17,10 @@ public class ItineraryService {
     @Autowired
     private final ItineraryRepository itineraryRepository;
 
+    @Autowired
+    private final LocationRepository locationRepository;
+
     public void create(Itinerary itinerary) {
-        // TODO validari in cazul in care este necesar
         itineraryRepository.save(itinerary);
     }
     public List<Itinerary> getAll(){
