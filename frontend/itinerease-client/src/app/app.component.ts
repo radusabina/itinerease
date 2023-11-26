@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterModule, RouterOutlet } from '@angular/router';
 import { ContainerComponent } from './container/container.component';
 import { NavbarComponent } from './navbar/navbar.component';
-
+import { LoginComponent } from './login/login.component';
 import {
     NgbAlertModule,
     NgbDatepickerModule,
@@ -12,6 +12,9 @@ import {
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 import { AccountPageComponent } from './account-page/account-page.component';
+import { HomepageComponent } from './homepage/homepage.component';
+import { RouterLink } from '@angular/router';
+import { SignupComponent } from './signup/signup.component';
 
 @Component({
     selector: 'app-root',
@@ -19,6 +22,7 @@ import { AccountPageComponent } from './account-page/account-page.component';
     imports: [
         CommonModule,
         RouterOutlet,
+        RouterLink,
         ContainerComponent,
         NgbDatepickerModule,
         NgbAlertModule,
@@ -26,12 +30,13 @@ import { AccountPageComponent } from './account-page/account-page.component';
         JsonPipe,
         NavbarComponent,
         AccountPageComponent,
+        LoginComponent,
+        HomepageComponent,
+        SignupComponent,
     ],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
     title = 'itinerease-client';
-    dataStartModel!: NgbDateStruct;
-    dateEndModel!: NgbDateStruct;
 }
