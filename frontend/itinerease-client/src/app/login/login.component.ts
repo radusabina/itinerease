@@ -47,12 +47,10 @@ export class LoginComponent {
                     phoneNumber: response.phone_number,
                 };
                 this.userService.setLoggedUser(this.user);
-                console.log(response);
                 this.router.navigate(['/homepage']);
             },
             (error) => {
-                console.log(error.error.errorMessage);
-                this.errorMessage = error.error.errorMessage;
+                this.errorMessage = error.error.message;
             },
         );
     }
