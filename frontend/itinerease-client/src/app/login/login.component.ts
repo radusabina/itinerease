@@ -37,17 +37,22 @@ export class LoginComponent {
             password: this.password,
         };
         this.userService.getLoggedUserDetails(userLoginData).subscribe(
-            (user: IUser) => {
-                this.user = user;
+            (response: any) => {
+                this.user = {
+                    id: response.id,
+                    firstName: response.first_name,
+                    lastName: response.last_name,
+                    email: response.email,
+                    password: response.password,
+                    phoneNumber: response.phone_number,
+                };
+                this.userService.setLoggedUser(this.user);
+                console.log(response);
                 this.router.navigate(['/homepage']);
             },
             (error) => {
-                if (error.error instanceof ErrorEvent) {
-                    this.errorMessage =
-                        'Connection error. Please refresh the page and try again';
-                } else {
-                    this.errorMessage = error.error.message;
-                }
+                console.log(error.error.errorMessage);
+                this.errorMessage = error.error.errorMessage;
             },
         );
     }

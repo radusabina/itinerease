@@ -9,9 +9,18 @@ import { Observable } from 'rxjs';
     providedIn: 'root',
 })
 export class UserService {
+    loggedUser: IUser | undefined = undefined;
     constructor(private http: HttpClient) {}
 
     getLoggedUserDetails(credentials: IUserLogin): Observable<IUser> {
         return this.http.post<IUser>(endpointAPI + 'user/login', credentials);
+    }
+
+    setLoggedUser(loggedUser: IUser) {
+        this.loggedUser = loggedUser;
+    }
+
+    getLoggedUser() {
+        return this.loggedUser;
     }
 }

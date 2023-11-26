@@ -45,7 +45,7 @@ public class UserController {
             User user = userService.getUserByCredentials(email, password);
             return ResponseEntity.ok(user);
         } catch (EntityNotFoundException exception) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntityNotFoundException(exception.getMessage()));
         }
     }
 }
