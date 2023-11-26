@@ -16,8 +16,13 @@ public class UserService {
     private final UserRepository _userRepository;
 
     public void create(User user) {
-        _userRepository.save(user);
+        Optional<User> existingUser = _userRepository.findById(user.getId());
 
+        if (existingUser.isPresent()) {
+            throw new RuntimeException("User with ID " + user.getId() + " already exists.");
+        } else {
+            _userRepository.save(user);
+        }
     }
     public List<User> getAll(){
         return _userRepository.findAll();
@@ -38,14 +43,17 @@ public class UserService {
             userToUpdate.setPassword(updatedUser.getPassword());
             _userRepository.save(userToUpdate);
         } else {
-            // TODO Trebuie sa tratam cazul in care nu exista
             throw new RuntimeException("User not found with id: " + userId);
         }
     }
 
     public void delete(int userId) {
-        // TODO trebuie sa tratam si cazul in care nu exista userul pe care vrem sa il stergem
-        _userRepository.deleteById(userId);
+        Optional<User> existingUser = _userRepository.findById(userId);
+        if (existingUser.isPresent()) {
+            _userRepository.deleteById(userId);
+        } else {
+            throw new RuntimeException("User not found with id: " + userId);
+        }
     }
 
 }
