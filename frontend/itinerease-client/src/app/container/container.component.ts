@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalsComponent } from '../modals/modals.component';
+import { UserService } from '../services/user-service/user.service';
+import { IUser } from '../dtos/IUser';
 
 @Component({
     selector: 'app-container',
@@ -9,4 +11,9 @@ import { ModalsComponent } from '../modals/modals.component';
     templateUrl: './container.component.html',
     styleUrl: './container.component.scss',
 })
-export class ContainerComponent {}
+export class ContainerComponent {
+    loggedUser: IUser | undefined;
+    constructor(private userService: UserService) {
+        this.loggedUser = this.userService.getLoggedUser();
+    }
+}

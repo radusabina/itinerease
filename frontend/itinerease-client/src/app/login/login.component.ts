@@ -1,14 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {
-    FormsModule,
-    FormGroup,
-    FormControl,
-    Validators,
-} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HomepageComponent } from '../homepage/homepage.component';
 import { Router } from '@angular/router';
-import { clear } from 'console';
+import { UserService } from '../services/user-service/user.service';
+import { IUserLogin } from '../dtos/IUserLogin';
+import { HttpClientModule } from '@angular/common/http';
+import { IUser } from '../dtos/IUser';
 
 @Component({
     selector: 'app-login',
@@ -21,14 +19,39 @@ export class LoginComponent {
     hidePassword: boolean = true;
     password: string = '';
     email: string = '';
-    constructor(private router: Router) {}
+    errorMessage: string = '';
+    user: IUser | undefined;
+    constructor(
+        private router: Router,
+        private userService: UserService,
+    ) {}
     ngOnInit(): void {}
 
     togglePasswordVisibility(): void {
         this.hidePassword = !this.hidePassword;
     }
 
-    navigateToHomepage() {
-        this.router.navigate(['/homepage']);
+    login() {
+        var userLoginData: IUserLogin = {
+            email: this.email,
+            password: this.password,
+        };
+        this.userService.getLoggedUserDetails(userLoginData).subscribe(
+            (response: any) => {
+                this.user = {
+                    id: response.id,
+                    firstName: response.first_name,
+                    lastName: response.last_name,
+                    email: response.email,
+                    password: response.password,
+                    phoneNumber: response.phone_number,
+                };
+                this.userService.setLoggedUser(this.user);
+                this.router.navigate(['/homepage']);
+            },
+            (error) => {
+                this.errorMessage = error.error.message;
+            },
+        );
     }
 }
