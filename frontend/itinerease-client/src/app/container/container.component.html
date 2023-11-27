@@ -3,16 +3,13 @@
     <div class="vh-100 background">
         <div class="row justify-content-around first-row">
             <div class="col-5">
-                <h5
-                    class="font-weight-bold mb-3 text-center text-blue welcome-text">
-                    Welcome back, your_name!
-                </h5>
+                <h5 class="mb-3 my-2 welcome-text">Welcome back, your_name!</h5>
             </div>
             <!-- carousel -->
             <div class="col-3">
                 <div
                     id="carouselExampleIndicators"
-                    class="carousel slide shadow p-3 mb-5 bg-white rounded carousel-div">
+                    class="carousel slide shadow p-3 bg-white rounded carousel-div">
                     <div class="carousel-indicators">
                         <button
                             type="button"
@@ -35,17 +32,17 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <img
-                                src="https://i.postimg.cc/Fz2SGzCV/Captur-de-ecran-din-2023-11-15-la-17-20-15.png"
+                                src="https://i.postimg.cc/TY690S47/Captur-de-ecran-din-2023-11-27-la-03-11-21.png"
                                 class="d-block w-100" />
                         </div>
                         <div class="carousel-item">
                             <img
-                                src="https://i.postimg.cc/1XNngPRn/Captur-de-ecran-din-2023-11-15-la-17-21-41.png"
+                                src="https://i.postimg.cc/k4WStMqn/Captur-de-ecran-din-2023-11-27-la-03-14-14.png"
                                 class="d-block w-100" />
                         </div>
                         <div class="carousel-item">
                             <img
-                                src="https://i.postimg.cc/Dfs1ydSC/Captur-de-ecran-din-2023-11-15-la-17-22-31.png"
+                                src="https://i.postimg.cc/7YnNW9vx/Captur-de-ecran-din-2023-11-27-la-03-12-09.png"
                                 class="d-block w-100" />
                         </div>
                     </div>
@@ -72,71 +69,208 @@
                 </div>
             </div>
         </div>
-        <!-- itineraries -->
-        <!-- itinerary 1 -->
-        <div class="row justify-content-around my-2">
-            <div
-                class="col-7 shadow p-3 bg-grey rounded itinerary_1"
-                onclick="location.href='#'">
-                <h5 class="font-weight-bold mb-3 text-left">
-                    <a href="/homepage"><u>Trip to Egypt</u></a>
-                </h5>
-                <div class="row">
-                    <div class="d-flex">
-                        <div class="col-md-6">
-                            <div class="row itinerary_1_text">
-                                <p class="text-md-lg text-break">
-                                    Your first stop will be at
-                                    <var>The Museum of Egyptian Antiquities</var
-                                    >, which will take 2-3 hours to visit, from
-                                    where we suggest you to go to...
-                                </p>
+        <!-- search box -->
+        <div class="col-md-5 d-flex search-box">
+            <form class="form-inline">
+                <input
+                    class="form-control mr-sm-2"
+                    type="search"
+                    placeholder="Search"
+                    aria-label="Search" />
+            </form>
+        </div>
+        <!-- itineraries carousel-->
+        <div class="container">
+            <div class="row justify-content-center">
+                <div id="carouselExample" class="carousel slide">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="cards-wrapper">
+                                <!-- itinerary 1 -->
+                                <div
+                                    class="card shadow rounded itinerary_default"
+                                    onclick="location.href='/homepage'">
+                                    <img
+                                        src="https://i.postimg.cc/gJmpfFKm/Captur-de-ecran-din-2023-11-15-la-15-21-22.png"
+                                        class="card-img-top img-fluid"
+                                        alt="Trip Image" />
+
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            Trip to Egypt
+                                        </h5>
+                                        <h6
+                                            class="card-subtitle mb-2 text-muted">
+                                            <i class="bi bi-people-fill"></i> 7
+                                            prs
+                                            <i class="bi bi-currency-dollar"></i
+                                            >741,80
+                                            <i class="bi bi-calendar"></i> 7
+                                            days
+                                        </h6>
+                                        <p class="card-text">
+                                            Your first stop will be at
+                                            <var
+                                                >The Museum of Egyptian
+                                                Antiquities</var
+                                            >, which will take 2-3 hours to
+                                            visit,from where we suggest you to
+                                            go to...
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- itinerary 2 -->
+                                <div
+                                    class="card shadow rounded itinerary_default"
+                                    onclick="location.href='/homepage'">
+                                    <img
+                                        src="https://i.postimg.cc/mDFDj3pR/Captur-de-ecran-din-2023-11-26-la-23-11-36.png"
+                                        alt="Trip Image 2" />
+
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            Trip to Paris
+                                        </h5>
+                                        <h6
+                                            class="card-subtitle mb-2 text-muted">
+                                            <i class="bi bi-people-fill"></i> 5
+                                            prs
+                                            <i class="bi bi-currency-dollar"></i
+                                            >342,50
+                                            <i class="bi bi-calendar"></i> 7
+                                            days
+                                        </h6>
+                                        <p class="card-text">
+                                            Your first stop will be at the
+                                            hotel.There you will be welcome by
+                                            us with some refreshers, from where
+                                            we suggest you to go to...
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- itinerary add -->
+                                <div
+                                    class="card shadow rounded itinerary_default align-items-center justify-content-center"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#ModalToggle">
+                                    <button
+                                        type="button"
+                                        class="btn btn-primary"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#ModalToggle">
+                                        <i class="bi bi-plus"></i>
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-md-4 d-flex flex-column">
-                            <img
-                                src="https://i.postimg.cc/gJmpfFKm/Captur-de-ecran-din-2023-11-15-la-15-21-22.png"
-                                class="img-fluid img-thumbnail d-block no-padding ms-auto" />
-                        </div>
-                        <div class="col-md-2 d-flex flex-column">
-                            <img
-                                src="https://i.postimg.cc/NFPw9yvj/Captur-de-ecran-din-2023-11-15-la-15-22-05.png"
-                                class="img-fluid img-thumbnail d-block no-padding ml-auto" />
-                            <img
-                                src="https://i.postimg.cc/sx2rgY8L/Captur-de-ecran-din-2023-11-15-la-15-21-57.png"
-                                class="img-fluid img-thumbnail d-block no-padding ml-auto" />
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-auto text-md-lg text-center">
-                    <div class="col-md-2">
-                        <i class="bi bi-calendar"></i> 7 days
-                    </div>
-                    <div class="col-md-2">
-                        <i class="bi bi-currency-dollar"></i> 741,80
-                    </div>
-                    <div class="col-md-2">
-                        <i class="bi bi-people-fill"></i> 7 prs
-                    </div>
-                </div>
-            </div>
-            <div class="col-3"></div>
-        </div>
-        <!-- add itinerary -->
-        <div class="row justify-content-around my-4 pb-4 h-25">
-            <div
-                class="col-7 shadow p-3 bg-grey rounded itinerary_2 d-flex align-items-center justify-content-center">
-                <button
-                    type="button"
-                    class="btn btn-primary text-center"
-                    data-bs-toggle="modal"
-                    data-bs-target="#ModalToggle">
-                    <i class="bi bi-plus"></i>
-                </button>
-            </div>
-            <div class="col-3"></div>
-        </div>
-    </div>
+                        <div class="carousel-item">
+                            <div class="cards-wrapper">
+                                <!-- itinerary 3 -->
+                                <div
+                                    class="card shadow rounded itinerary_default"
+                                    onclick="location.href='/homepage'">
+                                    <img
+                                        src="https://i.postimg.cc/gJmpfFKm/Captur-de-ecran-din-2023-11-15-la-15-21-22.png"
+                                        alt="Trip Image" />
 
-    <app-modals></app-modals>
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            Trip to Country_1
+                                        </h5>
+                                        <h6
+                                            class="card-subtitle mb-2 text-muted">
+                                            <i class="bi bi-people-fill"></i> 0
+                                            prs
+                                            <i class="bi bi-currency-dollar"></i
+                                            >0 <i class="bi bi-calendar"></i> 0
+                                            days
+                                        </h6>
+                                        <p class="card-text">
+                                            Will be filled soon...
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- itinerary 4 -->
+                                <div
+                                    class="card shadow rounded itinerary_default"
+                                    onclick="location.href='/homepage'">
+                                    <img
+                                        src="https://i.postimg.cc/gJmpfFKm/Captur-de-ecran-din-2023-11-15-la-15-21-22.png"
+                                        alt="Trip Image" />
+
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            Trip to Country_2
+                                        </h5>
+                                        <h6
+                                            class="card-subtitle mb-2 text-muted">
+                                            <i class="bi bi-people-fill"></i> 0
+                                            prs
+                                            <i class="bi bi-currency-dollar"></i
+                                            >0 <i class="bi bi-calendar"></i> 0
+                                            days
+                                        </h6>
+                                        <p class="card-text">
+                                            Will be filled soon...
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- itinerary 5 -->
+                                <div
+                                    class="card shadow rounded itinerary_default"
+                                    onclick="location.href='/homepage'">
+                                    <img
+                                        src="https://i.postimg.cc/gJmpfFKm/Captur-de-ecran-din-2023-11-15-la-15-21-22.png"
+                                        alt="Trip Image" />
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            Trip to Country-3
+                                        </h5>
+                                        <h6
+                                            class="card-subtitle mb-2 text-muted">
+                                            <i class="bi bi-people-fill"></i> 0
+                                            prs
+                                            <i class="bi bi-currency-dollar"></i
+                                            >0 <i class="bi bi-calendar"></i> 0
+                                            days
+                                        </h6>
+                                        <p class="card-text">
+                                            Will be filled soon...
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button
+                        class="carousel-control-prev"
+                        type="button"
+                        data-bs-target="#carouselExample"
+                        data-bs-slide="prev">
+                        <span
+                            class="carousel-control-prev-icon"
+                            aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button
+                        class="carousel-control-next"
+                        type="button"
+                        data-bs-target="#carouselExample"
+                        data-bs-slide="next">
+                        <span
+                            class="carousel-control-next-icon"
+                            aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            <app-modals></app-modals>
+        </div>
+        <footer class="footer">
+            <img
+                src="https://i.postimg.cc/YS1rRj0V/Captur-de-ecran-din-2023-11-26-la-19-49-27.png"
+                alt="Footer Image"
+                class="img-fluid" />
+        </footer>
+    </div>
 </div>
