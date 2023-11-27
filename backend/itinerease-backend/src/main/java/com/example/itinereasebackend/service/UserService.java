@@ -2,6 +2,7 @@ package com.example.itinereasebackend.service;
 
 import com.example.itinereasebackend.api.model.User;
 import com.example.itinereasebackend.repository.UserRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,5 +57,21 @@ public class UserService {
         }
     }
 
+    public User getUserByCredentials(String email, String password) throws EntityNotFoundException {
+        Optional<User> existingUser = _userRepository.findByEmailAndPassword(email, password);
+        Optional<User> existingUserWithEmail = _userRepository.findByEmail(email);
+        if ( ( email == null || email.isBlank()) && ( password == null || password.isBlank()) ) {
+            throw new EntityNotFoundException("Email and password cannot be empty!");
+        } else if ( email == null || email.isBlank()) {
+            throw new EntityNotFoundException("Email cannot be empty!");
+        } else if ( password == null || password.isBlank()) {
+            throw new EntityNotFoundException("Password cannot be empty!");
+        } else if (existingUser.isPresent()) {
+            return existingUser.get();
+        } else if (existingUserWithEmail.isPresent()) {
+            throw new EntityNotFoundException("Wrong password!");
+        } else {
+            throw new EntityNotFoundException("No account associated with this email address!");
+        }
+    }
 }
-

@@ -15,6 +15,8 @@ import { AccountPageComponent } from './account-page/account-page.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RouterLink } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './services/user-service/user.service';
 
 @Component({
     selector: 'app-root',
@@ -33,9 +35,11 @@ import { SignupComponent } from './signup/signup.component';
         LoginComponent,
         HomepageComponent,
         SignupComponent,
+        HttpClientModule,
     ],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
+    providers: [UserService],
 })
 export class AppComponent {
     title = 'itinerease-client';

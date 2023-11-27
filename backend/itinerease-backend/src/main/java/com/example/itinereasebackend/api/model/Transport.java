@@ -2,8 +2,11 @@ package com.example.itinereasebackend.api.model;
 
 import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Positive;
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
 @Entity
 @Data
@@ -17,13 +20,17 @@ public class Transport {
     private int id;
 
     @Column(name = "type")
+    @NotBlank(message = "Type cannot be blank")
+    @Length(max = 255, message = "Type is too long")
+    @Pattern(regexp = "bus|train|car|airplane|boat", message = "Type must be: bus, train, car, airplane or boat")
+
     private String type;
 
-    @Positive
+    @Positive(message = "Price must be a positive number")
     @Column(name = "price")
     private float price;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "transport", cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "transport", cascade = CascadeType.MERGE)
     private Itinerary itinerary;
 }

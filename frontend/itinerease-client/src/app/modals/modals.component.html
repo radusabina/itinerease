@@ -150,45 +150,74 @@
                         <form>
                             <div class="mb-3">
                                 <label class="form-label fs-5">Where to?</label>
+
+                                <!-- primele doua   -->
                                 <select
                                     class="form-select form-select-sm mb-3"
-                                    aria-label="Large select ">
-                                    <option selected>
+                                    aria-label="Large select"
+                                    [(ngModel)]="selectedCountry"
+                                    (change)="onCountryChange()"
+                                    name="selectedCountry">
+                                    <option value="" selected>
                                         Please select a country
                                     </option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option value="Romania">Romania</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="USA">USA</option>
+                                    <option value="France">France</option>
+                                    <option value="Spain">Spain</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Japan">Japan</option>
+                                    <!-- Alte opțiuni pentru țări -->
                                 </select>
                                 <select
                                     class="form-select form-select-sm mb-3"
-                                    aria-label="Large select ">
-                                    <option selected>Select the city</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    aria-label="Large select"
+                                    [(ngModel)]="selectedCity"
+                                    name="selectedCity">
+                                    <option value="" selected>
+                                        Select the city
+                                    </option>
+                                    <option
+                                        *ngFor="let city of onCountryChange()"
+                                        [value]="city">
+                                        {{ city }}
+                                    </option>
                                 </select>
 
-                                <label class="form-label fs-5"
-                                    >Where are you departing from?</label
-                                >
+                                <!--ultimele doua-->
+                                <label class="form-label fs-5">Where to?</label>
                                 <select
                                     class="form-select form-select-sm mb-3"
-                                    aria-label="Large select ">
-                                    <option selected>
-                                        Please select a country
+                                    aria-label="Large select"
+                                    [(ngModel)]="selectedCountry2"
+                                    (change)="onCountryChange2()"
+                                    name="selectedCountry2">
+                                    <option value="" selected>
+                                        Where are you departing from?
                                     </option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    <option value="Romania">Romania</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="USA">USA</option>
+                                    <option value="France">France</option>
+                                    <option value="Spain">Spain</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Japan">Japan</option>
+                                    <!-- Alte opțiuni pentru țări -->
                                 </select>
                                 <select
                                     class="form-select form-select-sm mb-3"
-                                    aria-label="Large select ">
-                                    <option selected>Select the city</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
+                                    aria-label="Large select"
+                                    [(ngModel)]="selectedCity2"
+                                    name="selectedCity2">
+                                    <option value="" selected>
+                                        Select the city
+                                    </option>
+                                    <option
+                                        *ngFor="let city2 of onCountryChange2()"
+                                        [value]="city2">
+                                        {{ city2 }}
+                                    </option>
                                 </select>
                             </div>
                         </form>
@@ -259,7 +288,7 @@
                     <div class="modal-footer">
                         <button
                             class="btn btn-primary"
-                            data-bs-target="#ModalToggle"
+                            data-bs-target="#ModalToggle2"
                             data-bs-toggle="modal">
                             Back
                         </button>
