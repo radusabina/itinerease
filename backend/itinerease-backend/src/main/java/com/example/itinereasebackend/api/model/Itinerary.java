@@ -65,5 +65,4 @@ public class Itinerary {
             inverseJoinColumns = @JoinColumn(name = "id_attraction")
     )
     private List<Attraction> attractions;
-
 }

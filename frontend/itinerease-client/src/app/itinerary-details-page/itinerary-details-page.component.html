@@ -47,7 +47,8 @@
                                         name="dp"
                                         [(ngModel)]="startDate"
                                         ngbDatepicker
-                                        #dDeparture="ngbDatepicker" />
+                                        #dDeparture="ngbDatepicker"
+                                        [minDate]="minDate" />
                                     <button
                                         class="btn btn-outline-secondary bi bi-calendar3"
                                         (click)="dDeparture.toggle()"
@@ -59,24 +60,33 @@
                                 <label>Where from?</label>
                                 <select
                                     class="form-select"
-                                    aria-label="Country">
-                                    <option selected>
-                                        {{ whereFromCountry }}
+                                    aria-label="Country"
+                                    [(ngModel)]="whereFromCountry">
+                                    <option value="" selected>
+                                        Select country
                                     </option>
-                                    <option value="Germania">Germania</option>
-                                    <option value="Spania">Spania</option>
-                                    <option value="Italia">Italia</option>
+                                    <option value="Romania">Romania</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="USA">USA</option>
+                                    <option value="France">France</option>
+                                    <option value="Spain">Spain</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Japan">Japan</option>
                                 </select>
                             </div>
 
                             <div class="where-from-cities">
                                 <select class="form-select" aria-label="City">
-                                    <option selected>
-                                        {{ whereFromCity }}
+                                    <option value="" selected>
+                                        Select city
                                     </option>
-                                    <option value="Berlin">Berlin</option>
-                                    <option value="Barcelona">Barcelona</option>
-                                    <option value="Roma">Roma</option>
+                                    <option
+                                        *ngFor="
+                                            let city of onCountryChangeLeft()
+                                        "
+                                        [value]="city">
+                                        {{ city }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -91,7 +101,8 @@
                                         name="dp"
                                         [(ngModel)]="endDate"
                                         ngbDatepicker
-                                        #dReturn="ngbDatepicker" />
+                                        #dReturn="ngbDatepicker"
+                                        [minDate]="minDate" />
                                     <button
                                         class="btn btn-outline-secondary bi bi-calendar3"
                                         (click)="dReturn.toggle()"
@@ -102,22 +113,33 @@
                                 <label>Where to?</label>
                                 <select
                                     class="form-select"
-                                    aria-label="Country">
-                                    <option selected>
-                                        {{ whereToCountry }}
+                                    aria-label="Country"
+                                    [(ngModel)]="whereToCountry">
+                                    <option value="" selected>
+                                        Select country
                                     </option>
-                                    <option value="Germania">Germania</option>
-                                    <option value="Spania">Spania</option>
-                                    <option value="Italia">Italia</option>
+                                    <option value="Romania">Romania</option>
+                                    <option value="Germany">Germany</option>
+                                    <option value="USA">USA</option>
+                                    <option value="France">France</option>
+                                    <option value="Spain">Spain</option>
+                                    <option value="Italy">Italy</option>
+                                    <option value="Japan">Japan</option>
                                 </select>
                             </div>
 
                             <div class="where-to-cities">
                                 <select class="form-select" aria-label="City">
-                                    <option selected>{{ whereToCity }}</option>
-                                    <option value="Berlin">Berlin</option>
-                                    <option value="Barcelona">Barcelona</option>
-                                    <option value="Roma">Roma</option>
+                                    <option value="" selected>
+                                        Select city
+                                    </option>
+                                    <option
+                                        *ngFor="
+                                            let city of onCountryChangeRight()
+                                        "
+                                        [value]="city">
+                                        {{ city }}
+                                    </option>
                                 </select>
                             </div>
                         </div>
@@ -129,8 +151,11 @@
 
                     <div class="transport-type mb-2">
                         <label>Transport type:</label>
-                        <select class="form-select" aria-label="Country">
-                            <option selected>{{ transportType }}</option>
+                        <select
+                            class="form-select"
+                            aria-label="Transport type"
+                            [(ngModel)]="transportType">
+                            <option value="" selected>Select transport</option>
                             <option value="Car">Car</option>
                             <option value="Bus">Bus</option>
                             <option value="Boat">Boat</option>
@@ -210,60 +235,15 @@
                     </div>
                 </div>
 
-                <div class="attraction-list">
-                    <div class="attraction-item mb-2 border rounded px-2">
+                <div class="attraction-list mb-2">
+                    <div
+                        *ngFor="let attraction of attractions"
+                        class="attraction-item mb-2 border rounded px-2">
                         <div
                             class="d-flex justify-content-between align-items-center">
                             <div class="attraction">
-                                <strong>Attraction name</strong> - Price: 6969
-                            </div>
-                            <div>
-                                <button class="btn btn-sm btn-blue me-2">
-                                    <i class="bi bi-pencil-fill"></i>
-                                </button>
-                                <button class="btn btn-sm btn-red">
-                                    <i class="bi bi-trash-fill"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="attraction-item mb-2 border rounded px-2">
-                        <div
-                            class="d-flex justify-content-between align-items-center">
-                            <div class="attraction">
-                                <strong>Attraction name</strong> - Price: 6969
-                            </div>
-                            <div>
-                                <button class="btn btn-sm btn-blue me-2">
-                                    <i class="bi bi-pencil-fill"></i>
-                                </button>
-                                <button class="btn btn-sm btn-red">
-                                    <i class="bi bi-trash-fill"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="attraction-item mb-2 border rounded px-2">
-                        <div
-                            class="d-flex justify-content-between align-items-center">
-                            <div class="attraction">
-                                <strong>Attraction name</strong> - Price: 6969
-                            </div>
-                            <div>
-                                <button class="btn btn-sm btn-blue me-2">
-                                    <i class="bi bi-pencil-fill"></i>
-                                </button>
-                                <button class="btn btn-sm btn-red">
-                                    <i class="bi bi-trash-fill"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="attraction-item mb-2 border rounded px-2">
-                        <div
-                            class="d-flex justify-content-between align-items-center">
-                            <div class="attraction">
-                                <strong>Attraction name</strong> - Price: 6969
+                                <strong>{{ attraction.name }}</strong> - Price:
+                                {{ attraction.price }}
                             </div>
                             <div>
                                 <button class="btn btn-sm btn-blue me-2">
@@ -279,7 +259,7 @@
                 <div class="d-flex justify-content-end">
                     <button
                         class="btn btn-blue w-50"
-                        onclick="onSaveItinerary()">
+                        (click)="onSaveItinerary()">
                         Save itinerary
                     </button>
                 </div>
