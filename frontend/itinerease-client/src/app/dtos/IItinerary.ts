@@ -17,6 +17,7 @@ export interface IItinerary {
     accommodation_address: string,
     accommodation_price: number,
     attractions: IAttraction[],
+    name: string,
     arrival_date: Date,
     departure_date: Date,
     budget: number,

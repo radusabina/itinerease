@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbDateStruct, NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IAttraction } from '../dtos/IAttraction';
 import { ItineraryService } from '../services/itinerary-service/itinerary.service';
 import { IItinerary } from '../dtos/IItinerary';
@@ -16,6 +16,8 @@ import { IItinerary } from '../dtos/IItinerary';
 })
 export class ItineraryDetailsPageComponent {
     itinerary: IItinerary | undefined = undefined;
+
+    itineraryId: number = 0;
 
     // Itinerary details
     itineraryName: string | undefined = undefined;
@@ -37,12 +39,12 @@ export class ItineraryDetailsPageComponent {
     transportPrice: number | undefined = undefined;
 
     // Accommodation details
-    accommodationName: string | undefined = undefined;
-    accommodationAddress: string | undefined = undefined;
+    accommodationName: string = '';
+    accommodationAddress: string = '';
     accommodationPrice: number | undefined = undefined;
 
     // Attraction details
-    attractionName: string | undefined = undefined;
+    attractionName: string = '';
     attractionPrice: number | undefined = undefined;
     attractions: IAttraction[] | undefined = undefined;
 
@@ -58,7 +60,11 @@ export class ItineraryDetailsPageComponent {
         Japan: ['Tokyo', 'Osaka', 'Kyoto', 'Hiroshima', 'Nagoya'],
     };
 
-    constructor(private router: Router, private itineraryService: ItineraryService) {
+    constructor(
+        private router: Router,
+        private itineraryService: ItineraryService,
+        private route: ActivatedRoute,
+    ) {
         this.attractions = [
             { id: 1, id_location: 1, name: 'Muzeul de Artă', price: 20 },
             { id: 2, id_location: 1, name: 'Parcul Central', price: 10 },
@@ -72,6 +78,13 @@ export class ItineraryDetailsPageComponent {
             month: currentDate.getMonth() + 1,
             day: currentDate.getDate(),
         };
+    }
+
+    ngOnInit() {
+        this.route.params.subscribe((params) => {
+            this.itineraryId = params['id'];
+            this.loadItineraryDetails(this.itineraryId);
+        });
     }
 
     onStartDateSelect(date: NgbDateStruct) {
@@ -102,7 +115,7 @@ export class ItineraryDetailsPageComponent {
         return [];
     }
 
-    getItineraryById(id: number) {
+    loadItineraryDetails(id: number) {
         this.itineraryService.getItineraryById(id).subscribe(
             (response: any) => {
                 this.itinerary = {
@@ -122,16 +135,61 @@ export class ItineraryDetailsPageComponent {
                     accommodation_address: response.accommodation.address,
                     accommodation_price: response.accommodation.price,
                     attractions: response.attractions,
-                    arrival_date: new Date(response.arrival_date[0], response.arrival_date[1] - 1, response.arrival_date[2]),
-                    departure_date: new Date(response.departure_date[0], response.departure_date[1] - 1, response.departure_date[2]),
+                    name: response.name,
+                    arrival_date: new Date(
+                        response.arrival_date[0],
+                        response.arrival_date[1] - 1,
+                        response.arrival_date[2],
+                    ),
+                    departure_date: new Date(
+                        response.departure_date[0],
+                        response.departure_date[1] - 1,
+                        response.departure_date[2],
+                    ),
                     budget: response.budget,
-                    persons: response.persons
+                    persons: response.persons,
                 };
                 console.log(this.itinerary);
             },
             (error) => {
                 console.log(error);
-            }
+            },
         );
+    }
+
+    populatePage() {
+        if (this.itinerary) {
+            // Itinerary details
+            this.itineraryName = this.itinerary?.name;
+            this.startDate = {
+                year: this.itinerary?.departure_date.getFullYear(),
+                month: this.itinerary?.departure_date.getMonth(),
+                day: this.itinerary?.departure_date.getDay(),
+            };
+            this.endDate = {
+                year: this.itinerary?.arrival_date.getFullYear(),
+                month: this.itinerary?.arrival_date.getMonth(),
+                day: this.itinerary?.arrival_date.getDay(),
+            };
+            this.budget = this.itinerary?.budget;
+            this.numberOfPersons = this.itinerary?.persons;
+
+            // Where from details
+            this.whereFromCountry = this.itinerary?.departure_country;
+            this.whereFromCity = this.itinerary?.departure_city;
+
+            // Where to details
+            this.whereToCountry = this.itinerary?.destination_country;
+            this.whereToCity = this.itinerary?.destination_city;
+
+            // Transport details
+            this.transportType = this.itinerary?.transport_type;
+            this.transportPrice = this.itinerary?.transport_price;
+
+            // Accommodation details
+            this.accommodationName = this.itinerary?.accommodation_name;
+            this.accommodationAddress = this.itinerary?.accommodation_address;
+            this.accommodationPrice = this.itinerary?.accommodation_price;
+        }
     }
 }
