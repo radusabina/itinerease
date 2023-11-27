@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { NgbDateStruct, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { Router } from '@angular/router';
 import { IAttraction } from '../dtos/IAttraction';
+import { ItineraryService } from '../services/itinerary-service/itinerary.service';
+import { IItinerary } from '../dtos/IItinerary';
 
 @Component({
     selector: 'app-itinerary-details-page',
@@ -13,6 +15,8 @@ import { IAttraction } from '../dtos/IAttraction';
     styleUrl: './itinerary-details-page.component.scss',
 })
 export class ItineraryDetailsPageComponent {
+    itinerary: IItinerary | undefined = undefined;
+
     // Itinerary details
     itineraryName: string | undefined = undefined;
     startDate: NgbDateStruct | undefined = undefined;
@@ -54,7 +58,7 @@ export class ItineraryDetailsPageComponent {
         Japan: ['Tokyo', 'Osaka', 'Kyoto', 'Hiroshima', 'Nagoya'],
     };
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private itineraryService: ItineraryService) {
         this.attractions = [
             { id: 1, id_location: 1, name: 'Muzeul de Artă', price: 20 },
             { id: 2, id_location: 1, name: 'Parcul Central', price: 10 },
@@ -96,5 +100,38 @@ export class ItineraryDetailsPageComponent {
             return selectedCities;
         }
         return [];
+    }
+
+    getItineraryById(id: number) {
+        this.itineraryService.getItineraryById(id).subscribe(
+            (response: any) => {
+                this.itinerary = {
+                    id: response.id,
+                    id_departure: response.departure_location.id,
+                    departure_country: response.departure_location.country,
+                    departure_city: response.departure_location.city,
+                    id_destination: response.destination_location.id,
+                    destination_country: response.destination_location.country,
+                    destination_city: response.destination_location.city,
+                    id_transport: response.transport.id,
+                    transport_type: response.transport.type,
+                    transport_price: response.transport.price,
+                    id_user: response.user.id,
+                    id_accommodation: response.accommodation.id,
+                    accommodation_name: response.accommodation.name,
+                    accommodation_address: response.accommodation.address,
+                    accommodation_price: response.accommodation.price,
+                    attractions: response.attractions,
+                    arrival_date: new Date(response.arrival_date[0], response.arrival_date[1] - 1, response.arrival_date[2]),
+                    departure_date: new Date(response.departure_date[0], response.departure_date[1] - 1, response.departure_date[2]),
+                    budget: response.budget,
+                    persons: response.persons
+                };
+                console.log(this.itinerary);
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
     }
 }
