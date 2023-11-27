@@ -1,15 +1,12 @@
 package com.example.itinereasebackend.service;
 
-import com.example.itinereasebackend.api.model.Itinerary;
-import com.example.itinereasebackend.api.model.Location;
-import com.example.itinereasebackend.repository.ItineraryRepository;
-import com.example.itinereasebackend.repository.LocationRepository;
+import com.example.itinereasebackend.api.model.*;
+import com.example.itinereasebackend.repository.*;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -29,6 +26,10 @@ public class ItineraryService {
 
     public Optional<Itinerary> getById(int itineraryId) {
         return itineraryRepository.findById(itineraryId);
+    }
+
+    public List<Itinerary> getItinerariesByUserId(int userId) {
+        return itineraryRepository.findByUser_Id(userId);
     }
 
     public void update(int itineraryId, Itinerary updatedItinerary) {

@@ -3,6 +3,7 @@ package com.example.itinereasebackend.api.controller;
 import com.example.itinereasebackend.api.model.Itinerary;
 import com.example.itinereasebackend.service.ItineraryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,6 +32,12 @@ public class ItineraryController {
     @GetMapping("/itinerary")
     public List<Itinerary> getAll() {
         return itineraryService.getAll();
+    }
+
+    @GetMapping("/by-user/{userId}")
+    public ResponseEntity<List<Itinerary>> getItinerariesByUserId(@PathVariable int userId) {
+        List<Itinerary> itineraries = itineraryService.getItinerariesByUserId(userId);
+        return new ResponseEntity<>(itineraries, HttpStatus.OK);
     }
 
 }
