@@ -1,24 +1,7 @@
 .navbar {
     background-color: #4c77a6;
     height: 3.125rem;
-
-    .logo-text {
-        padding-left: 0.625rem;
-        padding-bottom: 6.25rem;
-        font-size: 0.938rem;
-        color: #fff;
-        opacity: 0.7;
-        font-family: Be Vietnam Pro;
-    }
-
-    .menu {
-        .contact {
-            font-family: Be Vietnam Pro;
-            text-decoration: underline;
-        }
-        .my_account {
-            font-family: Be Vietnam Pro;
-            text-decoration: underline;
-        }
+    .icon {
+        scale: 150%;
     }
 }
