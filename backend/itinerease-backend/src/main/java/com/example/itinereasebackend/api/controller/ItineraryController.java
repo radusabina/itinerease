@@ -54,4 +54,10 @@ public class ItineraryController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Internal Server Error");
         }
     }
+
+    @GetMapping("/itineraries-by-user/{userId}")
+    public ResponseEntity<List<Itinerary>> getItinerariesByUserId(@PathVariable int userId) {
+        List<Itinerary> itineraries = itineraryService.getItinerariesByUserId(userId);
+        return new ResponseEntity<>(itineraries, HttpStatus.OK);
+    }
 }
