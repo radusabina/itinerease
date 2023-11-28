@@ -23,29 +23,30 @@ public class User{
 
     @Length(max = 255, message = "Try again! Last name is too long")
     @NotEmpty(message = "Try again! Last name cannot be empty")
-    @Pattern(regexp = "^[a-zA-Z]+(?:-[a-zA-Z]+)?$", message = "Try again! Last name must start with an uppercase letter")
+    @Pattern(regexp = "\\b[A-Z].*?\\b", message = "Try again! Last name must start with an uppercase letter")
     @Column(name = "last_name")
     private String last_name;
 
     @Length(max = 255, message = "Try again! First name is too long")
     @NotEmpty(message = "Try again! First name cannot be empty")
-    @Pattern(regexp = "^[a-zA-Z]+(?:-[a-zA-Z]+)?$", message = "Try again! First name must start with an uppercase letter")
+    @Pattern(regexp = "\\b[A-Z].*?\\b", message = "Try again! First name must start with an uppercase letter")
     @Column(name = "first_name")
     private String first_name;
 
-    @Length(min = 10, max = 10, message = "Try again! Phone number is too long")
+    @Length(min = 10, max = 10, message = "Please enter a valid phone number")
     @NotEmpty(message = "Try again! Phone number cannot be empty")
-    @Pattern(regexp = "^07[0-9]{8}$", message = "Try again! Enter a valid Romanian phone number.")
+    @Pattern(regexp = "^07[0-9]{8}$", message = "Enter a valid Romanian phone number")
     @Column(name = "phone_number")
     private String phone_number;
 
     @Email(message = "This is not a valid email")
+    @NotEmpty(message = "Try again! Email cannot be empty")
     @Column(name = "email", unique = true)
     private String email;
 
-    @Length(max = 255, message = "Try again! Password is too long")
+    @Length(max = 255, message = "Password is too long")
     @NotEmpty(message = "Try again! Password cannot be empty")
-    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).*$", message = "Try again! Password must meet the requirements.")
+    @Pattern(regexp = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[@#$%^&+=!]).*$", message = "Try again! Password must meet the requirements")
     @Column(name = "password")
     private String password;
 }

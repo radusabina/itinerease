@@ -36,8 +36,12 @@ public class UserService {
 
     public User signUpUser(String email, String password, String firstName, String lastName, String phoneNumber) {
         if (_userRepository.findByEmail(email).isPresent()) {
-            throw new EntityExistsException("User with this email already exists");
+            throw new EntityExistsException("User with this email already exists.");
         }
+        if (_userRepository.findByPhone_number(phoneNumber).isPresent()) {
+            throw new EntityExistsException("User with this phone number already exists.");
+        }
+
         User newUser = new User();
         newUser.setEmail(email);
         newUser.setPassword(password);

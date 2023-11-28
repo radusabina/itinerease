@@ -5,7 +5,6 @@ import { HomepageComponent } from '../homepage/homepage.component';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user-service/user.service';
 import { IUserLogin } from '../dtos/IUserLogin';
-import { HttpClientModule } from '@angular/common/http';
 import { IUser } from '../dtos/IUser';
 
 @Component({
@@ -49,7 +48,7 @@ export class LoginComponent {
                 this.userService.setLoggedUser(this.user);
                 this.router.navigate(['/homepage']);
             },
-            (error) => {
+            (error: any) => {
                 this.errorMessage = error.error.message;
             },
         );
