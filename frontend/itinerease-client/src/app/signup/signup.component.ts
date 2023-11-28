@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { IUserSignup } from '../dtos/IUserSignup';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user-service/user.service';
+import { error } from 'console';
+import { IUser } from '../dtos/IUser';
 
 @Component({
     selector: 'app-signup',
@@ -18,8 +23,40 @@ export class SignupComponent {
     password: string = '';
     confirmPassword: string = '';
     errorMessage: string = '';
+    user: IUser | undefined;
+    constructor(
+        private router: Router,
+        private userService: UserService,
+    ) {}
 
     togglePasswordVisibility(): void {
         this.hidePassword = !this.hidePassword;
+    }
+
+    signup() {
+        var userSignUpdata: IUserSignup = {
+            firstName: this.firstName,
+            lastName: this.lastName,
+            phoneNumber: this.phoneNumber,
+            email: this.email,
+            password: this.password,
+        };
+        this.userService.signUpUser(userSignUpdata).subscribe(
+            (response: any) => {
+                this.user = {
+                    id: response.id,
+                    firstName: response.first_name,
+                    lastName: response.last_name,
+                    email: response.email,
+                    password: response.password,
+                    phoneNumber: response.phone_number,
+                };
+                this.userService.setLoggedUser(this.user);
+                this.router.navigate(['/homepage']);
+            },
+            (error: any) => {
+                this.errorMessage = error.error.message;
+            },
+        );
     }
 }
