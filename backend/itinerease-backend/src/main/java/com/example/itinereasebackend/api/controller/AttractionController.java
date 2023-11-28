@@ -1,7 +1,6 @@
 package com.example.itinereasebackend.api.controller;
 
 import com.example.itinereasebackend.api.model.Attraction;
-import com.example.itinereasebackend.api.model.Location;
 import com.example.itinereasebackend.service.AttractionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

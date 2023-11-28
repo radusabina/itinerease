@@ -1,7 +1,6 @@
 package com.example.itinereasebackend.service;
 
 import com.example.itinereasebackend.api.model.Itinerary;
-import com.example.itinereasebackend.api.model.Location;
 import com.example.itinereasebackend.repository.ItineraryRepository;
 import com.example.itinereasebackend.repository.LocationRepository;
 import lombok.AllArgsConstructor;
@@ -57,4 +56,9 @@ public class ItineraryService {
         // TODO trebuie sa tratam si cazul in care nu exista userul pe care vrem sa il stergem
         itineraryRepository.deleteById(itineraryId);
     }
+
+    public List<Itinerary> getItinerariesByUserId(int userId) {
+        return itineraryRepository.findByUser_Id(userId);
+    }
+
 }
