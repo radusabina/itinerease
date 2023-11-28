@@ -3,6 +3,8 @@ package com.example.itinereasebackend.api.controller;
 import com.example.itinereasebackend.api.model.User;
 import com.example.itinereasebackend.service.UserService;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -46,6 +48,28 @@ public class UserController {
             return ResponseEntity.ok(user);
         } catch (EntityNotFoundException exception) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntityNotFoundException(exception.getMessage()));
+        }
+    }
+
+    @PostMapping("/user/signup")
+    public ResponseEntity<Object> signUpUser(@RequestBody Map<String, String> userDetails) {
+        String email = userDetails.get("email");
+        String password = userDetails.get("password");
+        String firstName = userDetails.get("firstName");
+        String lastName = userDetails.get("lastName");
+        String phoneNumber = userDetails.get("phoneNumber");
+
+        try {
+            User newUser = userService.signUpUser(email, password, firstName, lastName, phoneNumber);
+            return ResponseEntity.ok(newUser);
+        } catch (ConstraintViolationException cve) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Exception(cve.getConstraintViolations()
+                    .stream()
+                    .findFirst()
+                    .map(ConstraintViolation::getMessage)
+                    .orElse("Validation failed.")));
+        } catch (Exception exception) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Exception(exception.getMessage()));
         }
     }
 }
