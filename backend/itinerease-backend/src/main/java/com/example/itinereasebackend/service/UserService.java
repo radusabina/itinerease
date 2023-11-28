@@ -2,6 +2,7 @@ package com.example.itinereasebackend.service;
 
 import com.example.itinereasebackend.api.model.User;
 import com.example.itinereasebackend.repository.UserRepository;
+import jakarta.persistence.EntityExistsException;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,22 @@ public class UserService {
 
     public Optional<User> getById(int userId) {
         return _userRepository.findById(userId);
+    }
+
+    public User signUpUser(String email, String password, String firstName, String lastName, String phoneNumber) {
+        if (_userRepository.findByEmail(email).isPresent()) {
+            throw new EntityExistsException("User with this email already exists");
+        }
+        User newUser = new User();
+        newUser.setEmail(email);
+        newUser.setPassword(password);
+        newUser.setFirst_name(firstName);
+        newUser.setLast_name(lastName);
+        newUser.setPhone_number(phoneNumber);
+
+        _userRepository.save(newUser);
+
+        return newUser;
     }
 
     public void update(String userEmail, User updatedUser) {
