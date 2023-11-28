@@ -34,29 +34,31 @@ export class SignupComponent {
     }
 
     signup() {
-        var userSignUpdata: IUserSignup = {
-            firstName: this.firstName,
-            lastName: this.lastName,
-            phoneNumber: this.phoneNumber,
-            email: this.email,
-            password: this.password,
-        };
-        this.userService.signUpUser(userSignUpdata).subscribe(
-            (response: any) => {
-                this.user = {
-                    id: response.id,
-                    firstName: response.first_name,
-                    lastName: response.last_name,
-                    email: response.email,
-                    password: response.password,
-                    phoneNumber: response.phone_number,
-                };
-                this.userService.setLoggedUser(this.user);
-                this.router.navigate(['/homepage']);
-            },
-            (error: any) => {
-                this.errorMessage = error.error.message;
-            },
-        );
+        if (this.confirmPassword === this.password) {
+            var userSignUpdata: IUserSignup = {
+                firstName: this.firstName,
+                lastName: this.lastName,
+                phoneNumber: this.phoneNumber,
+                email: this.email,
+                password: this.password,
+            };
+            this.userService.signUpUser(userSignUpdata).subscribe(
+                (response: any) => {
+                    this.user = {
+                        id: response.id,
+                        firstName: response.first_name,
+                        lastName: response.last_name,
+                        email: response.email,
+                        password: response.password,
+                        phoneNumber: response.phone_number,
+                    };
+                    this.userService.setLoggedUser(this.user);
+                    this.router.navigate(['/homepage']);
+                },
+                (error: any) => {
+                    this.errorMessage = error.error.message;
+                },
+            );
+        }
     }
 }

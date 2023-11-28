@@ -3,37 +3,9 @@
         <div class="col-md-6 m-auto">
             <div class="card border-2 shadow">
                 <div class="card-body">
-                    <form class="text-center" #loginForm="ngForm">
-                        <!--- Last name -->
-                        <div
-                            class="form-group d-flex justify-content-center"
-                            name="lastNameForm">
-                            <div class="col-11">
-                                <input
-                                    type="text"
-                                    class="form-control my-2 py-2 mx-auto"
-                                    placeholder="Last name"
-                                    name="lastName"
-                                    [(ngModel)]="lastName"
-                                    required
-                                    #lastNameField="ngModel" />
-                                <div
-                                    *ngIf="lastNameField.touched"
-                                    class="text-danger small"
-                                    style="
-                                        text-align: left;
-                                        margin-top: -0.3rem;
-                                    ">
-                                    <div
-                                        *ngIf="
-                                            lastNameField.hasError('required')
-                                        ">
-                                        Last name is required.
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <form class="text-center text-font" #loginForm="ngForm">
                         <!--- First name -->
+
                         <div
                             class="form-group d-flex justify-content-center"
                             name="firstNameForm">
@@ -45,7 +17,8 @@
                                     name="firstName"
                                     [(ngModel)]="firstName"
                                     required
-                                    #firstNameField="ngModel" />
+                                    #firstNameField="ngModel"
+                                    pattern="\b[A-Z].*?\b" />
                                 <div
                                     *ngIf="firstNameField.touched"
                                     class="text-danger small"
@@ -59,10 +32,58 @@
                                         ">
                                         First name is required.
                                     </div>
+                                    <div
+                                        *ngIf="
+                                            firstNameField.hasError('pattern')
+                                        ">
+                                        First name must start with an uppercase
+                                        letter.
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!--- Last name -->
+
+                        <div
+                            class="form-group d-flex justify-content-center"
+                            name="lastNameForm">
+                            <div class="col-11">
+                                <input
+                                    type="text"
+                                    class="form-control my-2 py-2 mx-auto"
+                                    placeholder="Last name"
+                                    name="lastName"
+                                    [(ngModel)]="lastName"
+                                    required
+                                    #lastNameField="ngModel"
+                                    pattern="\b[A-Z].*?\b" />
+                                <div
+                                    *ngIf="lastNameField.touched"
+                                    class="text-danger small"
+                                    style="
+                                        text-align: left;
+                                        margin-top: -0.3rem;
+                                    ">
+                                    <div
+                                        *ngIf="
+                                            lastNameField.hasError('required')
+                                        ">
+                                        Last name is required.
+                                    </div>
+                                    <div
+                                        *ngIf="
+                                            lastNameField.hasError('pattern')
+                                        ">
+                                        Last name must start with an uppercase
+                                        letter.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                         <!--- Phone number -->
+
                         <div
                             class="form-group d-flex justify-content-center"
                             name="phoneNumberForm">
@@ -74,7 +95,9 @@
                                     name="phoneNumber"
                                     [(ngModel)]="phoneNumber"
                                     required
-                                    #phoneNumberField="ngModel" />
+                                    #phoneNumberField="ngModel"
+                                    maxlength="10"
+                                    pattern="^07[2-8]\d{7}$" />
                                 <div
                                     *ngIf="phoneNumberField.touched"
                                     class="text-danger small"
@@ -90,10 +113,18 @@
                                         ">
                                         Phone number is required.
                                     </div>
+                                    <div
+                                        *ngIf="
+                                            phoneNumberField.hasError('pattern')
+                                        ">
+                                        Please enter a valid phone number.
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
                         <!--- Email -->
+
                         <div
                             class="form-group d-flex justify-content-center"
                             name="emailForm">
@@ -129,7 +160,9 @@
                                 </div>
                             </div>
                         </div>
+
                         <!--- Password -->
+
                         <div
                             class="form-group d-flex justify-content-center"
                             name="passwordForm"
@@ -151,6 +184,7 @@
                                         [(ngModel)]="password"
                                         name="password"
                                         required
+                                        pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&+=!]).*$"
                                         minlength="6"
                                         #passwordField="ngModel" />
                                     <button
@@ -164,33 +198,39 @@
                                     </button>
                                 </div>
                                 <div
-                                    *ngIf="
-                                        passwordField.touched &&
-                                        passwordField.hasError('required')
-                                    "
+                                    *ngIf="passwordField.touched"
                                     class="text-danger small"
                                     style="
                                         margin-top: -0.3rem;
                                         text-align: left;
                                     ">
-                                    Password is required.
-                                </div>
-                                <div
-                                    *ngIf="
-                                        passwordField.touched &&
-                                        passwordField.hasError('minlength')
-                                    "
-                                    class="text-danger small"
-                                    style="
-                                        margin-top: -0.3rem;
-                                        text-align: left;
-                                    ">
-                                    Password must be at least 6 characters long.
+                                    <div
+                                        *ngIf="
+                                            passwordField.hasError('required')
+                                        ">
+                                        Password is required
+                                    </div>
+                                    <div
+                                        *ngIf="
+                                            passwordField.hasError('minlength')
+                                        ">
+                                        Password must be at least 6 characters
+                                        long.
+                                    </div>
+                                    <div
+                                        *ngIf="
+                                            passwordField.hasError('pattern')
+                                        ">
+                                        Password must contain at least a special
+                                        character, a number, an uppercase letter
+                                        and a lowercase letter.
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
                         <!--- Confirm password -->
+
                         <div
                             class="form-group d-flex justify-content-center"
                             name="passwordForm"
@@ -229,7 +269,9 @@
                                     ">
                                     Please confirm your password.
                                 </div>
+
                                 <!-- Check if passwords matched-->
+
                                 <div
                                     *ngIf="
                                         passwordField.value !==
@@ -251,11 +293,22 @@
                             <button
                                 type="button"
                                 class="btn btn-blue btn-outline-light"
-                                data-bs-toggle="button">
+                                data-bs-toggle="button"
+                                (click)="signup()">
                                 Register
                             </button>
+                            <div
+                                *ngIf="emailField.touched"
+                                class="text-danger small"
+                                style="text-align: center">
+                                <div *ngIf="errorMessage" class="error-message">
+                                    {{ errorMessage }}
+                                </div>
+                            </div>
                             <br />
+
                             <!-- Link back to login -->
+
                             <a
                                 href="/login"
                                 class="link-dark link-opacity-50-hover"
