@@ -6,7 +6,7 @@
     padding: 0;
     justify-content: center;
     align-items: center;
-    background-image: url('https://i.postimg.cc/d3V2MgMb/Captur-de-ecran-din-2023-11-13-la-19-12-44.png');
+    background-image: url('https://i.postimg.cc/2ST5nsZN/Captur-de-ecran-din-2023-11-26-la-19-10-00.png');
 }
 
 .row {
@@ -17,18 +17,20 @@
     padding-left: 0;
     padding-right: 0;
 }
+.container {
+    margin-left: 0;
+}
 
 .welcome-text {
     font-size: 2.813rem;
     font-weight: bold;
     color: #fffffd;
     text-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
-    font-family: sans-serif;
     font-family: Be Vietnam Pro;
 }
 
 .first-row {
-    padding-top: 12.5rem;
+    padding-top: 6.5rem;
 }
 
 .carousel-control-prev-icon,
@@ -40,24 +42,65 @@
     filter: invert(1);
 }
 
-.itinerary_1 {
-    background-color: #b7c9d4;
+.text-spacing {
+    letter-spacing: 0.1em;
+}
+
+.my-2 {
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+.search-box {
+    margin-left: calc(100% / 8);
+    font-family: Be Vietnam Pro;
+}
+.itinerary_default {
+    position: relative;
+    background-color: rgba(126, 152, 174, 0.581);
+    //#a2d8f9b0
     font-family: Be Vietnam Pro;
     cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
 }
 
-.img-thumbnail {
-    max-width: 80%;
-}
-
-.itinerary_1_text {
-    margin-right: inherit;
-}
-
-.itinerary_2 {
-    background-color: #b7c9d4;
+.itinerary_default:hover {
+    transform: scale(1.02);
+    background-color: #a2d8f9b0;
 }
 
 .no-padding {
     padding: 0;
+}
+
+.footer {
+    background-image: url('https://i.postimg.cc/YS1rRj0V/Captur-de-ecran-din-2023-11-26-la-19-49-27.png');
+    background-repeat: repeat-x;
+}
+
+.h2 {
+    color: #022c46b0;
+    font-family: Be Vietnam Pro;
+    font-weight: bold;
+    font-size: 1.813rem;
+    text-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
+    padding-left: 2.2rem;
+}
+
+.cards-wrapper {
+    display: flex;
+    place-content: center;
+}
+
+.card {
+    margin: 0.5em;
+    width: calc(100% / 4);
+}
+
+.image-wrapper {
+    height: 22vw;
+    margin: 0 auto;
 }
