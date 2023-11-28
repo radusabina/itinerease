@@ -27,6 +27,10 @@ public class LocationService {
         return _locationRepository.findById(locationId);
     }
 
+    public Optional<Location> getByCountryAndCity(String country, String city) {
+        return _locationRepository.findByCountryAndCity(country, city);
+    }
+
     public void update(int locationId, Location updatedLocation) {
         Optional<Location> existingLocation = _locationRepository.findById(locationId);
         if (existingLocation.isPresent()) {

@@ -35,4 +35,9 @@ public class Transport {
     @JsonIgnore
     @OneToOne(mappedBy = "transport", cascade = CascadeType.MERGE)
     private Itinerary itinerary;
+
+    public Transport(String transportType, float transportPrice) {
+        this.type = transportType;
+        this.price = transportPrice;
+    }
 }
