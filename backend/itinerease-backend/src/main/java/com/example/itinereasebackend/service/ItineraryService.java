@@ -56,4 +56,9 @@ public class ItineraryService {
         // TODO trebuie sa tratam si cazul in care nu exista userul pe care vrem sa il stergem
         itineraryRepository.deleteById(itineraryId);
     }
+
+    public List<Itinerary> getItinerariesByUserId(int userId) {
+        return itineraryRepository.findByUser_Id(userId);
+    }
+
 }
