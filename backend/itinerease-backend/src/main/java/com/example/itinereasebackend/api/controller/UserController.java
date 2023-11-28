@@ -48,4 +48,20 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntityNotFoundException(exception.getMessage()));
         }
     }
+
+    @PostMapping("/user/signup")
+    public ResponseEntity<Object> signUpUser(@RequestBody Map<String, String> userDetails) {
+        String email = userDetails.get("email");
+        String password = userDetails.get("password");
+        String firstName = userDetails.get("first_name");
+        String lastName = userDetails.get("last_name");
+        String phoneNumber = userDetails.get("phone_number");
+
+        try {
+            User newUser = userService.signUpUser(email, password, firstName, lastName, phoneNumber);
+            return ResponseEntity.ok(newUser);
+        } catch (Exception exception) {
+            return ResponseEntity.status(HttpStatus.FOUND).body(new EntityNotFoundException(exception.getMessage()));
+        }
+    }
 }
