@@ -31,7 +31,10 @@
                                 <div
                                     *ngIf="emailField.touched"
                                     class="text-danger small"
-                                    style="margin-top: -20px; text-align: left">
+                                    style="
+                                        margin-top: -1.3rem;
+                                        text-align: left;
+                                    ">
                                     <div
                                         *ngIf="emailField.hasError('required')">
                                         Email is required.
@@ -95,7 +98,10 @@
                                         passwordField.hasError('minlength')
                                     "
                                     class="text-danger small"
-                                    style="margin-top: -5px; text-align: left">
+                                    style="
+                                        margin-top: -0.3rem;
+                                        text-align: left;
+                                    ">
                                     Password must be at least 6 characters long.
                                 </div>
                             </div>
