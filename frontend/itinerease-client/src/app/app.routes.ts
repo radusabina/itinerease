@@ -6,7 +6,7 @@ import { SignupComponent } from './signup/signup.component';
 import { AccountPageComponent } from './account-page/account-page.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/login', pathMatch: 'full' },
+    { path: '', redirectTo: '/homepage', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'homepage', component: HomepageComponent },
     { path: 'signup', component: SignupComponent },
