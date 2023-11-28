@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { IUser } from '../../dtos/IUser';
 import { endpointAPI } from '../../config/appconfig';
 import { Observable } from 'rxjs';
+import { IUserSignup } from '../../dtos/IUserSignup';
 
 @Injectable({
     providedIn: 'root',
@@ -22,5 +23,9 @@ export class UserService {
 
     getLoggedUser() {
         return this.loggedUser;
+    }
+
+    signUpUser(credentials: IUserSignup): Observable<IUser> {
+        return this.http.post<IUser>(endpointAPI + 'user/signup', credentials);
     }
 }

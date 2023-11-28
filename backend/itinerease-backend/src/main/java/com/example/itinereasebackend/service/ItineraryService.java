@@ -2,11 +2,13 @@ package com.example.itinereasebackend.service;
 
 import com.example.itinereasebackend.api.model.Itinerary;
 import com.example.itinereasebackend.repository.ItineraryRepository;
+import com.example.itinereasebackend.repository.LocationRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -15,8 +17,10 @@ public class ItineraryService {
     @Autowired
     private final ItineraryRepository itineraryRepository;
 
+    @Autowired
+    private final LocationRepository locationRepository;
+
     public void create(Itinerary itinerary) {
-        // TODO validari in cazul in care este necesar
         itineraryRepository.save(itinerary);
     }
     public List<Itinerary> getAll(){
@@ -52,4 +56,9 @@ public class ItineraryService {
         // TODO trebuie sa tratam si cazul in care nu exista userul pe care vrem sa il stergem
         itineraryRepository.deleteById(itineraryId);
     }
+
+    public List<Itinerary> getItinerariesByUserId(int userId) {
+        return itineraryRepository.findByUser_Id(userId);
+    }
+
 }
