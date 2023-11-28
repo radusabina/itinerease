@@ -1,8 +1,8 @@
 package com.example.itinereasebackend.api.controller;
 
 
-import com.example.itinereasebackend.api.model.*;
-import com.example.itinereasebackend.service.*;
+import com.example.itinereasebackend.api.model.Accommodation;
+import com.example.itinereasebackend.service.AccommodationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
