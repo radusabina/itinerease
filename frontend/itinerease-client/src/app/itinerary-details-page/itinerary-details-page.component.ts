@@ -91,22 +91,18 @@ export class ItineraryDetailsPageComponent {
         this.endDate = date;
     }
 
-    onSaveItinerary() {
-        this.router.navigate(['homepage']);
-    }
-
     onCountryChangeLeft() {
-        const selectedCities = this.countryCities[this.whereFromCountry];
-        if (selectedCities) {
-            return selectedCities;
+        const selectedCitiesLeft = this.countryCities[this.whereFromCountry];
+        if (selectedCitiesLeft) {
+            return selectedCitiesLeft;
         }
         return [];
     }
 
     onCountryChangeRight() {
-        const selectedCities = this.countryCities[this.whereToCountry];
-        if (selectedCities) {
-            return selectedCities;
+        const selectedCitiesRight = this.countryCities[this.whereToCountry];
+        if (selectedCitiesRight) {
+            return selectedCitiesRight;
         }
         return [];
     }
@@ -185,6 +181,28 @@ export class ItineraryDetailsPageComponent {
             this.accommodationName = this.itinerary?.accommodation_name;
             this.accommodationAddress = this.itinerary?.accommodation_address;
             this.accommodationPrice = this.itinerary?.accommodation_price;
+
+            // Attractions
+            this.attractions = this.itinerary?.attractions;
+
+            this.onCountryChangeLeft();
+            this.onCountryChangeRight();
         }
+    }
+
+    onAddAttraction() {
+
+    }
+
+    onEditAttraction() {
+
+    }
+
+    onDeleteAttraction() {
+
+    }
+
+    onSaveItinerary() {
+        this.router.navigate(['homepage']);
     }
 }

@@ -63,7 +63,7 @@
                                     aria-label="Country"
                                     [(ngModel)]="whereFromCountry">
                                     <option value="" selected>
-                                        Select country
+                                        {{ whereFromCountry }}
                                     </option>
                                     <option value="Romania">Romania</option>
                                     <option value="Germany">Germany</option>
@@ -76,16 +76,19 @@
                             </div>
 
                             <div class="where-from-cities">
-                                <select class="form-select" aria-label="City">
+                                <select
+                                    class="form-select"
+                                    [(ngModel)]="whereFromCity"
+                                    aria-label="City">
                                     <option value="" selected>
-                                        Select city
+                                        {{ whereFromCity }}
                                     </option>
                                     <option
                                         *ngFor="
-                                            let city of onCountryChangeLeft()
+                                            let cityLeft of onCountryChangeLeft()
                                         "
-                                        [value]="city">
-                                        {{ city }}
+                                        [value]="cityLeft">
+                                        {{ cityLeft }}
                                     </option>
                                 </select>
                             </div>
@@ -116,7 +119,7 @@
                                     aria-label="Country"
                                     [(ngModel)]="whereToCountry">
                                     <option value="" selected>
-                                        Select country
+                                        {{ whereToCountry }}
                                     </option>
                                     <option value="Romania">Romania</option>
                                     <option value="Germany">Germany</option>
@@ -129,16 +132,19 @@
                             </div>
 
                             <div class="where-to-cities">
-                                <select class="form-select" aria-label="City">
+                                <select
+                                    class="form-select"
+                                    [(ngModel)]="whereToCity"
+                                    aria-label="City">
                                     <option value="" selected>
-                                        Select city
+                                        {{ whereToCity }}
                                     </option>
                                     <option
                                         *ngFor="
-                                            let city of onCountryChangeRight()
+                                            let cityRight of onCountryChangeRight()
                                         "
-                                        [value]="city">
-                                        {{ city }}
+                                        [value]="cityRight">
+                                        {{ cityRight }}
                                     </option>
                                 </select>
                             </div>
@@ -155,7 +161,9 @@
                             class="form-select"
                             aria-label="Transport type"
                             [(ngModel)]="transportType">
-                            <option value="" selected>Select transport</option>
+                            <option value="" selected>
+                                {{ transportType }}
+                            </option>
                             <option value="Car">Car</option>
                             <option value="Bus">Bus</option>
                             <option value="Boat">Boat</option>
