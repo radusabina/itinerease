@@ -65,12 +65,7 @@ export class ItineraryDetailsPageComponent {
         private itineraryService: ItineraryService,
         private route: ActivatedRoute,
     ) {
-        this.attractions = [
-            { id: 1, id_location: 1, name: 'Muzeul de Artă', price: 20 },
-            { id: 2, id_location: 1, name: 'Parcul Central', price: 10 },
-            { id: 3, id_location: 1, name: 'Muzeul de Artă', price: 20 },
-            { id: 4, id_location: 1, name: 'Parcul Central', price: 10 },
-        ];
+        this.attractions = [];
 
         const currentDate = new Date();
         this.minDate = {
@@ -85,6 +80,7 @@ export class ItineraryDetailsPageComponent {
             this.itineraryId = params['id'];
             this.loadItineraryDetails(this.itineraryId);
         });
+        this.populatePage();
     }
 
     onStartDateSelect(date: NgbDateStruct) {
@@ -149,7 +145,6 @@ export class ItineraryDetailsPageComponent {
                     budget: response.budget,
                     persons: response.persons,
                 };
-                console.log(this.itinerary);
             },
             (error) => {
                 console.log(error);
