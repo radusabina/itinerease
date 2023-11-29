@@ -1,6 +1,7 @@
 package com.example.itinereasebackend.api.controller;
 
 import com.example.itinereasebackend.api.model.*;
+import com.example.itinereasebackend.service.AccommodationService;
 import com.example.itinereasebackend.service.ItineraryService;
 import com.example.itinereasebackend.service.LocationService;
 import com.example.itinereasebackend.service.UserService;
@@ -31,6 +32,8 @@ public class ItineraryController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    AccommodationService accommodationService;
 
     @PostMapping("/itinerary")
     public ResponseEntity<Object> create(@RequestBody Map<String, String> itinerary) {
@@ -60,6 +63,7 @@ public class ItineraryController {
         Transport transport = new Transport(transportType, transportPrice);
 
         Accommodation accommodation = new Accommodation(accommodationName, addressArea, priceAccommodation);
+        accommodationService.create(accommodation);
 
         Itinerary itinerary1 = new Itinerary(destinationLocation, transport, userService.getById(idUser).orElseThrow(() -> new RuntimeException("User not found")), accommodation, departureLocation,
                 itineraryName, dateStartModal, dateEndModal, budget, selectedPersonsOption);
