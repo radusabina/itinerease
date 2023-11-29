@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ModalsComponent } from '../modals/modals.component';
 import { UserService } from '../services/user-service/user.service';
 import { IUser } from '../dtos/IUser';
-
+import { ItinerariesByUserService } from '../services/itinerary-service/itinerary.service';
 @Component({
     selector: 'app-container',
     standalone: true,
@@ -13,7 +13,19 @@ import { IUser } from '../dtos/IUser';
 })
 export class ContainerComponent {
     loggedUser: IUser | undefined;
-    constructor(private userService: UserService) {
+    itineraries: any[] = [];
+
+    constructor(
+        private userService: UserService,
+        private itinerariesByUserService: ItinerariesByUserService,
+    ) {
         this.loggedUser = this.userService.getLoggedUser();
+    }
+
+    ngOnInit() {
+        if (this.loggedUser) {
+            this.itinerariesByUserService.loadItineraries(this.loggedUser);
+            this.itineraries = this.itinerariesByUserService.itineraries;
+        }
     }
 }
