@@ -4,9 +4,9 @@ export interface IItineraryInsert {
     itineraryName: string;
     dateStartModal: NgbDateStruct;
     dateEndModal: NgbDateStruct;
-    Budget: number | undefined;
+    budget: number | undefined;
     selectedPersonsOption: number | undefined;
-    selectedCountryDesination: string;
+    selectedCountryDestination: string;
     selectedCityDestination: string;
     selectedCountryDeparting: string;
     selectedCityDeparting: string;
@@ -14,5 +14,6 @@ export interface IItineraryInsert {
     transportPrice: number | undefined;
     accomodationName: string;
     addressArea: string;
-    PriceTrip: number | undefined;
+    priceAccomodation: number | undefined;
+    idUser: number | undefined;
 }

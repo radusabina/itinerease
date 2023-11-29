@@ -28,4 +28,8 @@ export class UserService {
     signUpUser(credentials: IUserSignup): Observable<IUser> {
         return this.http.post<IUser>(endpointAPI + 'user/signup', credentials);
     }
+
+    getLoggedUserId() {
+        return this.loggedUser?.id;
+    }
 }

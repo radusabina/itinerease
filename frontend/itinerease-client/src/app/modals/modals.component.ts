@@ -3,8 +3,6 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import {
     NgbAlertModule,
-    NgbCalendar,
-    NgbDate,
     NgbDatepickerModule,
     NgbDateStruct,
 } from '@ng-bootstrap/ng-bootstrap';
@@ -13,6 +11,7 @@ import { JsonPipe } from '@angular/common';
 import { IItineraryInsert } from '../dtos/IItineraryInsert';
 import { ItineraryService } from '../services/itinerary-service/itinerary.service';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user-service/user.service';
 
 @Component({
     selector: 'app-modals',
@@ -34,7 +33,7 @@ export class ModalsComponent {
     dateStartModal!: NgbDateStruct;
     dateEndModal!: NgbDateStruct;
 
-    selectedCountryDesination: string = '';
+    selectedCountryDestination: string = '';
     selectedCityDestination: string = '';
 
     selectedCountryDeparting: string = '';
@@ -43,11 +42,11 @@ export class ModalsComponent {
     itinerary: IItineraryInsert | undefined;
 
     itineraryName: string = '';
-    Budget: number | undefined;
+    budget: number | undefined;
     selectedPersonsOption: number | undefined;
     accomodationName: string = '';
     addressArea: string = '';
-    PriceTrip: number | undefined;
+    priceAccomodation: number | undefined;
     minDateStart: NgbDateStruct;
     minDateEnd: NgbDateStruct;
 
@@ -60,6 +59,7 @@ export class ModalsComponent {
         private router: Router,
         private itineraryService: ItineraryService,
         private route: ActivatedRoute,
+        private userService: UserService,
     ) {
         const currentDate = new Date();
         this.minDateStart = {
@@ -81,9 +81,9 @@ export class ModalsComponent {
             itineraryName: this.itineraryName,
             dateStartModal: this.dateStartModal,
             dateEndModal: this.dateEndModal,
-            Budget: this.Budget,
+            budget: this.budget,
             selectedPersonsOption: this.selectedPersonsOption,
-            selectedCountryDesination: this.selectedCountryDesination,
+            selectedCountryDestination: this.selectedCountryDestination,
             selectedCityDestination: this.selectedCityDestination,
             selectedCountryDeparting: this.selectedCountryDeparting,
             selectedCityDeparting: this.selectedCityDeparting,
@@ -91,13 +91,16 @@ export class ModalsComponent {
             transportPrice: this.transportPrice,
             accomodationName: this.accomodationName,
             addressArea: this.addressArea,
-            PriceTrip: this.PriceTrip,
+            priceAccomodation: this.priceAccomodation,
+            idUser: this.userService.getLoggedUserId(),
         };
 
         this.itineraryService.insertItinerary(itinerary).subscribe(
             (response: any) => {
                 //ce vr sa fac dupa ce o raspuns topy la telefon in cazul pozitiv , da?
                 // in cazul pozitiv in care itinerarul e valid
+                //to do de la tudor
+                console.log('adaugat cu succes');
             },
             (error: any) => {
                 //ce se intampla in caz de eroareeeeeee :(
@@ -119,7 +122,7 @@ export class ModalsComponent {
     // Functie care returneaza doar orasele din tara selectata
     onCountryDestinationChange() {
         const selectedCities =
-            this.countryCities[this.selectedCountryDesination];
+            this.countryCities[this.selectedCountryDestination];
         if (selectedCities) {
             // Actualizați lista de orașe pentru țara selectată
             // Această actualizare poate fi făcută direct în HTML fără a adăuga manual opțiunile
