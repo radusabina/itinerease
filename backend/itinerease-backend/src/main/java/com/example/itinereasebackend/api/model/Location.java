@@ -7,11 +7,12 @@ import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
 
-
+@ToString
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

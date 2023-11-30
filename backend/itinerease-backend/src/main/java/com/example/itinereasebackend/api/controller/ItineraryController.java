@@ -1,10 +1,7 @@
 package com.example.itinereasebackend.api.controller;
 
 import com.example.itinereasebackend.api.model.*;
-import com.example.itinereasebackend.service.AccommodationService;
-import com.example.itinereasebackend.service.ItineraryService;
-import com.example.itinereasebackend.service.LocationService;
-import com.example.itinereasebackend.service.UserService;
+import com.example.itinereasebackend.service.*;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
@@ -32,8 +29,12 @@ public class ItineraryController {
 
     @Autowired
     UserService userService;
+
     @Autowired
     AccommodationService accommodationService;
+
+    @Autowired
+    TransportService transportService;
 
     @PostMapping("/itinerary")
     public ResponseEntity<Object> create(@RequestBody Map<String, String> itinerary) {
@@ -65,32 +66,43 @@ public class ItineraryController {
         Accommodation accommodation = new Accommodation(accommodationName, addressArea, priceAccommodation);
         accommodationService.create(accommodation);
 
+        Transport transport = new Transport(transportType,transportPrice);
+        transportService.create(transport);
+
         Itinerary itinerary1 = new Itinerary(destinationLocation, transport, userService.getById(idUser).orElseThrow(() -> new RuntimeException("User not found")), accommodation, departureLocation,
                 itineraryName, dateStartModal, dateEndModal, budget, selectedPersonsOption);
 
         try {
             itineraryService.create(itinerary1);
-            return ResponseEntity.ok(itinerary1);
+            Itinerary itineraryFounded = itineraryService.getItineraryByDetails(itinerary1);
+
+            if (itineraryFounded == null) {
+                throw new RuntimeException("Itinerary not found");
+            }
+
+            return ResponseEntity.ok(itineraryFounded);
         } catch (ConstraintViolationException cve) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Exception(cve.getConstraintViolations()
                     .stream()
                     .findFirst()
                     .map(ConstraintViolation::getMessage)
                     .orElse("Validation failed.")));
+        } catch (EntityNotFoundException exception) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntityNotFoundException(exception.getMessage()));
         } catch (Exception exception) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Exception(exception.getMessage()));
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Exception(exception.getMessage()));
         }
 
     }
 
     @PutMapping("/itinerary")
     public void update(@RequestBody Itinerary itinerary) {
-        itineraryService.update(itinerary.getId(), itinerary);
+        itineraryService.update(Math.toIntExact(itinerary.getId()), itinerary);
     }
 
     @DeleteMapping("/itinerary/{id}")
-    public void delete(@PathVariable int id) {
-        itineraryService.delete(id);
+    public void delete(@PathVariable Long id) {
+        itineraryService.delete(Math.toIntExact(id));
     }
 
     @GetMapping("/itinerary")
