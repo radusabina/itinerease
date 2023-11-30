@@ -55,13 +55,12 @@ public class ItineraryController {
         float priceAccommodation = Float.parseFloat(itinerary.get("priceAccommodation"));
         int idUser = Integer.parseInt(itinerary.get("idUser"));
 
+
         Location destinationLocation = locationService.getByCountryAndCity(selectedCountryDestination, selectedCityDestination)
                 .orElseThrow(() -> new RuntimeException("Destination location not found"));
 
         Location departureLocation = locationService.getByCountryAndCity(selectedCountryDeparting, selectedCityDeparting)
                 .orElseThrow(() -> new RuntimeException("Departure location not found"));
-
-        Transport transport = new Transport(transportType, transportPrice);
 
         Accommodation accommodation = new Accommodation(accommodationName, addressArea, priceAccommodation);
         accommodationService.create(accommodation);
@@ -92,8 +91,8 @@ public class ItineraryController {
         } catch (Exception exception) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(new Exception(exception.getMessage()));
         }
-
     }
+
 
     @PutMapping("/itinerary")
     public void update(@RequestBody Itinerary itinerary) {
