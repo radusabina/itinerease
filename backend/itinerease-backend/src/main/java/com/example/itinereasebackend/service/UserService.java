@@ -7,6 +7,7 @@ import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -68,13 +69,22 @@ public class UserService {
             throw new RuntimeException("User not found with this email");
         }
     }
-
+    @Transactional
     public void delete(String userEmail) {
         Optional<User> existingUser = _userRepository.findByEmail(userEmail);
         if (existingUser.isPresent()) {
             _userRepository.deleteByEmail(userEmail);
         } else {
             throw new RuntimeException("User not found with this email");
+        }
+    }
+
+    public void delete(int id) {
+        Optional<User> existingUser = _userRepository.findById(id);
+        if (existingUser.isPresent()) {
+            _userRepository.deleteById(id);
+        } else {
+            throw new RuntimeException("User not found with this id");
         }
     }
 
