@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { IItineraryInsert } from '../../dtos/IItineraryInsert';
 import { endpointAPI } from '../../config/appconfig';
 import { Observable } from 'rxjs';
+import { IItinerary } from '../../dtos/IItinerary';
+import { IUser } from '../../dtos/IUser';
 
 @Injectable({
     providedIn: 'root',

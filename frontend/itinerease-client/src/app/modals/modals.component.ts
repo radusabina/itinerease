@@ -70,13 +70,11 @@ export class ModalsComponent {
         this.minDateEnd = {
             year: currentDate.getFullYear(),
             month: currentDate.getMonth() + 1,
-            day: currentDate.getDate() + 1,
+            day: currentDate.getDate(),
         };
     }
 
-    ngOnInit(): void {}
-
-    insertItinerary(): void {
+    insertItinerary() {
         var itinerary: IItineraryInsert = {
             itineraryName: this.itineraryName,
             dateStartModal: this.dateStartModal,
