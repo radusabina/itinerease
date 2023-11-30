@@ -38,4 +38,14 @@ public class Attraction{
     @JsonIgnore
     @ManyToMany(mappedBy = "attractions")
     private List<Itinerary> itineraries;
+
+    @Override
+    public String toString() {
+        return '{' +
+                "id=" + id +
+                ", location=" + location +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

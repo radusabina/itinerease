@@ -36,8 +36,18 @@ public class Transport {
     @OneToOne(mappedBy = "transport", cascade = CascadeType.MERGE)
     private Itinerary itinerary;
 
+
+    @Override
+    public String toString() {
+        return '{' +
+                "id=" + id +
+                ", type='" + type + '\'' +
+                ", price=" + price +
+                '}';}
+
     public Transport(String transportType, float transportPrice) {
         this.type = transportType;
         this.price = transportPrice;
+
     }
 }
