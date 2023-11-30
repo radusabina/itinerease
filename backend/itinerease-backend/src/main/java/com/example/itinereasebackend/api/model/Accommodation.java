@@ -37,4 +37,14 @@ public class Accommodation{
     @JsonIgnore
     @OneToOne(mappedBy = "accommodation", cascade = CascadeType.MERGE)
     private Itinerary itinerary;
+
+    @Override
+    public String toString() {
+        return '{' +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", price=" + price +
+                '}';
+    }
 }

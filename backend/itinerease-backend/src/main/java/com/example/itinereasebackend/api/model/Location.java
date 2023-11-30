@@ -48,4 +48,12 @@ public class Location{
     @OneToMany(mappedBy = "departure_location", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Itinerary> departure_itineraries;
 
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id=" + id +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }

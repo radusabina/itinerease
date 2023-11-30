@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ItinerariesByUserService } from './itinerary.service';
+import { ItineraryService } from './itinerary.service';
 
-describe('ItinerariesByUserService', () => {
-    let service: ItinerariesByUserService;
+describe('ItineraryService', () => {
+    let service: ItineraryService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({});
-        service = TestBed.inject(ItinerariesByUserService);
+        service = TestBed.inject(ItineraryService);
     });
 
     it('should be created', () => {

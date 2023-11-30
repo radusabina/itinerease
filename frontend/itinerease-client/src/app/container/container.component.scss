@@ -18,9 +18,8 @@
     padding-right: 0;
 }
 .container {
-    margin-left: 0;
+    margin-left: 1rem;
     margin-right: 0;
-    height: 34.375rem;
     overflow: hidden;
 }
 
@@ -40,7 +39,7 @@
     padding-top: 2.5rem;
 }
 .carouselPadding {
-    padding-bottom: calc(100% / 15);
+    padding-bottom: calc(100% / 28);
 }
 
 .carousel-control-prev-icon,
@@ -64,7 +63,7 @@
 .search-box {
     margin-left: calc(100% / 12.5);
     font-family: Be Vietnam Pro;
-    padding-top: calc(100% / 25);
+    padding-top: calc(100% / 15);
 }
 .itinerary_default {
     position: relative;
@@ -76,6 +75,7 @@
     overflow: hidden;
     padding: 0;
     display: flex;
+    min-height: 18.75rem;
 }
 
 .itinerary_default:hover {
@@ -110,10 +110,17 @@
 
 .card {
     margin: 0.5em;
-    width: calc(100% / 4);
 }
 
 .image-wrapper {
     height: 22vw;
     margin: 0 auto;
+}
+
+.cards {
+    padding-left: 0;
+}
+
+.specific-padding {
+    padding-top: calc(100% / 25);
 }

@@ -14,7 +14,7 @@
             <div class="col-3"></div>
         </div>
         <!-- itineraries carousel-->
-        <div class="row">
+        <div class="row" style="overflow-x: auto; white-space: nowrap">
             <!-- search box -->
             <div class="col-md-5 d-flex search-box">
                 <form class="form-inline">
@@ -25,214 +25,71 @@
                         aria-label="Search" />
                 </form>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-8 align-items-center justify-content-center">
                 <div class="container">
-                    <div class="row justify-content-center">
-                        <div id="carouselExample" class="carousel slide">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <div class="cards-wrapper">
-                                        <!-- itinerary 1 -->
-                                        <div
-                                            class="card shadow rounded itinerary_default"
-                                            onclick="location.href='/homepage'">
-                                            <img
-                                                src="https://i.postimg.cc/gJmpfFKm/Captur-de-ecran-din-2023-11-15-la-15-21-22.png"
-                                                class="card-img-top img-fluid"
-                                                alt="Trip Image" />
-
-                                            <div class="card-body">
-                                                <h5 class="card-title">
-                                                    Trip to
-                                                    {{ itineraries[0]?.name }}
-                                                </h5>
-                                                <h6
-                                                    class="card-subtitle mb-2 text-muted">
+                    <div
+                        class="row"
+                        style="overflow-x: auto; white-space: nowrap">
+                        <!-- itinerary 1 -->
+                        <div class="col-md-4 specific-padding">
+                            <!-- itinerary add -->
+                            <li
+                                class="col-md-12 card shadow rounded itinerary_default align-items-center justify-content-center"
+                                data-bs-toggle="modal"
+                                data-bs-target="#ModalToggle">
+                                <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#ModalToggle">
+                                    <i class="bi bi-plus"></i>
+                                </button>
+                            </li>
+                        </div>
+                        <div class="col-md-5 specific-padding">
+                            <ul class="cards">
+                                <div
+                                    *ngFor="let itinerary of itineraries"
+                                    class="col-md-10"
+                                    style="display: inline-block">
+                                    <li
+                                        class="card shadow rounded itinerary_default">
+                                        <img
+                                            class="card-img-top img-fluid"
+                                            alt="Trip Image" />
+                                        <div>
+                                            <h3 class="card-title">
+                                                {{ itinerary.name }}
+                                            </h3>
+                                            <div class="card-content">
+                                                <p>
                                                     <i
                                                         class="bi bi-people-fill"></i>
-                                                    7 prs
+                                                    {{ itinerary.persons }} prs
                                                     <i
-                                                        class="bi bi-currency-dollar"></i
-                                                    >741,80
+                                                        class="bi bi-currency-dollar"></i>
+                                                    {{ itinerary.budget }}
                                                     <i
                                                         class="bi bi-calendar"></i>
-                                                    7 days
-                                                </h6>
-                                                <p class="card-text">
-                                                    Your first stop will be at
-                                                    <var
-                                                        >The Museum of Egyptian
-                                                        Antiquities</var
-                                                    >, which will take 2-3 hours
-                                                    to visit,from where we
-                                                    suggest you to go to...
+                                                    {{
+                                                        calculateDays(itinerary)
+                                                    }}
+                                                    days
                                                 </p>
                                             </div>
                                         </div>
-                                        <!-- itinerary 2 -->
-                                        <div
-                                            class="card shadow rounded itinerary_default"
-                                            onclick="location.href='/homepage'">
-                                            <img
-                                                src="https://i.postimg.cc/mDFDj3pR/Captur-de-ecran-din-2023-11-26-la-23-11-36.png"
-                                                alt="Trip Image 2" />
-
-                                            <div class="card-body">
-                                                <h5 class="card-title">
-                                                    Trip to Paris
-                                                </h5>
-                                                <h6
-                                                    class="card-subtitle mb-2 text-muted">
-                                                    <i
-                                                        class="bi bi-people-fill"></i>
-                                                    5 prs
-                                                    <i
-                                                        class="bi bi-currency-dollar"></i
-                                                    >342,50
-                                                    <i
-                                                        class="bi bi-calendar"></i>
-                                                    7 days
-                                                </h6>
-                                                <p class="card-text">
-                                                    Your first stop will be at
-                                                    the hotel.There you will be
-                                                    welcome by us with some
-                                                    refreshers, from where we
-                                                    suggest you to go to...
-                                                </p>
-                                            </div>
+                                        <div class="card-link-wrapper">
+                                            <a href="" class="card-link"></a>
                                         </div>
-                                        <!-- itinerary add -->
-                                        <div
-                                            class="card shadow rounded itinerary_default align-items-center justify-content-center"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#ModalToggle">
-                                            <button
-                                                type="button"
-                                                class="btn btn-primary"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#ModalToggle">
-                                                <i class="bi bi-plus"></i>
-                                            </button>
-                                        </div>
-                                    </div>
+                                    </li>
                                 </div>
-                                <div class="carousel-item">
-                                    <div class="cards-wrapper">
-                                        <!-- itinerary 3 -->
-                                        <div
-                                            class="card shadow rounded itinerary_default"
-                                            onclick="location.href='/homepage'">
-                                            <img
-                                                src="https://i.postimg.cc/gJmpfFKm/Captur-de-ecran-din-2023-11-15-la-15-21-22.png"
-                                                alt="Trip Image" />
-
-                                            <div class="card-body">
-                                                <h5 class="card-title">
-                                                    Trip to Country_1
-                                                </h5>
-                                                <h6
-                                                    class="card-subtitle mb-2 text-muted">
-                                                    <i
-                                                        class="bi bi-people-fill"></i>
-                                                    0 prs
-                                                    <i
-                                                        class="bi bi-currency-dollar"></i
-                                                    >0
-                                                    <i
-                                                        class="bi bi-calendar"></i>
-                                                    0 days
-                                                </h6>
-                                                <p class="card-text">
-                                                    Will be filled soon...
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <!-- itinerary 4 -->
-                                        <div
-                                            class="card shadow rounded itinerary_default"
-                                            onclick="location.href='/homepage'">
-                                            <img
-                                                src="https://i.postimg.cc/gJmpfFKm/Captur-de-ecran-din-2023-11-15-la-15-21-22.png"
-                                                alt="Trip Image" />
-
-                                            <div class="card-body">
-                                                <h5 class="card-title">
-                                                    Trip to Country_2
-                                                </h5>
-                                                <h6
-                                                    class="card-subtitle mb-2 text-muted">
-                                                    <i
-                                                        class="bi bi-people-fill"></i>
-                                                    0 prs
-                                                    <i
-                                                        class="bi bi-currency-dollar"></i
-                                                    >0
-                                                    <i
-                                                        class="bi bi-calendar"></i>
-                                                    0 days
-                                                </h6>
-                                                <p class="card-text">
-                                                    Will be filled soon...
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <!-- itinerary 5 -->
-                                        <div
-                                            class="card shadow rounded itinerary_default"
-                                            onclick="location.href='/homepage'">
-                                            <img
-                                                src="https://i.postimg.cc/gJmpfFKm/Captur-de-ecran-din-2023-11-15-la-15-21-22.png"
-                                                alt="Trip Image" />
-                                            <div class="card-body">
-                                                <h5 class="card-title">
-                                                    Trip to Country-3
-                                                </h5>
-                                                <h6
-                                                    class="card-subtitle mb-2 text-muted">
-                                                    <i
-                                                        class="bi bi-people-fill"></i>
-                                                    0 prs
-                                                    <i
-                                                        class="bi bi-currency-dollar"></i
-                                                    >0
-                                                    <i
-                                                        class="bi bi-calendar"></i>
-                                                    0 days
-                                                </h6>
-                                                <p class="card-text">
-                                                    Will be filled soon...
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <button
-                                class="carousel-control-prev"
-                                type="button"
-                                data-bs-target="#carouselExample"
-                                data-bs-slide="prev">
-                                <span
-                                    class="carousel-control-prev-icon"
-                                    aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button
-                                class="carousel-control-next"
-                                type="button"
-                                data-bs-target="#carouselExample"
-                                data-bs-slide="next">
-                                <span
-                                    class="carousel-control-next-icon"
-                                    aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
+                            </ul>
                         </div>
                     </div>
                     <app-modals></app-modals>
                 </div>
             </div>
+
             <div class="col-3 carouselPadding align-self-center">
                 <!-- carousel -->
                 <div

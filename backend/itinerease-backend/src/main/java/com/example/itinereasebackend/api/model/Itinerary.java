@@ -74,4 +74,21 @@ public class Itinerary {
             inverseJoinColumns = @JoinColumn(name = "id_attraction")
     )
     private List<Attraction> attractions;
+
+    @Override
+    public String toString() {
+        return '{' +
+                "id=" + id +
+                ", destination_location=" + destination_location +
+                ", transport=" + transport +
+                ", user=" + user +
+                ", accommodation=" + accommodation +
+                ", departure_location=" + departure_location +
+                ", name='" + name + '\'' +
+                ", departure_date=" + departure_date +
+                ", arrival_date=" + arrival_date +
+                ", budget=" + budget +
+                ", persons=" + persons +
+                ", attractions=" + attractions +
+                '}';}
 }
