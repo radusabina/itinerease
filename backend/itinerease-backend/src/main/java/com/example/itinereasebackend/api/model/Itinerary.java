@@ -75,6 +75,7 @@ public class Itinerary {
     )
     private List<Attraction> attractions;
 
+
     @Override
     public String toString() {
         return '{' +
@@ -91,4 +92,21 @@ public class Itinerary {
                 ", persons=" + persons +
                 ", attractions=" + attractions +
                 '}';}
+
+    public Itinerary(Location destinationLocation, Transport transport, User user, Accommodation accommodation,
+                     Location departureLocation, String name, LocalDate departureDate, LocalDate arrivalDate,
+                     int budget, int persons) {
+        this.destination_location = destinationLocation;
+        this.transport = transport;
+        this.user = user;
+        this.accommodation = accommodation;
+        this.departure_location = departureLocation;
+        this.name = name;
+        this.departure_date = departureDate;
+        this.arrival_date = arrivalDate;
+        this.budget = budget;
+        this.persons = persons;
+    }
+
+
 }
