@@ -60,5 +60,14 @@ public class ItineraryService {
     public List<Itinerary> getItinerariesByUserId(int userId) {
         return itineraryRepository.findByUser_Id(userId);
     }
-
+    public Itinerary getItineraryByDetails(Itinerary itinerary) {
+        Itinerary itineraryToBeFound;
+        for(Itinerary itinerary1: itineraryRepository.findAll()){
+            if(itinerary1 == itinerary){
+                itineraryToBeFound = itinerary1;
+                return itineraryToBeFound;
+            }
+        }
+        throw new RuntimeException("Itinerary does not exist.");
+    }
 }
