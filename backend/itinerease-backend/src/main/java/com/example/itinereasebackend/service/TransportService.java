@@ -1,6 +1,7 @@
 package com.example.itinereasebackend.service;
 
 
+import com.example.itinereasebackend.api.model.Itinerary;
 import com.example.itinereasebackend.api.model.Transport;
 import com.example.itinereasebackend.repository.TransportRepository;
 import lombok.AllArgsConstructor;
@@ -28,6 +29,13 @@ public class TransportService {
         return _transportRepository.findById(transportId);
     }
 
+    public int getLastTransportId(){
+        int i = 0;
+        for(Transport transport: _transportRepository.findAll())
+            i = transport.getId();
+        return i;
+    }
+
     public void update(int transportId, Transport updatedTransport) {
         Optional<Transport> existingTransport = _transportRepository.findById(transportId);
         if (existingTransport.isPresent()) {
@@ -42,5 +50,16 @@ public class TransportService {
 
     public void delete(int transportId) {
         _transportRepository.deleteById(transportId);
+    }
+
+    public Transport getTransportByDetails(Transport transport) {
+        Transport transportToBeFound;
+        for(Transport transport1: _transportRepository.findAll()){
+            if(transport1 == transport){
+                transportToBeFound = transport1;
+                return transportToBeFound;
+            }
+        }
+        throw new RuntimeException("Itinerary does not exist.");
     }
 }

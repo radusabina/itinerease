@@ -2,6 +2,7 @@ package com.example.itinereasebackend.service;
 
 import com.example.itinereasebackend.api.model.Attraction;
 import com.example.itinereasebackend.repository.AttractionRepository;
+import com.example.itinereasebackend.repository.ItineraryAttractionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ import java.util.Optional;
 public class AttractionService {
     @Autowired
     private final AttractionRepository _attractionRepository;
+    @Autowired
+    private ItineraryAttractionRepository itineraryAttractionRepository;
 
     public void create(Attraction attraction) {
         // TODO validari in cazul in care este necesar
@@ -43,6 +46,8 @@ public class AttractionService {
 
     public void delete(int attractionId) {
         // TODO trebuie sa tratam si cazul in care nu exista userul pe care vrem sa il stergem
+
+        itineraryAttractionRepository.deleteByAttractionId(attractionId);
         _attractionRepository.deleteById(attractionId);
     }
 
