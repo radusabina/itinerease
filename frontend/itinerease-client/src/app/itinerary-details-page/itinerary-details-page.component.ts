@@ -84,13 +84,17 @@ export class ItineraryDetailsPageComponent {
             month: currentDate.getMonth() + 1,
             day: currentDate.getDate(),
         };
+
+        this.route.params.subscribe((params) => {
+            this.itineraryId = params['id'];
+        });
     }
 
     ngOnInit() {
-        this.route.params.subscribe((params) => {
-            this.itineraryId = params['id'];
-            this.loadItineraryDetails(this.itineraryId);
-        });
+
+    }
+
+    ngAfterViewInit() {
         this.populatePage();
     }
 
@@ -152,6 +156,7 @@ export class ItineraryDetailsPageComponent {
                     budget: response.budget,
                     persons: response.persons,
                 };
+                console.log(this.itinerary);
             },
             (error) => {
                 console.log(error);
@@ -160,6 +165,8 @@ export class ItineraryDetailsPageComponent {
     }
 
     populatePage() {
+        this.loadItineraryDetails(this.itineraryId);
+
         if (this.itinerary) {
             // Itinerary details
             this.itineraryName = this.itinerary?.name;
