@@ -6,6 +6,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { IAttraction } from '../dtos/IAttraction';
 import { ItineraryService } from '../services/itinerary-service/itinerary.service';
 import { IItinerary } from '../dtos/IItinerary';
+import { AttractionService } from '../services/attraction-service/attraction.service';
+import { NotificationService } from '../services/notification-service/notification.service';
+import { IAttractionAdd } from '../dtos/IAttractionAdd';
+import { response } from 'express';
 
 @Component({
     selector: 'app-itinerary-details-page',
@@ -49,6 +53,11 @@ export class ItineraryDetailsPageComponent {
     attractions: IAttraction[] | undefined = undefined;
 
     minDate: NgbDateStruct;
+    attractionToBeAdded: IAttractionAdd = {
+        id_location: 1,
+        price: 3,
+        name: 'asdas',
+    };
 
     countryCities: { [key: string]: string[] } = {
         Romania: ['Cluj', 'Bucuresti', 'Timisoara', 'Iasi', 'Constanta'],
@@ -63,6 +72,7 @@ export class ItineraryDetailsPageComponent {
     constructor(
         private router: Router,
         private itineraryService: ItineraryService,
+        private attractionService: AttractionService,
         private route: ActivatedRoute,
     ) {
         this.attractions = [];
@@ -190,16 +200,41 @@ export class ItineraryDetailsPageComponent {
         }
     }
 
-    onAddAttraction() {
-
-    }
+    // onAddAttraction() {
+    //     this.attractionService
+    //         .addAttraction(this.attractionToBeAdded)
+    //         .subscribe(
+    //             (response) => {
+    //                 // TODO si returnare atractie cu tot cu id
+    //                 this.attractions?.push(this.attractionToBeAdded);
+    //                 console.log("succes");
+    //             },
+    //             (error) => {
+    //                 // TODO
+    //                 console.log("fail");
+    //             },
+    //         );
+    // }
 
     onEditAttraction() {
-
+        // TODO open modal
     }
 
-    onDeleteAttraction() {
+    onDeleteAttraction(id: number) {
+        this.attractionService.deleteAttractionById(id).subscribe(
+            (response) => {
+                const index = this.attractions?.findIndex(
+                    (attraction) => attraction.id === id,
+                );
 
+                if (index !== undefined && index !== -1 && this.attractions) {
+                    this.attractions.splice(index, 1);
+                }
+            },
+            (error) => {
+                console.log(error);
+            },
+        );
     }
 
     onSaveItinerary() {

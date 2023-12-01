@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-between align-items-center vh-100">
+<div class="d-flex justify-content-between align-items-center vh-100 text-font">
     <div class="itinerary-details d-flex justify-content-center w-100">
         <div class="row">
             <div class="col-md-6 first-column">
@@ -254,10 +254,10 @@
                                 {{ attraction.price }}
                             </div>
                             <div>
-                                <button class="btn btn-sm btn-blue me-2">
+                                <button class="btn btn-sm btn-blue me-2" (click)="onEditAttraction()">
                                     <i class="bi bi-pencil-fill"></i>
                                 </button>
-                                <button class="btn btn-sm btn-red">
+                                <button class="btn btn-sm btn-red" (click)="onDeleteAttraction(attraction.id)">
                                     <i class="bi bi-trash-fill"></i>
                                 </button>
                             </div>

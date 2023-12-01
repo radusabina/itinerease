@@ -37,7 +37,7 @@ import { UserService } from './services/user-service/user.service';
         LoginComponent,
         HomepageComponent,
         SignupComponent,
-        HttpClientModule,
+        HttpClientModule
     ],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
