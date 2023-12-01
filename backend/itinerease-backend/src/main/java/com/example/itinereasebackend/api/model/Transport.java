@@ -24,7 +24,7 @@ public class Transport {
     @Column(name = "type")
     @NotBlank(message = "Type cannot be blank")
     @Length(max = 255, message = "Type is too long")
-    @Pattern(regexp = "bus|train|car|airplane|boat", message = "Type must be: bus, train, car, airplane or boat")
+    @Pattern(regexp = "Bus|Train|Car|Airplane|Boat", message = "Type must be: Bus, Train, Car, Airplane or Boat")
 
     private String type;
 
@@ -35,7 +35,6 @@ public class Transport {
     @JsonIgnore
     @OneToOne(mappedBy = "transport", cascade = CascadeType.MERGE)
     private Itinerary itinerary;
-
 
     @Override
     public String toString() {

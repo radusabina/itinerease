@@ -37,41 +37,49 @@ public class ItineraryController {
     TransportService transportService;
 
     @PostMapping("/itinerary")
-    public ResponseEntity<Object> create(@RequestBody Map<String, String> itinerary) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        LocalDate dateStartModal = LocalDate.parse(itinerary.get("dateStartModal"), formatter);
-        LocalDate dateEndModal = LocalDate.parse(itinerary.get("dateEndModal"), formatter);
-        String itineraryName = itinerary.get("itineraryName");
-        int budget = Integer.parseInt(itinerary.get("budget"));
-        int selectedPersonsOption = Integer.parseInt(itinerary.get("selectedPersonsOption"));
-        String selectedCountryDestination = itinerary.get("selectedCountryDestination");
-        String selectedCityDestination = itinerary.get("selectedCityDestination");
-        String selectedCountryDeparting = itinerary.get("selectedCountryDeparting");
-        String selectedCityDeparting = itinerary.get("selectedCityDeparting");
-        String transportType = itinerary.get("transportType");
-        float transportPrice = Float.parseFloat(itinerary.get("transportPrice"));
-        String accommodationName = itinerary.get("accommodationName");
-        String addressArea = itinerary.get("addressArea");
-        float priceAccommodation = Float.parseFloat(itinerary.get("priceAccommodation"));
-        int idUser = Integer.parseInt(itinerary.get("idUser"));
-
-
-        Location destinationLocation = locationService.getByCountryAndCity(selectedCountryDestination, selectedCityDestination)
-                .orElseThrow(() -> new RuntimeException("Destination location not found"));
-
-        Location departureLocation = locationService.getByCountryAndCity(selectedCountryDeparting, selectedCityDeparting)
-                .orElseThrow(() -> new RuntimeException("Departure location not found"));
-
-        Accommodation accommodation = new Accommodation(accommodationName, addressArea, priceAccommodation);
-        accommodationService.create(accommodation);
-
-        Transport transport = new Transport(transportType,transportPrice);
-        transportService.create(transport);
-
-        Itinerary itinerary1 = new Itinerary(destinationLocation, transport, userService.getById(idUser).orElseThrow(() -> new RuntimeException("User not found")), accommodation, departureLocation,
-                itineraryName, dateStartModal, dateEndModal, budget, selectedPersonsOption);
-
+    public ResponseEntity<Object> create(@RequestBody ItineraryInsert itinerary) {
         try {
+            LocalDate dateStartModal = LocalDate.of(
+                    itinerary.dateStartModal.year,
+                    itinerary.dateStartModal.month,
+                    itinerary.dateStartModal.day
+            );
+
+            LocalDate dateEndModal = LocalDate.of(
+                    itinerary.dateEndModal.year,
+                    itinerary.dateEndModal.month,
+                    itinerary.dateEndModal.day
+            );
+
+            String itineraryName = itinerary.itineraryName;
+            int budget = itinerary.budget ;
+            int selectedPersonsOption = itinerary.selectedPersonsOption;
+            String selectedCountryDestination = itinerary.selectedCountryDestination;
+            String selectedCityDestination = itinerary.selectedCityDestination;
+            String selectedCountryDeparting = itinerary.selectedCountryDeparting;
+            String selectedCityDeparting = itinerary.selectedCityDeparting;
+            String transportType = itinerary.transportType;
+            float transportPrice = itinerary.transportPrice;
+            String accommodationName = itinerary.accommodationName;
+            String addressArea = itinerary.addressArea;
+            float priceAccommodation = itinerary.priceAccommodation;
+            int idUser = itinerary.idUser;
+
+            Location destinationLocation = locationService.getByCountryAndCity(selectedCountryDestination, selectedCityDestination)
+                    .orElseThrow(() -> new RuntimeException("Destination location not found"));
+
+            Location departureLocation = locationService.getByCountryAndCity(selectedCountryDeparting, selectedCityDeparting)
+                    .orElseThrow(() -> new RuntimeException("Departure location not found"));
+
+            Accommodation accommodation = new Accommodation(accommodationName, addressArea, priceAccommodation);
+            accommodationService.create(accommodation);
+
+            Transport transport = new Transport(transportType, transportPrice);
+            transportService.create(transport);
+
+            Itinerary itinerary1 = new Itinerary(destinationLocation, transport, userService.getById(idUser).orElseThrow(() -> new RuntimeException("User not found")), accommodation, departureLocation,
+                    itineraryName, dateStartModal, dateEndModal, budget, selectedPersonsOption);
+
             itineraryService.create(itinerary1);
             Itinerary itineraryFounded = itineraryService.getItineraryByDetails(itinerary1);
 
