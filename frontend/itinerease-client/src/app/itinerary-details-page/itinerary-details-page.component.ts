@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NgbDateStruct, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IAttraction } from '../dtos/IAttraction';
+import { IAttractionEditPage } from '../dtos/IAttractionEditPage';
 import { ItineraryService } from '../services/itinerary-service/itinerary.service';
 import { IItinerary } from '../dtos/IItinerary';
 import { AttractionService } from '../services/attraction-service/attraction.service';
@@ -50,7 +50,7 @@ export class ItineraryDetailsPageComponent {
     // Attraction details
     attractionName: string = '';
     attractionPrice: number | undefined = undefined;
-    attractions: IAttraction[] | undefined = undefined;
+    attractions: IAttractionEditPage[] | undefined = undefined;
 
     minDate: NgbDateStruct;
     attractionToBeAdded: IAttractionAdd = {

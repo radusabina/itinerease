@@ -1,4 +1,4 @@
-import { IAttraction } from "./IAttraction"
+import { IAttractionEditPage } from "./IAttractionEditPage"
 
 export interface IItinerary {
     id: number,
@@ -16,7 +16,7 @@ export interface IItinerary {
     accommodation_name: string,
     accommodation_address: string,
     accommodation_price: number,
-    attractions: IAttraction[],
+    attractions: IAttractionEditPage[],
     name: string,
     arrival_date: Date,
     departure_date: Date,
