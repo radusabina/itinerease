@@ -14,8 +14,6 @@ import java.util.List;
 public class TransportController {
     @Autowired
     TransportService transportService;
-
-
     @PostMapping("/transport")
     public void create(@RequestBody Transport transport) {
         transportService.create(transport);

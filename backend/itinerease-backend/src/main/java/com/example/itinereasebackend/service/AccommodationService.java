@@ -16,7 +16,6 @@ public class AccommodationService {
     private final AccommodationRepository accommodationRepository;
 
     public void create(Accommodation accm) {
-        // TODO validari in cazul in care este necesar
         accommodationRepository.save(accm);
     }
     public List<Accommodation> getAll(){

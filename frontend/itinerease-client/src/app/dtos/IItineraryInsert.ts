@@ -1,7 +1,6 @@
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
-export interface IItinerary {
-    id: number;
+export interface IItineraryInsert {
     itineraryName: string;
     dateStartModal: NgbDateStruct;
     dateEndModal: NgbDateStruct;
@@ -13,8 +12,8 @@ export interface IItinerary {
     selectedCityDeparting: string;
     transportType: string;
     transportPrice: number | undefined;
-    accomodationName: string;
+    accommodationName: string;
     addressArea: string;
-    priceAccomodation: number | undefined;
+    priceAccommodation: number | undefined;
     idUser: number | undefined;
 }
