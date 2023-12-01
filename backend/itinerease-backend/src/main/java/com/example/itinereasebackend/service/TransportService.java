@@ -29,13 +29,6 @@ public class TransportService {
         return _transportRepository.findById(transportId);
     }
 
-    public int getLastTransportId(){
-        int i = 0;
-        for(Transport transport: _transportRepository.findAll())
-            i = transport.getId();
-        return i;
-    }
-
     public void update(int transportId, Transport updatedTransport) {
         Optional<Transport> existingTransport = _transportRepository.findById(transportId);
         if (existingTransport.isPresent()) {

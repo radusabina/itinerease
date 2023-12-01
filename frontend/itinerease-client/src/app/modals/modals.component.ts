@@ -87,9 +87,9 @@ export class ModalsComponent {
             selectedCityDeparting: this.selectedCityDeparting,
             transportType: this.transportType,
             transportPrice: this.transportPrice,
-            accomodationName: this.accomodationName,
+            accommodationName: this.accomodationName,
             addressArea: this.addressArea,
-            priceAccomodation: this.priceAccomodation,
+            priceAccommodation: this.priceAccomodation,
             idUser: this.userService.getLoggedUserId(),
         };
 

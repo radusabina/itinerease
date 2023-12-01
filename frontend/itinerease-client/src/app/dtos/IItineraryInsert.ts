@@ -12,8 +12,8 @@ export interface IItineraryInsert {
     selectedCityDeparting: string;
     transportType: string;
     transportPrice: number | undefined;
-    accomodationName: string;
+    accommodationName: string;
     addressArea: string;
-    priceAccomodation: number | undefined;
+    priceAccommodation: number | undefined;
     idUser: number | undefined;
 }
