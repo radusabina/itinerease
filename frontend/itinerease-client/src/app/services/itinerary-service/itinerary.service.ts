@@ -6,11 +6,11 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { UserService } from '../user-service/user.service';
 import { IUser } from '../../dtos/IUser';
 import { map } from 'rxjs/operators';
+import { IItineraryInsert } from '../../dtos/IItineraryInsert';
 
 @Injectable({
     providedIn: 'root',
 })
-// ItineraryService
 export class ItineraryService {
     loggedUser: IUser | undefined = undefined;
     private itinerariesSubject = new BehaviorSubject<IItineraryHomepage[]>([]);
@@ -20,6 +20,14 @@ export class ItineraryService {
         private http: HttpClient,
         private userService: UserService,
     ) {}
+
+    // cu asta ii trimit la topy o cerere prin care vreau sa adaug un itinerar in baza de date
+    insertItinerary(itinerary: IItineraryInsert): Observable<IItineraryInsert> {
+        return this.http.post<IItineraryInsert>(
+            endpointAPI + 'itinerary',
+            itinerary,
+        );
+    }
 
     loadItineraries(loggedUser: IUser): void {
         const userId = loggedUser.id;
