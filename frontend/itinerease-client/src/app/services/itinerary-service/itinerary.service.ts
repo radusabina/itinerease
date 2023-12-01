@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { IItineraryInsert } from '../../dtos/IItineraryInsert';
-import { endpointAPI } from '../../config/appconfig';
-import { Observable } from 'rxjs';
-import { IItinerary } from '../../dtos/IItinerary';
-import { IUser } from '../../dtos/IUser';
-=======
 import { Injectable } from '@angular/core';
 import { IItineraryHomepage } from '../../dtos/IItineraryHomepage';
 import { HttpClient } from '@angular/common/http';
@@ -15,21 +6,11 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { UserService } from '../user-service/user.service';
 import { IUser } from '../../dtos/IUser';
 import { map } from 'rxjs/operators';
->>>>>>> main
+import { IItineraryInsert } from '../../dtos/IItineraryInsert';
 
 @Injectable({
     providedIn: 'root',
 })
-<<<<<<< HEAD
-export class ItineraryService {
-    constructor(private http: HttpClient) {}
-    // cu asta ii trimit la topy o cerere prin care vreau sa adaug un itinerar in baza de date
-    insertItinerary(itinerary: IItineraryInsert): Observable<IItineraryInsert> {
-        return this.http.post<IItineraryInsert>(
-            endpointAPI + 'itinerary',
-            itinerary,
-=======
-// ItineraryService
 export class ItineraryService {
     loggedUser: IUser | undefined = undefined;
     private itinerariesSubject = new BehaviorSubject<IItineraryHomepage[]>([]);
@@ -39,6 +20,14 @@ export class ItineraryService {
         private http: HttpClient,
         private userService: UserService,
     ) {}
+
+    // cu asta ii trimit la topy o cerere prin care vreau sa adaug un itinerar in baza de date
+    insertItinerary(itinerary: IItineraryInsert): Observable<IItineraryInsert> {
+        return this.http.post<IItineraryInsert>(
+            endpointAPI + 'itinerary',
+            itinerary,
+        );
+    }
 
     loadItineraries(loggedUser: IUser): void {
         const userId = loggedUser.id;
@@ -74,7 +63,6 @@ export class ItineraryService {
     getItinerariesByUser(userId: number): Observable<IItineraryHomepage[]> {
         return this.http.get<IItineraryHomepage[]>(
             `${endpointAPI}itineraries-by-user/${userId}`,
->>>>>>> main
         );
     }
 }
