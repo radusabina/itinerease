@@ -51,12 +51,17 @@
                                 <div
                                     *ngFor="let itinerary of itineraries"
                                     class="col-md-10"
-                                    style="display: inline-block">
+                                    style="display: inline-block"
+                                    (click)="openItinerary(itinerary.id)">
                                     <li
                                         class="card shadow rounded itinerary_default">
                                         <img
                                             class="card-img-top img-fluid"
-                                            alt="Trip Image" />
+                                            [src]="
+                                                getDestinationImage(
+                                                    itinerary.destination.city
+                                                )
+                                            " />
                                         <div>
                                             <h3 class="card-title">
                                                 {{ itinerary.name }}

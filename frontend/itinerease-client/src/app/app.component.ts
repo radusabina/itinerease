@@ -12,6 +12,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 import { AccountPageComponent } from './account-page/account-page.component';
+import { ItineraryDetailsPageComponent } from './itinerary-details-page/itinerary-details-page.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { RouterLink } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
@@ -32,10 +33,11 @@ import { UserService } from './services/user-service/user.service';
         JsonPipe,
         NavbarComponent,
         AccountPageComponent,
+        ItineraryDetailsPageComponent,
         LoginComponent,
         HomepageComponent,
         SignupComponent,
-        HttpClientModule,
+        HttpClientModule
     ],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],

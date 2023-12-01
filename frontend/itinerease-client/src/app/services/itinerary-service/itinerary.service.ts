@@ -6,6 +6,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { UserService } from '../user-service/user.service';
 import { IUser } from '../../dtos/IUser';
 import { map } from 'rxjs/operators';
+import { IItinerary } from '../../dtos/IItinerary';
 import { IItineraryInsert } from '../../dtos/IItineraryInsert';
 
 @Injectable({
@@ -64,5 +65,9 @@ export class ItineraryService {
         return this.http.get<IItineraryHomepage[]>(
             `${endpointAPI}itineraries-by-user/${userId}`,
         );
+    }
+
+    getItineraryById(id: number) {
+        return this.http.get<IItinerary>(endpointAPI + `itinerary/${id}`);
     }
 }

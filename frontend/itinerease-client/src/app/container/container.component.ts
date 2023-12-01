@@ -5,6 +5,8 @@ import { UserService } from '../services/user-service/user.service';
 import { IUser } from '../dtos/IUser';
 import { ItineraryService } from '../services/itinerary-service/itinerary.service';
 import { IItineraryHomepage } from '../dtos/IItineraryHomepage';
+import { ConstantLinks } from '../constants/images';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-container',
@@ -21,6 +23,7 @@ export class ContainerComponent {
     constructor(
         private userService: UserService,
         private itineraryService: ItineraryService,
+        private router: Router
     ) {}
 
     ngOnInit() {
@@ -30,10 +33,8 @@ export class ContainerComponent {
             this.itineraryService.itineraries$.subscribe(
                 (itineraries) => {
                     this.itineraries = itineraries;
-                    console.log(this.itineraries);
                 },
                 (error) => {
-                    console.error('Error loading itineraries:', error);
                 },
             );
         }
@@ -65,5 +66,86 @@ export class ContainerComponent {
         );
 
         return this.calculateDaysBetweenDates(arrivalDate, departureDate);
+    }
+
+    getDestinationImage(city: string) {
+        switch (city) {
+            case 'Cluj':
+                return ConstantLinks.Cluj;
+            case 'Constanta':
+                return ConstantLinks.Constanta;
+            case 'Iasi':
+                return ConstantLinks.Iasi;
+            case 'Timisoara':
+                return ConstantLinks.Timisoara;
+            case 'Chicago':
+                return ConstantLinks.Chicago;
+            case 'Houston':
+                return ConstantLinks.Houston;
+            case 'Los Angeles':
+                return ConstantLinks.LosAngeles;
+            case 'Miami':
+                return ConstantLinks.Miami;
+            case 'New York':
+                return ConstantLinks.NewYork;
+            case 'Berlin':
+                return ConstantLinks.Berlin;
+            case 'Cologne':
+                return ConstantLinks.Cologne;
+            case 'Frankfurt':
+                return ConstantLinks.Frankfurt;
+            case 'Hamburg':
+                return ConstantLinks.Hamburg;
+            case 'Munich':
+                return ConstantLinks.Munich;
+            case 'Barcelona':
+                return ConstantLinks.Barcelona;
+            case 'Bilbao':
+                return ConstantLinks.Bilbao;
+            case 'Madrid':
+                return ConstantLinks.Madrid;
+            case 'Sevilla':
+                return ConstantLinks.Sevilla;
+            case 'Valencia':
+                return ConstantLinks.Valencia;
+            case 'Lyon':
+                return ConstantLinks.Lyon;
+            case 'Marseille':
+                return ConstantLinks.Marseille;
+            case 'Nice':
+                return ConstantLinks.Nice;
+            case 'Paris':
+                return ConstantLinks.Paris;
+            case 'Toulouse':
+                return ConstantLinks.Toulouse;
+            case 'Florence':
+                return ConstantLinks.Florence;
+            case 'Milan':
+                return ConstantLinks.Milan;
+            case 'Naples':
+                return ConstantLinks.Naples;
+            case 'Roma':
+                return ConstantLinks.Roma;
+            case 'Venice':
+                return ConstantLinks.Venice;
+            case 'Hiroshima':
+                return ConstantLinks.Hiroshima;
+            case 'Kyoto':
+                return ConstantLinks.Kyoto;
+            case 'Nagoya':
+                return ConstantLinks.Nagoya;
+            case 'Osaka':
+                return ConstantLinks.Osaka;
+            case 'Tokyo':
+                return ConstantLinks.Tokyo;
+            case 'Bucuresti':
+                return ConstantLinks.Bucuresti;
+            default:
+                return;
+        }
+    }
+
+    openItinerary(id: number) {
+        this.router.navigate([`/itinerary/${id}`]);
     }
 }
