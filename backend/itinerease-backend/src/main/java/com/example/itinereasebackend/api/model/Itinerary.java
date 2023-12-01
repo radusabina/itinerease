@@ -75,6 +75,24 @@ public class Itinerary {
     )
     private List<Attraction> attractions;
 
+
+    @Override
+    public String toString() {
+        return '{' +
+                "id=" + id +
+                ", destination_location=" + destination_location +
+                ", transport=" + transport +
+                ", user=" + user +
+                ", accommodation=" + accommodation +
+                ", departure_location=" + departure_location +
+                ", name='" + name + '\'' +
+                ", departure_date=" + departure_date +
+                ", arrival_date=" + arrival_date +
+                ", budget=" + budget +
+                ", persons=" + persons +
+                ", attractions=" + attractions +
+                '}';}
+
     public Itinerary(Location destinationLocation, Transport transport, User user, Accommodation accommodation,
                      Location departureLocation, String name, LocalDate departureDate, LocalDate arrivalDate,
                      int budget, int persons) {
@@ -89,5 +107,6 @@ public class Itinerary {
         this.budget = budget;
         this.persons = persons;
     }
+
 
 }

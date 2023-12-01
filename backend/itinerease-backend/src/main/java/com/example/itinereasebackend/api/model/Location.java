@@ -57,6 +57,4 @@ public class Location{
                 ", city='" + city + '\'' +
                 '}';
     }
-
-
 }

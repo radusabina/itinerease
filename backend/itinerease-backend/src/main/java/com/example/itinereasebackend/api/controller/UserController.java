@@ -34,10 +34,17 @@ public class UserController {
         userService.update(user.getEmail(), user);
     }
 
-    @DeleteMapping("/user/{email}")
-    public void delete(@PathVariable String email) {
+    @DeleteMapping("/user/{id}")
+    public void delete(@PathVariable int id) {
+        userService.delete(id);
+    }
+
+    @DeleteMapping("/user")
+    public void delete(@RequestBody Map<String, String> request) {
+        String email = request.get("email");
         userService.delete(email);
     }
+
 
     @PostMapping("/user/login")
     public ResponseEntity<Object> getUserByCredentials(@RequestBody Map<String, String> credentials) {
