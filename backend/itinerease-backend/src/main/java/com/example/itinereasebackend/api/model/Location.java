@@ -7,11 +7,12 @@ import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
 
-
+@ToString
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -48,4 +49,12 @@ public class Location{
     @OneToMany(mappedBy = "departure_location", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Itinerary> departure_itineraries;
 
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id=" + id +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
+                '}';
+    }
 }

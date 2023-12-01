@@ -18,7 +18,9 @@
     padding-right: 0;
 }
 .container {
-    margin-left: 0;
+    margin-left: 1rem;
+    margin-right: 0;
+    overflow: hidden;
 }
 
 .welcome-text {
@@ -28,9 +30,16 @@
     text-shadow: 0rem 0.25rem 0.25rem rgba(0, 0, 0, 0.25);
     font-family: Be Vietnam Pro;
 }
-
+.logo-text {
+    font-size: 1rem;
+    color: #fffffd;
+    font-family: Be Vietnam Pro;
+}
 .first-row {
-    padding-top: 6.5rem;
+    padding-top: 2.5rem;
+}
+.carouselPadding {
+    padding-bottom: calc(100% / 28);
 }
 
 .carousel-control-prev-icon,
@@ -52,8 +61,9 @@
 }
 
 .search-box {
-    margin-left: calc(100% / 8);
+    margin-left: calc(100% / 12.5);
     font-family: Be Vietnam Pro;
+    padding-top: calc(100% / 15);
 }
 .itinerary_default {
     position: relative;
@@ -65,6 +75,7 @@
     overflow: hidden;
     padding: 0;
     display: flex;
+    min-height: 18.75rem;
 }
 
 .itinerary_default:hover {
@@ -79,6 +90,8 @@
 .footer {
     background-image: url('https://i.postimg.cc/YS1rRj0V/Captur-de-ecran-din-2023-11-26-la-19-49-27.png');
     background-repeat: repeat-x;
+    height: 8.125rem; /* Adjust the height as needed */
+    background-size: 37.5rem;
 }
 
 .h2 {
@@ -97,10 +110,17 @@
 
 .card {
     margin: 0.5em;
-    width: calc(100% / 4);
 }
 
 .image-wrapper {
     height: 22vw;
     margin: 0 auto;
+}
+
+.cards {
+    padding-left: 0;
+}
+
+.specific-padding {
+    padding-top: calc(100% / 25);
 }
