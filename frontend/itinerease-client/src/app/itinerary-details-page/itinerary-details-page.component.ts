@@ -10,6 +10,7 @@ import { AttractionService } from '../services/attraction-service/attraction.ser
 import { NotificationService } from '../services/notification-service/notification.service';
 import { IAttractionAdd } from '../dtos/IAttractionAdd';
 import { response } from 'express';
+import { IItineraryEditPage } from '../dtos/IItineraryEditPage';
 
 @Component({
     selector: 'app-itinerary-details-page',
@@ -19,7 +20,7 @@ import { response } from 'express';
     styleUrl: './itinerary-details-page.component.scss',
 })
 export class ItineraryDetailsPageComponent {
-    itinerary: IItinerary | undefined = undefined;
+    itinerary: IItineraryEditPage | undefined = undefined;
 
     itineraryId: number = 0;
 
