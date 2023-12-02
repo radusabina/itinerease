@@ -33,7 +33,6 @@ export class ContainerComponent {
             this.itineraryService.itineraries$.subscribe(
                 (itineraries) => {
                     this.itineraries = itineraries;
-                    console.log(itineraries);
                 },
                 (error) => {},
             );
