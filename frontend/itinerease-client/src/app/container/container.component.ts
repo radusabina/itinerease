@@ -23,7 +23,7 @@ export class ContainerComponent {
     constructor(
         private userService: UserService,
         private itineraryService: ItineraryService,
-        private router: Router
+        private router: Router,
     ) {}
 
     ngOnInit() {
@@ -33,9 +33,9 @@ export class ContainerComponent {
             this.itineraryService.itineraries$.subscribe(
                 (itineraries) => {
                     this.itineraries = itineraries;
+                    console.log(itineraries);
                 },
-                (error) => {
-                },
+                (error) => {},
             );
         }
     }

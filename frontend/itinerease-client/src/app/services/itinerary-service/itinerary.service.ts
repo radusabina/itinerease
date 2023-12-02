@@ -45,7 +45,7 @@ export class ItineraryService {
                             budget: itinerary.budget,
                             arrivalDate: itinerary.arrival_date,
                             departureDate: itinerary.departure_date,
-                            destination: itinerary.destination_location.city,
+                            destination: itinerary.destination_location,
                         }));
                     }),
                 )
