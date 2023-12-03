@@ -3,6 +3,7 @@ package com.example.itinereasebackend.service;
 import com.example.itinereasebackend.api.model.Itinerary;
 import com.example.itinereasebackend.repository.ItineraryRepository;
 import com.example.itinereasebackend.repository.LocationRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -69,5 +70,11 @@ public class ItineraryService {
             }
         }
         throw new RuntimeException("Itinerary does not exist.");
+    }
+
+    public Itinerary findById(Integer id) {
+        // Folosește repository-ul pentru a căuta itinerariul
+        return itineraryRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Itinerary not found with id: " + id));
     }
 }
