@@ -18,9 +18,10 @@ public class AttractionService {
     @Autowired
     private ItineraryAttractionRepository itineraryAttractionRepository;
 
-    public void create(Attraction attraction) {
+    public Attraction create(Attraction attraction) {
         // TODO validari in cazul in care este necesar
         _attractionRepository.save(attraction);
+        return attraction;
     }
     public List<Attraction> getAll(){
         return _attractionRepository.findAll();

@@ -39,6 +39,8 @@ public class Attraction{
     @ManyToMany(mappedBy = "attractions")
     private List<Itinerary> itineraries;
 
+
+    private Integer itineraryId;
     @Override
     public String toString() {
         return '{' +
