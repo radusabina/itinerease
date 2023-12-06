@@ -69,6 +69,22 @@ public class UserService {
             throw new RuntimeException("User not found with this email");
         }
     }
+
+    public void update(User updatedUser) {
+        Optional<User> existingUser = _userRepository.findByEmail(updatedUser.getEmail());
+        if (existingUser.isPresent()) {
+            User userToUpdate = existingUser.get();
+            userToUpdate.setFirst_name(updatedUser.getFirst_name());
+            userToUpdate.setLast_name(updatedUser.getLast_name());
+            userToUpdate.setPhone_number(updatedUser.getPhone_number());
+            userToUpdate.setEmail(updatedUser.getEmail());
+            userToUpdate.setPassword(updatedUser.getPassword());
+            _userRepository.save(userToUpdate);
+        } else {
+            throw new RuntimeException("User not found with this email");
+        }
+    }
+
     @Transactional
     public void delete(String userEmail) {
         Optional<User> existingUser = _userRepository.findByEmail(userEmail);
@@ -104,5 +120,9 @@ public class UserService {
         } else {
             throw new EntityNotFoundException("No account associated with this email address!");
         }
+    }
+
+    public Optional<User> getUserByEmail(String email) {
+        return _userRepository.findByEmail(email);
     }
 }
