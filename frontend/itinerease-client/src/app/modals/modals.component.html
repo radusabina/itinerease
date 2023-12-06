@@ -260,7 +260,7 @@
                                         margin-left: 0.3rem;
                                         text-align: left;
                                     ">
-                                    Please select a country.
+                                    Please select a country
                                 </div>
 
                                 <select
@@ -336,7 +336,7 @@
                                         margin-left: 0.3rem;
                                         text-align: left;
                                     ">
-                                    Please select a country.
+                                    Please select a country
                                 </div>
 
                                 <select
@@ -388,7 +388,7 @@
                                             #selectedTransportType="ngModel"
                                             required="">
                                             <option value="" selected>
-                                                Please select a country
+                                                Please select a transport
                                             </option>
                                             <option value="Car">Car</option>
                                             <option value="Bus">Bus</option>
@@ -614,14 +614,15 @@
                         </button>
 
                         <!--aici trimit toate datele in backend-->
-
-                        <button
-                            type="button"
-                            class="btn btn-blue"
-                            data-bs-toggle="modal"
-                            (click)="insertItinerary()">
-                            Save
-                        </button>
+                        <form #form="ngForm">
+                            <button
+                                type="button"
+                                class="btn btn-blue"
+                                data-bs-toggle="modal"
+                                (click)="insertItinerary(form)">
+                                Save
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

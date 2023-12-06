@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgForm } from '@angular/forms';
 import { IUser } from '../dtos/IUser';
 import { UserService } from '../services/user-service/user.service';
 import { FormsModule } from '@angular/forms';

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -75,6 +76,40 @@ public class UserController {
                     .findFirst()
                     .map(ConstraintViolation::getMessage)
                     .orElse("Validation failed.")));
+        } catch (Exception exception) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Exception(exception.getMessage()));
+        }
+    }
+
+    @PutMapping("/user/{email}")
+    public ResponseEntity<Object> update(@PathVariable String email, @RequestBody Map<String, String> userDetails) {
+        try {
+            Optional<User> optionalUser = userService.getUserByEmail(email);
+
+            if (optionalUser.isEmpty()) {
+                throw new EntityNotFoundException("User not found with email: " + email);
+            }
+
+            User existingUser = optionalUser.get();
+
+            if (userDetails.containsKey("password")) {
+                existingUser.setPassword(userDetails.get("password"));
+            }
+            if (userDetails.containsKey("firstName")) {
+                existingUser.setFirst_name(userDetails.get("firstName"));
+            }
+            if (userDetails.containsKey("lastName")) {
+                existingUser.setLast_name(userDetails.get("lastName"));
+            }
+            if (userDetails.containsKey("phoneNumber")) {
+                existingUser.setPhone_number(userDetails.get("phoneNumber"));
+            }
+
+            userService.update(existingUser);
+
+            return ResponseEntity.ok("User updated successfully");
+        } catch (EntityNotFoundException exception) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntityNotFoundException(exception.getMessage()));
         } catch (Exception exception) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new Exception(exception.getMessage()));
         }
