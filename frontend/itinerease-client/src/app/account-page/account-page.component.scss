@@ -45,3 +45,44 @@ svg {
 .vertical-line {
     background: rgba(174, 163, 163, 0.81);
 }
+
+.custom-background {
+    background-image: url('https://i.postimg.cc/gjWMXYXp/img-account-backround.jpg');
+    max-height: 28.125rem;
+    background-size: cover;
+    background-position: top center;
+    color: white;
+
+    .container-fluid {
+        max-width: 200rem;
+        align-items: center;
+        padding-top: 12.5rem;
+        .btn {
+            background: #4c77a6;
+            color: white;
+        }
+        .nav-link {
+            text-decoration: underline;
+        }
+    }
+    .form-control:focus {
+        border-color: #4c77a6;
+        outline: none;
+    }
+}
+
+// Stilurile pentru a poziționa iconița în interiorul inputului
+.toggle-password {
+    position: relative;
+
+    span.input-group-text {
+        position: absolute;
+        right: 10px;
+        cursor: pointer;
+        user-select: none;
+        pointer-events: auto;
+        s i {
+            pointer-events: none;
+        }
+    }
+}
