@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import {
@@ -6,7 +6,7 @@ import {
     NgbDatepickerModule,
     NgbDateStruct,
 } from '@ng-bootstrap/ng-bootstrap';
-import { FormControl, FormsModule, Validators } from '@angular/forms';
+import { FormControl, FormsModule, NgForm, Validators } from '@angular/forms';
 import { JsonPipe } from '@angular/common';
 import { IItineraryInsert } from '../dtos/IItineraryInsert';
 import { ItineraryService } from '../services/itinerary-service/itinerary.service';
@@ -30,29 +30,40 @@ import { UserService } from '../services/user-service/user.service';
 export class ModalsComponent {
     title = 'itinerease-client';
 
+    //Itinerary details
+    itinerary: IItineraryInsert | undefined;
+    itineraryName: string = '';
+
+    //Date details
     dateStartModal!: NgbDateStruct;
     dateEndModal!: NgbDateStruct;
-
-    selectedCountryDestination: string = '';
-    selectedCityDestination: string = '';
-
-    selectedCountryDeparting: string = '';
-    selectedCityDeparting: string = '';
-
-    itinerary: IItineraryInsert | undefined;
-
-    itineraryName: string = '';
-    budget: number | undefined;
-    selectedPersonsOption: number | undefined;
-    accomodationName: string = '';
-    addressArea: string = '';
-    priceAccomodation: number | undefined;
     minDateStart: NgbDateStruct;
     minDateEnd: NgbDateStruct;
+
+    //Budget details
+    budget: number | undefined;
+
+    //Number of person details
+    selectedPersonsOption: number | undefined;
+
+    //Destination and departing details
+    selectedCountryDestination: string = '';
+    selectedCityDestination: string = '';
+    selectedCountryDeparting: string = '';
+    selectedCityDeparting: string = '';
 
     // Transport details
     transportType: string = '';
     transportPrice: number | undefined;
+
+    //Accomodation details
+    accomodationName: string = '';
+
+    //Addres accomodation details
+    addressArea: string = '';
+
+    //Price per night details
+    priceAccomodation: number | undefined;
 
     //constructor
     constructor(
@@ -74,7 +85,7 @@ export class ModalsComponent {
         };
     }
 
-    insertItinerary() {
+    insertItinerary(form: NgForm) {
         var itinerary: IItineraryInsert = {
             itineraryName: this.itineraryName,
             dateStartModal: this.dateStartModal,
@@ -98,7 +109,30 @@ export class ModalsComponent {
                 //ce vr sa fac dupa ce o raspuns topy la telefon in cazul pozitiv , da?
                 // in cazul pozitiv in care itinerarul e valid
                 //to do de la tudor
+
+                //reset input fields
+                //modal1
+                this.budget = undefined;
+                this.itineraryName = '';
+                this.selectedPersonsOption = undefined;
+
+                //modal2
+                this.selectedCountryDestination = '';
+                this.selectedCityDestination = '';
+                this.selectedCountryDeparting = '';
+                this.selectedCityDeparting = '';
+                this.transportType = '';
+                this.transportPrice = undefined;
+
+                //modal3
+                this.accomodationName = '';
+                this.addressArea = '';
+                this.priceAccomodation = undefined;
+
+                form.resetForm();
+                window.location.reload();
                 console.log('adaugat cu succes');
+                this.router.navigate(['/homepage']);
             },
             (error: any) => {
                 //ce se intampla in caz de eroareeeeeee :(
