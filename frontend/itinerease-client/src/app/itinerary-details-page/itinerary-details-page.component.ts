@@ -59,9 +59,6 @@ export class ItineraryDetailsPageComponent {
     attractionPrice: number | undefined = undefined;
     attractions: IAttractionEditPage[] | undefined = undefined;
 
-    //delete status itinerary
-    showDeleteConfirmationModal = false;
-
     minDate: NgbDateStruct;
     attractionToBeAdded: IAttractionAdd = {
         id_location: 1,
