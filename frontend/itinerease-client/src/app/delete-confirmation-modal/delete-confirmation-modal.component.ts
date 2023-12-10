@@ -45,8 +45,6 @@ export class DeleteConfirmationModalComponent {
         this.itineraryService.deleteItineraryById(id).subscribe(
             () => {
                 console.log('Itinerary deleted successfully.');
-                //window.location.reload();
-
                 this.router.navigate(['/homepage']);
             },
             (error) => {
