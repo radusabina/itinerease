@@ -31,7 +31,7 @@ export class ItineraryDetailsPageComponent {
     itineraryId: number = 0;
 
     // Itinerary details
-    itineraryName: string | undefined = undefined;
+    itineraryName: string = '';
     startDate: NgbDateStruct | undefined = undefined;
     endDate: NgbDateStruct | undefined = undefined;
     budget: number | undefined = undefined;
@@ -82,24 +82,20 @@ export class ItineraryDetailsPageComponent {
         private attractionService: AttractionService,
         private route: ActivatedRoute,
     ) {
-        this.attractions = [];
-
         const currentDate = new Date();
         this.minDate = {
             year: currentDate.getFullYear(),
             month: currentDate.getMonth() + 1,
             day: currentDate.getDate(),
         };
+    }
 
+    ngOnInit() {
+        this.attractions = [];
         this.route.params.subscribe((params) => {
             this.itineraryId = params['id'];
         });
-    }
-
-    ngOnInit() {}
-
-    ngAfterViewInit() {
-        this.populatePage();
+        this.loadItineraryDetails(this.itineraryId);
     }
 
     onStartDateSelect(date: NgbDateStruct) {
@@ -160,7 +156,7 @@ export class ItineraryDetailsPageComponent {
                     budget: response.budget,
                     persons: response.persons,
                 };
-                console.log(this.itinerary);
+                this.populatePage();
             },
             (error) => {
                 console.log(error);

@@ -2,7 +2,7 @@
     <!-- background image -->
     <div class="background">
         <div class="row justify-content-around first-row">
-            <div class="col-5 text-center">
+            <div class="col-5 text-center mt-5 mb-5">
                 <h5 class="mb-3 text-center welcome-text">
                     Welcome back, {{ loggedUser?.firstName }}!
                 </h5>
@@ -15,16 +15,6 @@
         </div>
         <!-- itineraries carousel-->
         <div class="row" style="overflow-x: auto; white-space: nowrap">
-            <!-- search box -->
-            <div class="col-md-5 d-flex search-box">
-                <form class="form-inline">
-                    <input
-                        class="form-control mr-sm-2"
-                        type="search"
-                        placeholder="Search"
-                        aria-label="Search" />
-                </form>
-            </div>
             <div class="col-md-8 align-items-center justify-content-center">
                 <div class="container">
                     <div
@@ -56,18 +46,21 @@
                                     <li
                                         class="card shadow rounded itinerary_default">
                                         <img
-                                            class="card-img-top img-fluid w-100"
+                                            class="card-img-top img-fluid mb-4"
                                             [src]="
                                                 getDestinationImage(
                                                     itinerary.destination.city
                                                 )
                                             " />
-                                        <div>
-                                            <h3 class="card-title mt-3">
+                                        <div
+                                            class="d-flex flex-column align-items-center">
+                                            <h3
+                                                class="card-title text-center mb-0">
                                                 {{ itinerary.name }}
                                             </h3>
-                                            <div class="card-content">
-                                                <p>
+                                            <div
+                                                class="card-content text-center">
+                                                <p class="mb-0">
                                                     <i
                                                         class="bi bi-people-fill"></i>
                                                     {{ itinerary.persons }} prs
@@ -83,6 +76,7 @@
                                                 </p>
                                             </div>
                                         </div>
+
                                         <div class="card-link-wrapper">
                                             <a href="" class="card-link"></a>
                                         </div>
@@ -159,6 +153,6 @@
                 </div>
             </div>
         </div>
-        <footer class="footer"></footer>
+        <footer class="footer fixed-bottom"></footer>
     </div>
 </div>

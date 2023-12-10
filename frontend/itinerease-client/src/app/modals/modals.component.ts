@@ -12,6 +12,7 @@ import { IItineraryInsert } from '../dtos/IItineraryInsert';
 import { ItineraryService } from '../services/itinerary-service/itinerary.service';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user-service/user.service';
+import { ContainerComponent } from '../container/container.component';
 
 @Component({
     selector: 'app-modals',
@@ -23,6 +24,7 @@ import { UserService } from '../services/user-service/user.service';
         NgbAlertModule,
         FormsModule,
         JsonPipe,
+        ContainerComponent,
     ],
     templateUrl: './modals.component.html',
     styleUrl: './modals.component.scss',
@@ -71,6 +73,7 @@ export class ModalsComponent {
         private itineraryService: ItineraryService,
         private route: ActivatedRoute,
         private userService: UserService,
+        private containerComponent: ContainerComponent,
     ) {
         const currentDate = new Date();
         this.minDateStart = {
@@ -131,7 +134,6 @@ export class ModalsComponent {
 
                 form.resetForm();
                 window.location.reload();
-                console.log('adaugat cu succes');
                 this.router.navigate(['/homepage']);
             },
             (error: any) => {
