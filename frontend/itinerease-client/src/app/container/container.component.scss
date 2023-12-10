@@ -60,8 +60,12 @@
     margin-right: 3rem;
 }
 
+.card-img-top {
+    height: 14rem;
+    object-fit: cover;
+}
 .search-box {
-    margin-left: calc(100% / 12.5);
+    margin-left: 3%;
     font-family: Be Vietnam Pro;
     padding-top: calc(100% / 15);
 }
@@ -75,7 +79,8 @@
     overflow: hidden;
     padding: 0;
     display: flex;
-    min-height: 18.75rem;
+    min-height: 23rem;
+    text-align: -webkit-center;
 }
 
 .itinerary_default:hover {
@@ -122,5 +127,7 @@
 }
 
 .specific-padding {
-    padding-top: calc(100% / 25);
+    padding-top: 1%;
+    padding-left: 0;
+    padding-right: 0;
 }

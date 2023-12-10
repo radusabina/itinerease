@@ -11,11 +11,17 @@ import { NotificationService } from '../services/notification-service/notificati
 import { IAttractionAdd } from '../dtos/IAttractionAdd';
 import { response } from 'express';
 import { IItineraryEditPage } from '../dtos/IItineraryEditPage';
+import { DeleteConfirmationModalComponent } from '../delete-confirmation-modal/delete-confirmation-modal.component';
 
 @Component({
     selector: 'app-itinerary-details-page',
     standalone: true,
-    imports: [CommonModule, FormsModule, NgbModule],
+    imports: [
+        CommonModule,
+        FormsModule,
+        NgbModule,
+        DeleteConfirmationModalComponent,
+    ],
     templateUrl: './itinerary-details-page.component.html',
     styleUrl: './itinerary-details-page.component.scss',
 })
@@ -52,6 +58,9 @@ export class ItineraryDetailsPageComponent {
     attractionName: string = '';
     attractionPrice: number | undefined = undefined;
     attractions: IAttractionEditPage[] | undefined = undefined;
+
+    //delete status itinerary
+    showDeleteConfirmationModal = false;
 
     minDate: NgbDateStruct;
     attractionToBeAdded: IAttractionAdd = {
@@ -90,9 +99,7 @@ export class ItineraryDetailsPageComponent {
         });
     }
 
-    ngOnInit() {
-
-    }
+    ngOnInit() {}
 
     ngAfterViewInit() {
         this.populatePage();

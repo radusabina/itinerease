@@ -34,7 +34,7 @@
                         <div class="col-md-4 specific-padding">
                             <!-- itinerary add -->
                             <li
-                                class="col-md-12 card shadow rounded itinerary_default align-items-center justify-content-center"
+                                class="card shadow rounded itinerary_default align-items-center justify-content-center"
                                 data-bs-toggle="modal"
                                 data-bs-target="#ModalToggle">
                                 <button
@@ -56,14 +56,14 @@
                                     <li
                                         class="card shadow rounded itinerary_default">
                                         <img
-                                            class="card-img-top img-fluid"
+                                            class="card-img-top img-fluid w-100"
                                             [src]="
                                                 getDestinationImage(
                                                     itinerary.destination.city
                                                 )
                                             " />
                                         <div>
-                                            <h3 class="card-title">
+                                            <h3 class="card-title mt-3">
                                                 {{ itinerary.name }}
                                             </h3>
                                             <div class="card-content">
