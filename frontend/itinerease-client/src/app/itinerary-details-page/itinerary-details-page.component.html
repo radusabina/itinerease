@@ -254,10 +254,14 @@
                                 {{ attraction.price }}
                             </div>
                             <div>
-                                <button class="btn btn-sm btn-blue me-2" (click)="onEditAttraction()">
+                                <button
+                                    class="btn btn-sm btn-blue me-2"
+                                    (click)="onEditAttraction()">
                                     <i class="bi bi-pencil-fill"></i>
                                 </button>
-                                <button class="btn btn-sm btn-red" (click)="onDeleteAttraction(attraction.id)">
+                                <button
+                                    class="btn btn-sm btn-red"
+                                    (click)="onDeleteAttraction(attraction.id)">
                                     <i class="bi bi-trash-fill"></i>
                                 </button>
                             </div>
@@ -266,7 +270,13 @@
                 </div>
                 <div class="d-flex justify-content-end">
                     <button
-                        class="btn btn-blue w-50"
+                        class="btn btn-danger w-10 mx-2"
+                        data-bs-toggle="modal"
+                        data-bs-target="#ModalToggle">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                    <button
+                        class="btn btn-blue w-50 mx-2"
                         (click)="onSaveItinerary()">
                         Save itinerary
                     </button>
@@ -281,4 +291,5 @@
             alt="itinerary"
             class="vh-100" />
     </div>
+    <app-delete-confirmation-modal></app-delete-confirmation-modal>
 </div>
