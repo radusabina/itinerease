@@ -27,6 +27,10 @@ export class ContainerComponent {
     ) {}
 
     ngOnInit() {
+        this.refreshTasks();
+    }
+
+    refreshTasks() {
         this.loggedUser = this.userService.getLoggedUser();
         if (this.loggedUser) {
             this.itineraryService.loadItineraries(this.loggedUser);
@@ -38,7 +42,6 @@ export class ContainerComponent {
             );
         }
     }
-
     calculateDaysBetweenDates(arrivalDate: Date, departureDate: Date): number {
         const oneDay = 24 * 60 * 60 * 1000; // hours * minutes * seconds * milliseconds
 

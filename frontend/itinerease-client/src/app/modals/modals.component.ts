@@ -133,8 +133,7 @@ export class ModalsComponent {
                 this.priceAccomodation = undefined;
 
                 form.resetForm();
-                window.location.reload();
-                this.router.navigate(['/homepage']);
+                this.containerComponent.refreshTasks();
             },
             (error: any) => {
                 //ce se intampla in caz de eroareeeeeee :(
