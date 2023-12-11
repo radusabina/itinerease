@@ -133,7 +133,7 @@ export class ModalsComponent {
                 this.priceAccomodation = undefined;
 
                 form.resetForm();
-                this.containerComponent.ngOnInit();
+                this.containerComponent.refreshTasks();
             },
             (error: any) => {
                 //ce se intampla in caz de eroareeeeeee :(
