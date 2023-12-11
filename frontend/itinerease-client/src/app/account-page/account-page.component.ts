@@ -63,7 +63,7 @@ export class AccountPageComponent {
             email: this.email,
             password: this.password,
         };
-        this.userService.signUpUser(userSignup).subscribe(
+        this.userService.updateUser(userSignup).subscribe(
             (response: any) => {
                 this.user = {
                     id: response.id,
@@ -75,6 +75,19 @@ export class AccountPageComponent {
                 };
                 this.userService.setLoggedUser(this.user);
                 this.router.navigate(['/homepage']);
+            },
+            (error: any) => {},
+        );
+    }
+    logOf() {
+        this.router.navigate(['/login']);
+    }
+
+    deleteUser() {
+        this.userService.deleteUser(this.email).subscribe(
+            (response: any) => {
+                console.log('a mers!');
+                this.router.navigate(['/login']);
             },
             (error: any) => {},
         );

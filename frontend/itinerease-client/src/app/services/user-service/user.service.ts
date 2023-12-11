@@ -29,6 +29,14 @@ export class UserService {
         return this.http.post<IUser>(endpointAPI + 'user/signup', credentials);
     }
 
+    updateUser(credentials: IUserSignup): Observable<IUser> {
+        return this.http.put<IUser>(endpointAPI + 'user', credentials);
+    }
+
+    deleteUser(email: string): Observable<IUser> {
+        return this.http.delete<IUser>(endpointAPI + 'user/' + email);
+    }
+
     getLoggedUserId() {
         return this.loggedUser?.id;
     }
