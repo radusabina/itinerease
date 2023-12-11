@@ -70,4 +70,8 @@ export class ItineraryService {
     getItineraryById(id: number) {
         return this.http.get<IItinerary>(endpointAPI + `itinerary/${id}`);
     }
+
+    deleteItineraryById(id: number): Observable<void> {
+        return this.http.delete<void>(`${endpointAPI}itinerary/${id}`);
+    }
 }

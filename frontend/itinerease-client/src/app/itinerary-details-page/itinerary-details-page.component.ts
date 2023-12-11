@@ -11,11 +11,17 @@ import { NotificationService } from '../services/notification-service/notificati
 import { IAttractionAdd } from '../dtos/IAttractionAdd';
 import { response } from 'express';
 import { IItineraryEditPage } from '../dtos/IItineraryEditPage';
+import { DeleteConfirmationModalComponent } from '../delete-confirmation-modal/delete-confirmation-modal.component';
 
 @Component({
     selector: 'app-itinerary-details-page',
     standalone: true,
-    imports: [CommonModule, FormsModule, NgbModule],
+    imports: [
+        CommonModule,
+        FormsModule,
+        NgbModule,
+        DeleteConfirmationModalComponent,
+    ],
     templateUrl: './itinerary-details-page.component.html',
     styleUrl: './itinerary-details-page.component.scss',
 })
@@ -25,7 +31,7 @@ export class ItineraryDetailsPageComponent {
     itineraryId: number = 0;
 
     // Itinerary details
-    itineraryName: string | undefined = undefined;
+    itineraryName: string = '';
     startDate: NgbDateStruct | undefined = undefined;
     endDate: NgbDateStruct | undefined = undefined;
     budget: number | undefined = undefined;
@@ -76,26 +82,20 @@ export class ItineraryDetailsPageComponent {
         private attractionService: AttractionService,
         private route: ActivatedRoute,
     ) {
-        this.attractions = [];
-
         const currentDate = new Date();
         this.minDate = {
             year: currentDate.getFullYear(),
             month: currentDate.getMonth() + 1,
             day: currentDate.getDate(),
         };
-
-        this.route.params.subscribe((params) => {
-            this.itineraryId = params['id'];
-        });
     }
 
     ngOnInit() {
-
-    }
-
-    ngAfterViewInit() {
-        this.populatePage();
+        this.attractions = [];
+        this.route.params.subscribe((params) => {
+            this.itineraryId = params['id'];
+        });
+        this.loadItineraryDetails(this.itineraryId);
     }
 
     onStartDateSelect(date: NgbDateStruct) {
@@ -156,7 +156,7 @@ export class ItineraryDetailsPageComponent {
                     budget: response.budget,
                     persons: response.persons,
                 };
-                console.log(this.itinerary);
+                this.populatePage();
             },
             (error) => {
                 console.log(error);
