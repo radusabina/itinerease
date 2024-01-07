@@ -27,7 +27,7 @@ import { ContainerComponent } from '../container/container.component';
         ContainerComponent,
     ],
     templateUrl: './modals.component.html',
-    styleUrl: './modals.component.scss',
+    styleUrls: ['./modals.component.scss'],
 })
 export class ModalsComponent {
     title = 'itinerease-client';
