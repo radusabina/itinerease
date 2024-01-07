@@ -46,6 +46,7 @@ public class ItineraryService {
             itineraryToUpdate.setArrival_date(updatedItinerary.getArrival_date());
             itineraryToUpdate.setBudget(updatedItinerary.getBudget());
             itineraryToUpdate.setPersons(updatedItinerary.getPersons());
+            itineraryRepository.delete(itineraryToUpdate);
             itineraryRepository.save(updatedItinerary);
         } else {
             // TODO Trebuie sa tratam cazul in care nu exista

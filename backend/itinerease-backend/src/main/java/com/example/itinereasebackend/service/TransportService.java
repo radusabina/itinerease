@@ -1,7 +1,6 @@
 package com.example.itinereasebackend.service;
 
 
-import com.example.itinereasebackend.api.model.Itinerary;
 import com.example.itinereasebackend.api.model.Transport;
 import com.example.itinereasebackend.repository.TransportRepository;
 import lombok.AllArgsConstructor;

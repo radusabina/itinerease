@@ -5,6 +5,7 @@ import com.example.itinereasebackend.service.*;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.ConstraintViolationException;
+import org.hibernate.sql.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -102,9 +103,60 @@ public class ItineraryController {
     }
 
 
-    @PutMapping("/itinerary")
-    public void update(@RequestBody Itinerary itinerary) {
-        itineraryService.update(Math.toIntExact(itinerary.getId()), itinerary);
+    @PutMapping("/itinerary/{id}")
+    public ResponseEntity<Object> update(@PathVariable Long id, @RequestBody Map<String, String> itinerary) {
+        try {
+            int id_it = Integer.parseInt(itinerary.get("id"));
+            String itinerary_name = itinerary.get("itineraryName");
+            String date_start = itinerary.get("dateStart");
+            String date_end = itinerary.get("dateEnd");
+            int budget = Integer.parseInt(itinerary.get("budget"));
+            int numberOfPersons = Integer.parseInt(itinerary.get("numberOfPersons"));
+            String whereToCountry = itinerary.get("whereToCountry");
+            String whereToCity = itinerary.get("whereToCity");
+            String whereFromCountry = itinerary.get("whereFromCountry");
+            String whereFromCity = itinerary.get("whereFromCity");
+            String transportType = itinerary.get("transportType");
+            int transportPrice = Integer.parseInt(itinerary.get("transportPrice"));
+            String accommodationName = itinerary.get("accommodationName");
+            String accommodationAddress = itinerary.get("accommodationAddress");
+            int accommodationPrice = Integer.parseInt(itinerary.get("accommodationPrice"));
+            int idUser = Integer.parseInt(itinerary.get("idUser"));
+
+            LocalDate start_date = LocalDate.parse(date_start);
+            LocalDate end_date = LocalDate.parse(date_end);
+
+            Location destinationLocation = locationService.getByCountryAndCity(whereToCountry, whereToCity)
+                    .orElseThrow(() -> new RuntimeException("Destination location not found"));
+            Location departureLocation = locationService.getByCountryAndCity(whereFromCountry, whereFromCity)
+                    .orElseThrow(() -> new RuntimeException("Departure location not found"));
+
+            Itinerary itinerary1 = itineraryService.findById(id_it);
+
+            Accommodation accm_updated = new Accommodation(accommodationName,accommodationAddress, accommodationPrice);
+            int id_accm = itinerary1.getAccommodation().getId();
+            accommodationService.update(id_accm, accm_updated);
+
+            Transport transp = new Transport(transportType,transportPrice);
+            int id_tranp = itinerary1.getTransport().getId();
+            transportService.update(id_tranp, transp);
+
+
+
+            Itinerary itinerary_upd = new Itinerary(destinationLocation,
+                    transportService.getById(id_tranp).orElseThrow(() -> new RuntimeException("Transport not found")),
+                    userService.getById(idUser).orElseThrow(() -> new RuntimeException("User not found")),
+                    accommodationService.getById(id_accm).orElseThrow(() -> new RuntimeException("Accomodation not found")),
+                    departureLocation, itinerary_name, start_date, end_date, budget, numberOfPersons);
+
+            itineraryService.update(id_it, itinerary_upd);
+
+            return ResponseEntity.ok("Updated succesfully");
+        }
+        catch (Exception exception) {
+            System.out.println(exception);
+            return null;
+        }
     }
 
     @DeleteMapping("/itinerary/{id}")

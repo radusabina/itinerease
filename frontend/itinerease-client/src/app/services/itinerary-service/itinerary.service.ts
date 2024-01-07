@@ -8,6 +8,8 @@ import { IUser } from '../../dtos/IUser';
 import { map } from 'rxjs/operators';
 import { IItinerary } from '../../dtos/IItinerary';
 import { IItineraryInsert } from '../../dtos/IItineraryInsert';
+import { IItineraryEditPage } from '../../dtos/IItineraryEditPage';
+import { IItineraryUpdate } from '../../dtos/IItineraryUpdate';
 
 @Injectable({
     providedIn: 'root',
@@ -73,5 +75,12 @@ export class ItineraryService {
 
     deleteItineraryById(id: number): Observable<void> {
         return this.http.delete<void>(`${endpointAPI}itinerary/${id}`);
+    }
+
+    updateItinerary(itinerary: IItineraryUpdate) {
+        return this.http.put<void>(
+            endpointAPI + 'itinerary/' + itinerary.id,
+            itinerary,
+        );
     }
 }
