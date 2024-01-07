@@ -12,6 +12,7 @@ import { IAttractionAdd } from '../dtos/IAttractionAdd';
 import { response } from 'express';
 import { IItineraryEditPage } from '../dtos/IItineraryEditPage';
 import { DeleteConfirmationModalComponent } from '../delete-confirmation-modal/delete-confirmation-modal.component';
+import { ILocation } from '../dtos/ILocation';
 
 @Component({
     selector: 'app-itinerary-details-page',
@@ -58,13 +59,9 @@ export class ItineraryDetailsPageComponent {
     attractionName: string = '';
     attractionPrice: number | undefined = undefined;
     attractions: IAttractionEditPage[] | undefined = undefined;
+    addAttractionFailed: boolean = false;
 
     minDate: NgbDateStruct;
-    attractionToBeAdded: IAttractionAdd = {
-        id_location: 1,
-        price: 3,
-        name: 'asdas',
-    };
 
     countryCities: { [key: string]: string[] } = {
         Romania: ['Cluj', 'Bucuresti', 'Timisoara', 'Iasi', 'Constanta'],
@@ -208,21 +205,35 @@ export class ItineraryDetailsPageComponent {
         }
     }
 
-    // onAddAttraction() {
-    //     this.attractionService
-    //         .addAttraction(this.attractionToBeAdded)
-    //         .subscribe(
-    //             (response) => {
-    //                 // TODO si returnare atractie cu tot cu id
-    //                 this.attractions?.push(this.attractionToBeAdded);
-    //                 console.log("succes");
-    //             },
-    //             (error) => {
-    //                 // TODO
-    //                 console.log("fail");
-    //             },
-    //         );
-    // }
+    onAddAttraction() {
+        if (this.accommodationName != '' && this.attractionPrice != undefined) {
+            var localLocation: ILocation = {
+                id: this.itinerary?.id_destination ?? 0,
+                country: this.itinerary?.destination_country ?? '',
+                city: this.itinerary?.destination_city ?? '',
+            };
+            var attractionToAdd: IAttractionAdd = {
+                location: localLocation,
+                name: this.attractionName,
+                price: this.attractionPrice ?? 0,
+                itineraryId: this.itineraryId,
+            };
+            this.attractionService.addAttraction(attractionToAdd).subscribe(
+                (response) => {
+                    this.attractionName = '';
+                    this.attractionPrice = undefined;
+                    this.addAttractionFailed = true;
+                    console.log('succes');
+                },
+                (error) => {
+                    this.attractionName = '';
+                    this.attractionPrice = undefined;
+                    this.addAttractionFailed = false;
+                    console.log('fail');
+                },
+            );
+        }
+    }
 
     onEditAttraction() {
         // TODO open modal

@@ -224,7 +224,19 @@
                             type="text"
                             class="form-control"
                             [(ngModel)]="attractionName"
-                            placeholder="Attraction name" />
+                            placeholder="Attraction name"
+                            #AttractionNameField="ngModel"
+                            name="attractionName"
+                            required />
+                        <div
+                            *ngIf="
+                                AttractionNameField.touched &&
+                                AttractionNameField.hasError('required') &&
+                                !addAttractionFailed
+                            "
+                            class="text-danger small">
+                            Attraction name must start with capital letter.
+                        </div>
                     </div>
 
                     <div class="attraction-price mb-2">
@@ -233,11 +245,33 @@
                             type="text"
                             class="form-control"
                             [(ngModel)]="attractionPrice"
-                            placeholder="Attraction price" />
+                            placeholder="Attraction price"
+                            required
+                            #AttractionPriceField="ngModel"
+                            pattern="^[1-9]\d*(\.\d+)?$" />
+                        <div
+                            *ngIf="AttractionPriceField.touched"
+                            class="text-danger small">
+                            <div
+                                *ngIf="
+                                    AttractionPriceField.hasError('required') &&
+                                    !addAttractionFailed
+                                ">
+                                Price is required.
+                            </div>
+                            <div
+                                *ngIf="
+                                    AttractionPriceField.hasError('pattern')
+                                ">
+                                Please enter a valid number (no leading zero).
+                            </div>
+                        </div>
                     </div>
 
                     <div class="attraction-add-button text-end">
-                        <button class="btn btn-blue w-100">
+                        <button
+                            class="btn btn-blue w-100"
+                            (click)="onAddAttraction()">
                             Add attraction
                         </button>
                     </div>
