@@ -1,16 +1,24 @@
 <div class="custom-background text-font">
     <div class="container-fluid">
-        <div class="col-md-7 m-auto">
+        <div class="col-md-6 m-auto">
             <div class="card border-2 shadow" style="border-radius: 1rem">
                 <div class="card-body">
                     <form class="text-center text-font">
                         <div class="row justify-content-around my-2">
                             <div class="col-5 rounded position-relative">
                                 <!-- Conținut pentru prima coloană -->
-                                <div class="mt-4">
+                                <div>
+                                    <span class="arrow-up">
+                                        <button class="arrow-back">
+                                            <i
+                                                class="bi bi-arrow-left text-light"
+                                                (click)="backToHomePage()"></i>
+                                        </button>
+                                    </span>
                                     <img
                                         src="https://i.postimg.cc/nzg65H88/Whats-App-Image-2023-11-20-at-22-52-50.jpg"
                                         class="rounded-circle img-fluid w-50 mx-auto d-block" />
+
                                     <h1 class="title">
                                         {{ firstName }} {{ lastName }}
                                     </h1>
@@ -18,23 +26,18 @@
                                     <div
                                         class="d-flex flex-column align-items-center">
                                         <!-- Container pentru alinierea butoanelor -->
-                                        <div class="mt-3"></div>
                                         <!-- Primul buton -->
                                         <button
                                             type="button"
-                                            class="btn-home-back mb-3 mt-5"
+                                            class="btn-home-back mb-3 justify-content-center"
                                             (click)="logOf()">
                                             <h2 class="log-out">Log out</h2>
                                         </button>
                                         <!-- Al doilea buton -->
                                         <button
                                             type="button"
-                                            class="btn-home-back"
-                                            style="
-                                                background-color: #d9d9d9;
-                                                box-shadow: 4px 4px 4px 0px
-                                                    rgba(0, 0, 0, 0.25);
-                                            ">
+                                            class="btn-home-back justify-content-center"
+                                            style="background-color: #d9d9d9">
                                             <h2
                                                 class="delete-account"
                                                 (click)="deleteUser()">
@@ -161,7 +164,7 @@
                                 <div>
                                     <button
                                         type="button"
-                                        class="btn-save-mofidy mb-4 mt-5">
+                                        class="btn-save-mofidy mb-4 mt-4 justify-content-center">
                                         <h2
                                             class="save-update"
                                             (click)="modifyUser()">

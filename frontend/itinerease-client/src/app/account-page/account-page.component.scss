@@ -7,46 +7,50 @@
     border-left: 3px solid rgba(174, 163, 163, 0.81); /* Grosimea și culoarea liniei */
     background: rgba(174, 163, 163, 0.81);
 }
+.arrow-back {
+    position: absolute;
+    top: 0px; /* Ajustează această valoare pentru a regla poziția verticală a săgeții */
+    left: 0;
+    display: flex;
+    align-items: center;
+    border-radius: 0.4375rem;
+    border-color: transparent transparent;
+    background: rgba(113, 148, 170, 0.85);
+    width: 2rem;
+    height: 2rem;
+}
 
 .title {
-    margin-bottom: 10rem;
+    margin-bottom: 8.8rem;
 }
 h1 {
     font-size: 1.488rem;
 }
 h2 {
-    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    font-size: 1.488rem;
+    font-size: 1.288rem;
     font-weight: 400;
-    margin-top: 1%;
-    margin-left: 10%;
+    margin-top: 4%;
+
     color: #fff;
 }
 .delete-account {
     color: red;
 }
-.save-update {
-    margin-right: 10%;
-}
-
 .btn-home-back {
     display: flex;
     align-items: center;
     border-radius: 0.4375rem;
     border-color: transparent transparent;
     background: rgba(113, 148, 170, 0.85);
-    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    width: 14.4375rem;
-    height: 3.0875rem;
+    width: 12.4375rem;
+    height: 2.5875rem;
 }
 .btn-save-mofidy {
-    align-items: center;
     border-radius: 0.4375rem;
     border-color: transparent transparent;
     background: rgba(113, 148, 170, 0.85);
-    box-shadow: 4px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    width: 14.4375rem;
-    height: 3.0875rem;
+    width: 8.4375rem;
+    height: 2.5875rem;
 }
 
 .custom-background {
@@ -112,4 +116,9 @@ h2 {
 
 .toggle-password {
     cursor: pointer;
+}
+
+img {
+    margin-top: 6rem;
+    margin-bottom: 1rem;
 }

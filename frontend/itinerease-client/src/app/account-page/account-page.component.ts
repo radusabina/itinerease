@@ -92,4 +92,7 @@ export class AccountPageComponent {
             (error: any) => {},
         );
     }
+    backToHomePage() {
+        this.router.navigate(['/homepage']);
+    }
 }

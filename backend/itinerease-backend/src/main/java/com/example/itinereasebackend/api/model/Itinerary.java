@@ -32,7 +32,7 @@ public class Itinerary {
     @JoinColumn(name = "id_transport")
     private Transport transport;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name = "id_user")
     private User user;
 

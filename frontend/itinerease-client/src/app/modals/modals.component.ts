@@ -138,6 +138,7 @@ export class ModalsComponent {
             (error: any) => {
                 //ce se intampla in caz de eroareeeeeee :(
                 //daca userul nu baga bine datele sau e ceva eroare
+                form.resetForm();
             },
         );
     }

@@ -30,19 +30,13 @@ public class UserController {
         return userService.getAll();
     }
 
-    @PutMapping("/user")
-    public void update(@RequestBody User user) {
-        userService.update(user.getEmail(), user);
-    }
+    //@DeleteMapping("/user/{id}")
+    //public void delete(@PathVariable int id) {
+    //    userService.delete(id);
+    //}
 
-    @DeleteMapping("/user/{id}")
-    public void delete(@PathVariable int id) {
-        userService.delete(id);
-    }
-
-    @DeleteMapping("/user")
-    public void delete(@RequestBody Map<String, String> request) {
-        String email = request.get("email");
+    @DeleteMapping("/user/{email}")
+    public void delete(@PathVariable("email") String email) {
         userService.delete(email);
     }
 
@@ -81,13 +75,13 @@ public class UserController {
         }
     }
 
-    @PutMapping("/user/{email}")
-    public ResponseEntity<Object> update(@PathVariable String email, @RequestBody Map<String, String> userDetails) {
+    @PutMapping("/user")
+    public ResponseEntity<Object> update(@RequestBody Map<String, String> userDetails) {
         try {
-            Optional<User> optionalUser = userService.getUserByEmail(email);
+            Optional<User> optionalUser = userService.getUserByEmail(userDetails.get("email"));
 
             if (optionalUser.isEmpty()) {
-                throw new EntityNotFoundException("User not found with email: " + email);
+                throw new EntityNotFoundException("User not found with email: " + userDetails.get("email"));
             }
 
             User existingUser = optionalUser.get();
