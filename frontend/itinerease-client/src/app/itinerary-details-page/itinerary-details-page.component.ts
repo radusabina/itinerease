@@ -64,6 +64,7 @@ export class ItineraryDetailsPageComponent {
     attractionName: string = '';
     attractionPrice: number | undefined = undefined;
     attractions: IAttractionEditPage[] | undefined = undefined;
+    addAttractionFailed: boolean = false;
 
     minDate: NgbDateStruct;
 

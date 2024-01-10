@@ -7,7 +7,7 @@ import { AccountPageComponent } from './account-page/account-page.component';
 import { ItineraryDetailsPageComponent } from './itinerary-details-page/itinerary-details-page.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: '/account-page', pathMatch: 'full' },
+    { path: '', redirectTo: '/login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'homepage', component: HomepageComponent },
     { path: 'signup', component: SignupComponent },
