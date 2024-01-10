@@ -27,7 +27,7 @@ import { ContainerComponent } from '../container/container.component';
         ContainerComponent,
     ],
     templateUrl: './modals.component.html',
-    styleUrl: './modals.component.scss',
+    styleUrls: ['./modals.component.scss'],
 })
 export class ModalsComponent {
     title = 'itinerease-client';
@@ -138,6 +138,7 @@ export class ModalsComponent {
             (error: any) => {
                 //ce se intampla in caz de eroareeeeeee :(
                 //daca userul nu baga bine datele sau e ceva eroare
+                form.resetForm();
             },
         );
     }

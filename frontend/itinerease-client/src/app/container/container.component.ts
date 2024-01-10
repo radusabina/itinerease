@@ -42,6 +42,7 @@ export class ContainerComponent {
             );
         }
     }
+
     calculateDaysBetweenDates(arrivalDate: Date, departureDate: Date): number {
         const oneDay = 24 * 60 * 60 * 1000; // hours * minutes * seconds * milliseconds
 
