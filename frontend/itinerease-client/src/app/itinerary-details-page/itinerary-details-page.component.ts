@@ -64,6 +64,7 @@ export class ItineraryDetailsPageComponent {
     attractionName: string = '';
     attractionPrice: number | undefined = undefined;
     attractions: IAttractionEditPage[] | undefined = undefined;
+    addAttractionFailed: boolean = false;
 
     minDate: NgbDateStruct;
 
@@ -94,7 +95,7 @@ export class ItineraryDetailsPageComponent {
 
     ngOnInit() {
         this.attractions = [];
-        this.route.params.subscribe((params) => {
+        this.route.params.subscribe((params: any) => {
             this.itineraryId = params['id'];
         });
         this.loadItineraryDetails(this.itineraryId);
