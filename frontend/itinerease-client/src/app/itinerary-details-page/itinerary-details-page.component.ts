@@ -95,7 +95,7 @@ export class ItineraryDetailsPageComponent {
 
     ngOnInit() {
         this.attractions = [];
-        this.route.params.subscribe((params: any) => {
+        this.route.params.subscribe((params) => {
             this.itineraryId = params['id'];
         });
         this.loadItineraryDetails(this.itineraryId);
