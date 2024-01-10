@@ -40,6 +40,10 @@ public class AccommodationService {
         }
     }
 
+    public Optional<Accommodation> getByName(String name) {
+        return accommodationRepository.findByName(name);
+    }
+
     public void delete(int accId) {
         // TODO trebuie sa tratam si cazul in care nu exista userul pe care vrem sa il stergem
         accommodationRepository.deleteById(accId);

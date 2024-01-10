@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { NgbDateStruct, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+    NgbCalendar,
+    NgbDateStruct,
+    NgbModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IAttractionEditPage } from '../dtos/IAttractionEditPage';
 import { ItineraryService } from '../services/itinerary-service/itinerary.service';
@@ -13,6 +17,7 @@ import { response } from 'express';
 import { IItineraryEditPage } from '../dtos/IItineraryEditPage';
 import { DeleteConfirmationModalComponent } from '../delete-confirmation-modal/delete-confirmation-modal.component';
 import { ILocation } from '../dtos/ILocation';
+import { IItineraryUpdate } from '../dtos/IItineraryUpdate';
 
 @Component({
     selector: 'app-itinerary-details-page',
@@ -33,8 +38,8 @@ export class ItineraryDetailsPageComponent {
 
     // Itinerary details
     itineraryName: string = '';
-    startDate: NgbDateStruct | undefined = undefined;
-    endDate: NgbDateStruct | undefined = undefined;
+    startDate: NgbDateStruct = this.calendar.getToday();
+    endDate: NgbDateStruct = this.calendar.getToday();
     budget: number | undefined = undefined;
     numberOfPersons: number | undefined = undefined;
 
@@ -59,7 +64,6 @@ export class ItineraryDetailsPageComponent {
     attractionName: string = '';
     attractionPrice: number | undefined = undefined;
     attractions: IAttractionEditPage[] | undefined = undefined;
-    addAttractionFailed: boolean = false;
 
     minDate: NgbDateStruct;
 
@@ -78,6 +82,7 @@ export class ItineraryDetailsPageComponent {
         private itineraryService: ItineraryService,
         private attractionService: AttractionService,
         private route: ActivatedRoute,
+        private calendar: NgbCalendar,
     ) {
         const currentDate = new Date();
         this.minDate = {
@@ -257,6 +262,43 @@ export class ItineraryDetailsPageComponent {
     }
 
     onSaveItinerary() {
-        this.router.navigate(['homepage']);
+        var itinerary: IItineraryUpdate = {
+            id: this.itineraryId,
+            itineraryName: this.itineraryName,
+            dateStart: new Date(
+                this.startDate?.year,
+                this.startDate?.month,
+                this.startDate?.day,
+            ).toLocaleDateString('sv'),
+            dateEnd: new Date(
+                this.endDate?.year,
+                this.endDate?.month,
+                this.endDate?.day,
+            ).toLocaleDateString('sv'),
+            budget: this.budget,
+            numberOfPersons: this.numberOfPersons,
+            whereToCountry: this.whereToCountry,
+            whereToCity: this.whereToCity,
+            whereFromCountry: this.whereFromCountry,
+            whereFromCity: this.whereFromCity,
+            transportType: this.transportType,
+            transportPrice: this.transportPrice,
+            accommodationName: this.accommodationName,
+            accommodationAddress: this.accommodationAddress,
+            accommodationPrice: this.accommodationPrice,
+            idUser: this.itinerary?.id_user,
+        };
+
+        console.log(itinerary);
+
+        this.itineraryService.updateItinerary(itinerary).subscribe(
+            (response: any) => {
+                console.log('Itinerary updated successfully.');
+                this.router.navigate(['/homepage']);
+            },
+            (error) => {
+                console.error(error);
+            },
+        );
     }
 }
