@@ -18,6 +18,7 @@ import { IItineraryEditPage } from '../dtos/IItineraryEditPage';
 import { DeleteConfirmationModalComponent } from '../delete-confirmation-modal/delete-confirmation-modal.component';
 import { ILocation } from '../dtos/ILocation';
 import { IItineraryUpdate } from '../dtos/IItineraryUpdate';
+//import { ContainerComponent } from '../container/container.component';
 
 @Component({
     selector: 'app-itinerary-details-page',
@@ -27,6 +28,7 @@ import { IItineraryUpdate } from '../dtos/IItineraryUpdate';
         FormsModule,
         NgbModule,
         DeleteConfirmationModalComponent,
+        //ContainerComponent,
     ],
     templateUrl: './itinerary-details-page.component.html',
     styleUrl: './itinerary-details-page.component.scss',
@@ -84,6 +86,7 @@ export class ItineraryDetailsPageComponent {
         private attractionService: AttractionService,
         private route: ActivatedRoute,
         private calendar: NgbCalendar,
+        //private containerComponent: ContainerComponent,
     ) {
         const currentDate = new Date();
         this.minDate = {
@@ -296,6 +299,7 @@ export class ItineraryDetailsPageComponent {
             (response: any) => {
                 console.log('Itinerary updated successfully.');
                 this.router.navigate(['/homepage']);
+                // this.containerComponent.refreshTasks();
             },
             (error) => {
                 console.error(error);
