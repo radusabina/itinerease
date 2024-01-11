@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between align-items-center vh-100 text-font">
-    <div class="itinerary-details d-flex justify-content-center w-100 m-3">
+    <div class="itinerary-details d-flex justify-content-center w-100">
         <div class="row">
             <div class="col-md-6 first-column">
                 <div class="details mb-5">
@@ -11,28 +11,7 @@
                             type="text"
                             class="form-control"
                             [(ngModel)]="itineraryName"
-                            placeholder="Itinerary name"
-                            required
-                            minlength="4"
-                            maxlength="255"
-                            #itineraryNameField="ngModel" />
-                        <div
-                            *ngIf="itineraryNameField.touched"
-                            class="text-danger small"
-                            style="text-align: left">
-                            <div
-                                *ngIf="itineraryNameField.hasError('required')">
-                                Name is required.
-                            </div>
-                            <div
-                                *ngIf="
-                                    itineraryNameField.touched &&
-                                    itineraryNameField.hasError('minlength')
-                                ">
-                                The itinerary name must be at least 4 characters
-                                long.
-                            </div>
-                        </div>
+                            placeholder="Itinerary name" />
                     </div>
 
                     <div class="itinerary-budget mb-2">
@@ -41,21 +20,7 @@
                             type="text"
                             class="form-control"
                             [(ngModel)]="budget"
-                            placeholder="Budget"
-                            #BugetField="ngModel"
-                            pattern="^[1-9]\d*(\.\d+)?$"
-                            required />
-                        <div
-                            *ngIf="BugetField.touched"
-                            class="text-danger small"
-                            style="text-align: left">
-                            <div *ngIf="BugetField.hasError('required')">
-                                Budget is required.
-                            </div>
-                            <div *ngIf="BugetField.hasError('pattern')">
-                                Please enter a valid number (no leading zero).
-                            </div>
-                        </div>
+                            placeholder="Budget" />
                     </div>
 
                     <div class="itinerary-persons">
@@ -64,21 +29,7 @@
                             type="text"
                             class="form-control"
                             [(ngModel)]="numberOfPersons"
-                            placeholder="Persons"
-                            #PersonsField="ngModel"
-                            required
-                            pattern="^[1-9]\d*(\.\d+)?$" />
-                        <div
-                            *ngIf="PersonsField.touched"
-                            class="text-danger small"
-                            style="text-align: left">
-                            <div *ngIf="PersonsField.hasError('required')">
-                                Number of persons is required.
-                            </div>
-                            <div *ngIf="PersonsField.hasError('pattern')">
-                                Please enter a valid number (no leading zero).
-                            </div>
-                        </div>
+                            placeholder="Persons" />
                     </div>
                 </div>
 
@@ -110,9 +61,7 @@
                                 <select
                                     class="form-select"
                                     aria-label="Country"
-                                    [(ngModel)]="whereFromCountry"
-                                    #whereFromCountryField="ngModel"
-                                    required>
+                                    [(ngModel)]="whereFromCountry">
                                     <option value="" selected>
                                         {{ whereFromCountry }}
                                     </option>
@@ -124,26 +73,13 @@
                                     <option value="Italy">Italy</option>
                                     <option value="Japan">Japan</option>
                                 </select>
-
-                                <div
-                                    *ngIf="
-                                        whereFromCountryField.invalid &&
-                                        (whereFromCountryField.dirty ||
-                                            whereFromCountryField.touched)
-                                    "
-                                    class="text-danger small"
-                                    style="text-align: left">
-                                    Please select a country.
-                                </div>
                             </div>
 
                             <div class="where-from-cities">
                                 <select
                                     class="form-select"
                                     [(ngModel)]="whereFromCity"
-                                    aria-label="City"
-                                    #whereFromCityField="ngModel"
-                                    required>
+                                    aria-label="City">
                                     <option value="" selected>
                                         {{ whereFromCity }}
                                     </option>
@@ -155,16 +91,6 @@
                                         {{ cityLeft }}
                                     </option>
                                 </select>
-                                <div
-                                    *ngIf="
-                                        whereFromCityField.invalid &&
-                                        (whereFromCityField.dirty ||
-                                            whereFromCityField.touched)
-                                    "
-                                    class="text-danger small"
-                                    style="text-align: left">
-                                    Please select a city.
-                                </div>
                             </div>
                         </div>
 
@@ -191,9 +117,7 @@
                                 <select
                                     class="form-select"
                                     aria-label="Country"
-                                    [(ngModel)]="whereToCountry"
-                                    #whereToCountryField="ngModel"
-                                    required>
+                                    [(ngModel)]="whereToCountry">
                                     <option value="" selected>
                                         {{ whereToCountry }}
                                     </option>
@@ -205,26 +129,13 @@
                                     <option value="Italy">Italy</option>
                                     <option value="Japan">Japan</option>
                                 </select>
-
-                                <div
-                                    *ngIf="
-                                        whereToCountryField.invalid &&
-                                        (whereToCountryField.dirty ||
-                                            whereToCountryField.touched)
-                                    "
-                                    class="text-danger small"
-                                    style="text-align: left">
-                                    Please select a country.
-                                </div>
                             </div>
 
                             <div class="where-to-cities">
                                 <select
                                     class="form-select"
                                     [(ngModel)]="whereToCity"
-                                    aria-label="City"
-                                    #whereToCityField="ngModel"
-                                    required>
+                                    aria-label="City">
                                     <option value="" selected>
                                         {{ whereToCity }}
                                     </option>
@@ -236,17 +147,6 @@
                                         {{ cityRight }}
                                     </option>
                                 </select>
-
-                                <div
-                                    *ngIf="
-                                        whereToCityField.invalid &&
-                                        (whereToCityField.dirty ||
-                                            whereToCityField.touched)
-                                    "
-                                    class="text-danger small"
-                                    style="text-align: left">
-                                    Please select a city.
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -260,9 +160,7 @@
                         <select
                             class="form-select"
                             aria-label="Transport type"
-                            [(ngModel)]="transportType"
-                            #transportTypeField="ngModel"
-                            required>
+                            [(ngModel)]="transportType">
                             <option value="" selected>
                                 {{ transportType }}
                             </option>
@@ -272,16 +170,6 @@
                             <option value="Train">Train</option>
                             <option value="Airplane">Airplane</option>
                         </select>
-                        <div
-                            *ngIf="
-                                transportTypeField.invalid &&
-                                (transportTypeField.dirty ||
-                                    transportTypeField.touched)
-                            "
-                            class="text-danger small"
-                            style="text-align: left">
-                            Please select a type of transport.
-                        </div>
                     </div>
 
                     <div class="transport-price">
@@ -290,25 +178,7 @@
                             type="text"
                             class="form-control"
                             [(ngModel)]="transportPrice"
-                            placeholder="Transport price"
-                            #transportPriceField="ngModel"
-                            required
-                            pattern="^[1-9]\d*(\.\d+)?$" />
-                        <div
-                            *ngIf="transportPriceField.touched"
-                            class="text-danger small"
-                            style="text-align: left">
-                            <div
-                                *ngIf="
-                                    transportPriceField.hasError('required')
-                                ">
-                                Transport price is required.
-                            </div>
-                            <div
-                                *ngIf="transportPriceField.hasError('pattern')">
-                                Please enter a valid number (no leading zero).
-                            </div>
-                        </div>
+                            placeholder="Transport price" />
                     </div>
                 </div>
             </div>
@@ -323,29 +193,7 @@
                             type="text"
                             class="form-control"
                             [(ngModel)]="accommodationName"
-                            placeholder="Accommodation name"
-                            #accommodationNameField="ngModel"
-                            required
-                            minlength="4" />
-                        <div
-                            *ngIf="accommodationNameField.touched"
-                            class="text-danger small"
-                            style="text-align: left">
-                            <div
-                                *ngIf="
-                                    accommodationNameField.hasError('required')
-                                ">
-                                Accomodation name is required.
-                            </div>
-                            <div
-                                *ngIf="
-                                    accommodationNameField.touched &&
-                                    accommodationNameField.hasError('minlength')
-                                ">
-                                The accomodation name cannot be at least 4
-                                characters long.
-                            </div>
-                        </div>
+                            placeholder="Accommodation name" />
                     </div>
 
                     <div class="accommodation-address mb-2">
@@ -354,46 +202,16 @@
                             type="text"
                             class="form-control"
                             [(ngModel)]="accommodationAddress"
-                            placeholder="Accommodation address"
-                            #accommodationAddressField="ngModel"
-                            required />
-                        <div
-                            *ngIf="accommodationAddressField.touched"
-                            class="text-danger small"
-                            style="text-align: left"></div>
-                        <div
-                            *ngIf="
-                                accommodationAddressField.hasError('required')
-                            ">
-                            Adress is required.
-                        </div>
+                            placeholder="Accommodation address" />
                     </div>
-                </div>
 
-                <div class="accmmodation-price">
-                    <label>Accommodation price:</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        [(ngModel)]="accommodationPrice"
-                        placeholder="Accommodation price"
-                        #accommodationPriceField="ngModel"
-                        required
-                        pattern="^[1-9]\d*(\.\d+)?$" />
-                    <div
-                        *ngIf="accommodationPriceField.touched"
-                        class="text-danger small"
-                        style="text-align: left">
-                        <div
-                            *ngIf="
-                                accommodationPriceField.hasError('required')
-                            ">
-                            Price is required.
-                        </div>
-                        <div
-                            *ngIf="accommodationPriceField.hasError('pattern')">
-                            Please enter a valid number (no leading zero).
-                        </div>
+                    <div class="accmmodation-price">
+                        <label>Accommodation price:</label>
+                        <input
+                            type="text"
+                            class="form-control"
+                            [(ngModel)]="accommodationPrice"
+                            placeholder="Accommodation price" />
                     </div>
                 </div>
 
@@ -509,3 +327,4 @@
     </div>
     <app-delete-confirmation-modal></app-delete-confirmation-modal>
 </div>
+>

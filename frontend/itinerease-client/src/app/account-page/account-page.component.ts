@@ -65,18 +65,22 @@ export class AccountPageComponent {
         };
         this.userService.updateUser(userSignup).subscribe(
             (response: any) => {
+                console.log(response);
                 this.user = {
                     id: response.id,
-                    firstName: response.firstName,
-                    lastName: response.lastName,
+                    firstName: response.first_name,
+                    lastName: response.last_name,
                     email: response.email,
                     password: response.password,
                     phoneNumber: response.phone_number,
                 };
+                console.log(this.user);
                 this.userService.setLoggedUser(this.user);
                 this.router.navigate(['/homepage']);
             },
-            (error: any) => {},
+            (error: any) => {
+                console.log(error);
+            },
         );
     }
     logOf() {

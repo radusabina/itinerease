@@ -8,16 +8,13 @@ import {
 } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IAttractionEditPage } from '../dtos/IAttractionEditPage';
-import { ItineraryService } from '../services/itinerary-service/itinerary.service';
-import { IItinerary } from '../dtos/IItinerary';
 import { AttractionService } from '../services/attraction-service/attraction.service';
-import { NotificationService } from '../services/notification-service/notification.service';
-import { IAttractionAdd } from '../dtos/IAttractionAdd';
-import { response } from 'express';
 import { IItineraryEditPage } from '../dtos/IItineraryEditPage';
-import { DeleteConfirmationModalComponent } from '../delete-confirmation-modal/delete-confirmation-modal.component';
-import { ILocation } from '../dtos/ILocation';
 import { IItineraryUpdate } from '../dtos/IItineraryUpdate';
+import { ItineraryService } from '../services/itinerary-service/itinerary.service';
+import { ILocation } from '../dtos/ILocation';
+import { IAttractionAdd } from '../dtos/IAttractionAdd';
+import { DeleteConfirmationModalComponent } from '../delete-confirmation-modal/delete-confirmation-modal.component';
 
 @Component({
     selector: 'app-itinerary-details-page',
@@ -85,20 +82,25 @@ export class ItineraryDetailsPageComponent {
         private route: ActivatedRoute,
         private calendar: NgbCalendar,
     ) {
+        this.attractions = [];
+
         const currentDate = new Date();
         this.minDate = {
             year: currentDate.getFullYear(),
             month: currentDate.getMonth() + 1,
             day: currentDate.getDate(),
         };
-    }
-
-    ngOnInit() {
         this.attractions = [];
         this.route.params.subscribe((params) => {
             this.itineraryId = params['id'];
+            this.loadItineraryDetails(this.itineraryId);
         });
-        this.loadItineraryDetails(this.itineraryId);
+    }
+
+    ngOnInit() {}
+
+    ngAfterViewInit() {
+        this.populatePage();
     }
 
     onStartDateSelect(date: NgbDateStruct) {
@@ -148,17 +150,18 @@ export class ItineraryDetailsPageComponent {
                     name: response.name,
                     arrival_date: new Date(
                         response.arrival_date[0],
-                        response.arrival_date[1] - 1,
+                        response.arrival_date[1],
                         response.arrival_date[2],
                     ),
                     departure_date: new Date(
                         response.departure_date[0],
-                        response.departure_date[1] - 1,
+                        response.departure_date[1],
                         response.departure_date[2],
                     ),
                     budget: response.budget,
                     persons: response.persons,
                 };
+                console.log(this.itinerary);
                 this.populatePage();
             },
             (error) => {
@@ -168,8 +171,6 @@ export class ItineraryDetailsPageComponent {
     }
 
     populatePage() {
-        this.loadItineraryDetails(this.itineraryId);
-
         if (this.itinerary) {
             // Itinerary details
             this.itineraryName = this.itinerary?.name;
@@ -230,6 +231,7 @@ export class ItineraryDetailsPageComponent {
                     this.attractionPrice = undefined;
                     this.addAttractionFailed = true;
                     console.log('succes');
+                    window.location.reload();
                 },
                 (error) => {
                     this.attractionName = '';
@@ -268,12 +270,12 @@ export class ItineraryDetailsPageComponent {
             itineraryName: this.itineraryName,
             dateStart: new Date(
                 this.startDate?.year,
-                this.startDate?.month,
+                this.startDate?.month - 1,
                 this.startDate?.day,
             ).toLocaleDateString('sv'),
             dateEnd: new Date(
                 this.endDate?.year,
-                this.endDate?.month,
+                this.endDate?.month - 1,
                 this.endDate?.day,
             ).toLocaleDateString('sv'),
             budget: this.budget,
@@ -297,7 +299,7 @@ export class ItineraryDetailsPageComponent {
                 console.log('Itinerary updated successfully.');
                 this.router.navigate(['/homepage']);
             },
-            (error) => {
+            (error: any) => {
                 console.error(error);
             },
         );
