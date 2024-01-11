@@ -35,19 +35,10 @@ public class ItineraryService {
     public void update(int itineraryId, Itinerary updatedItinerary) {
         Optional<Itinerary> existingItinerary = itineraryRepository.findById(itineraryId);
         if (existingItinerary.isPresent()) {
-            Itinerary itineraryToUpdate = existingItinerary.get();
-            itineraryToUpdate.setDestination_location(updatedItinerary.getDestination_location());
-            itineraryToUpdate.setTransport(updatedItinerary.getTransport());
-            itineraryToUpdate.setUser(updatedItinerary.getUser());
-            itineraryToUpdate.setAccommodation(updatedItinerary.getAccommodation());
-            itineraryToUpdate.setDeparture_location(updatedItinerary.getDeparture_location());
-            itineraryToUpdate.setName(updatedItinerary.getName());
-            itineraryToUpdate.setDeparture_date(updatedItinerary.getDeparture_date());
-            itineraryToUpdate.setArrival_date(updatedItinerary.getArrival_date());
-            itineraryToUpdate.setBudget(updatedItinerary.getBudget());
-            itineraryToUpdate.setPersons(updatedItinerary.getPersons());
-            itineraryRepository.delete(itineraryToUpdate);
-            itineraryRepository.save(updatedItinerary);
+            itineraryRepository.update(itineraryId,  updatedItinerary.getName(), updatedItinerary.getBudget(),
+                    updatedItinerary.getArrival_date(), updatedItinerary.getDeparture_date(),
+                    updatedItinerary.getDeparture_location().getId(), updatedItinerary.getDestination_location().getId(),
+                    updatedItinerary.getPersons());
         } else {
             // TODO Trebuie sa tratam cazul in care nu exista
             throw new RuntimeException("Itinerary not found with id: " + itineraryId);
