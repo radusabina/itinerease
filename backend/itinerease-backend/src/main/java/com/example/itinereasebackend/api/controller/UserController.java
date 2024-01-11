@@ -101,7 +101,7 @@ public class UserController {
 
             userService.update(existingUser);
 
-            return ResponseEntity.ok("User updated successfully");
+            return ResponseEntity.ok(existingUser);
         } catch (EntityNotFoundException exception) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new EntityNotFoundException(exception.getMessage()));
         } catch (Exception exception) {
