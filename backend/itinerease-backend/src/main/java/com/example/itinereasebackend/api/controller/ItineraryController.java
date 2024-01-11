@@ -151,11 +151,11 @@ public class ItineraryController {
 
             itineraryService.update(id_it, itinerary_upd);
 
-            return ResponseEntity.ok("Updated succesfully");
+            return ResponseEntity.ok(itinerary_upd);
         }
         catch (Exception exception) {
             System.out.println(exception);
-            return null;
+            return ResponseEntity.ok(exception);
         }
     }
 

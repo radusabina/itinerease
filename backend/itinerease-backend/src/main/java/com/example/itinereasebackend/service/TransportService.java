@@ -31,10 +31,7 @@ public class TransportService {
     public void update(int transportId, Transport updatedTransport) {
         Optional<Transport> existingTransport = _transportRepository.findById(transportId);
         if (existingTransport.isPresent()) {
-            Transport transportToUpdate = existingTransport.get();
-            transportToUpdate.setType(updatedTransport.getType());
-            transportToUpdate.setPrice(updatedTransport.getPrice());
-            _transportRepository.save(transportToUpdate);
+            _transportRepository.update(transportId, updatedTransport.getPrice(), updatedTransport.getType());
         } else {
             throw new RuntimeException("Transport not found with id: " + transportId);
         }

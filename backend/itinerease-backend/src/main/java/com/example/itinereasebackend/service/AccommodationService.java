@@ -29,11 +29,10 @@ public class AccommodationService {
     public void update(int accmId, Accommodation updatedAccm) {
         Optional<Accommodation> existingAccm = accommodationRepository.findById(accmId);
         if (existingAccm.isPresent()) {
-            Accommodation accmToUpdate = existingAccm.get();
-            accmToUpdate.setAddress(updatedAccm.getAddress());
-            accmToUpdate.setName(updatedAccm.getName());
-            accmToUpdate.setPrice(updatedAccm.getPrice());
-            accommodationRepository.save(updatedAccm);
+            String name = updatedAccm.getName();
+            String address = updatedAccm.getAddress();
+            float price = updatedAccm.getPrice();
+            accommodationRepository.update(accmId, name, address, price);
         } else {
             // TODO Trebuie sa tratam cazul in care nu exista
             throw new RuntimeException("Accommodation not found with id: " + accmId);

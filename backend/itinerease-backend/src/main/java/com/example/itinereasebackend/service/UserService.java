@@ -58,13 +58,8 @@ public class UserService {
     public void update(String userEmail, User updatedUser) {
         Optional<User> existingUser = _userRepository.findByEmail(userEmail);
         if (existingUser.isPresent()) {
-            User userToUpdate = existingUser.get();
-            userToUpdate.setFirst_name(updatedUser.getFirst_name());
-            userToUpdate.setLast_name(updatedUser.getLast_name());
-            userToUpdate.setPhone_number(updatedUser.getPhone_number());
-            userToUpdate.setEmail(updatedUser.getEmail());
-            userToUpdate.setPassword(updatedUser.getPassword());
-            _userRepository.save(userToUpdate);
+            _userRepository.update(userEmail, updatedUser.getFirst_name(), updatedUser.getLast_name(),
+                    updatedUser.getPassword(), updatedUser.getPhone_number());
         } else {
             throw new RuntimeException("User not found with this email");
         }
