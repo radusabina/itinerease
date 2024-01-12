@@ -231,7 +231,10 @@ export class ItineraryDetailsPageComponent {
                     this.attractionPrice = undefined;
                     this.addAttractionFailed = true;
                     console.log('succes');
-                    window.location.reload();
+                    this.router.routeReuseStrategy.shouldReuseRoute = () =>
+                        false;
+                    this.router.onSameUrlNavigation = 'reload';
+                    this.router.navigate([this.router.url]);
                 },
                 (error) => {
                     this.attractionName = '';
